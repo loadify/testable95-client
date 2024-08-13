@@ -1,22 +1,22 @@
 import { ButtonContainer } from "../../style/ButtonStyle";
 
 const Button = ({ type, text }) => {
-  let className;
+  let buttonType;
 
   switch (type) {
     case "text":
-      className = "text-button";
+      buttonType = "text-button";
       break;
     case "resize":
-      className = "resize-button";
+      buttonType = "resize-button";
       break;
     default:
-      className = "default-button";
+      buttonType = "default-button";
   }
 
   return (
     <ButtonContainer>
-      <button className={className}>{text}</button>
+      <button className={buttonType}>{text}</button>
     </ButtonContainer>
   );
 };
