@@ -1,4 +1,4 @@
-const fontSize = {
+export const fontSize = {
   xxxsmall: "0.6rem",
   xxsmall: "0.8rem",
   xsmall: "1rem",
@@ -9,7 +9,7 @@ const fontSize = {
   xxlarge: "2.4rem",
 };
 
-const color = {
+export const color = {
   backgroundColor: "#008081",
   barColor: "#000080",
   lightGrayColor: "#C0C0C0",
@@ -20,9 +20,7 @@ const color = {
   redColor: "#FD0101",
 };
 
-const Theme = {
+export const Theme = {
   fontSize,
   color,
 };
-
-export default Theme;
