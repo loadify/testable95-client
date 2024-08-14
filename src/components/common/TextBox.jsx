@@ -1,19 +1,15 @@
-import {
-  TextBoxContainer,
-  TextBoxTitle,
-  TextBoxHeader,
-  TextBoxContent,
-} from "../../style/TextBoxStyle";
-
 import Button from "./Button";
+
+import { Header } from "../../style/CommonStyle";
+import { TextBoxContainer, TextBoxContent } from "../../style/TextBoxStyle";
 
 const TextBox = ({ title }) => {
   return (
     <TextBoxContainer>
-      <TextBoxHeader>
-        <TextBoxTitle>{title}</TextBoxTitle>
+      <Header>
+        <h2>{title}</h2>
         <Button type="resize" text="_" />
-      </TextBoxHeader>
+      </Header>
       <TextBoxContent>
         <p>블록을 오른쪽 컨테이너로 드래그하세요.</p>
         <p>

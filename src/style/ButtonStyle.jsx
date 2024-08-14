@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
   button {
-    border: 0.2rem solid ${({ theme }) => theme.color.whiteColor};
+    border: 0.15rem solid ${({ theme }) => theme.color.whiteColor};
     border-right-color: ${({ theme }) => theme.color.blackColor};
     border-bottom-color: ${({ theme }) => theme.color.blackColor};
     background-color: ${({ theme }) => theme.color.lightGrayColor};
-    font-size: ${({ theme }) => theme.fontSize.small};
+    font-size: ${({ theme }) => theme.fontSize.xxsmall};
     cursor: pointer;
   }
 
@@ -26,6 +26,10 @@ export const ButtonContainer = styled.div`
   }
 
   .resize-button {
+    margin: 0.1rem;
     font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSize.xxxsmall};
   }
 `;
+
+export default ButtonContainer;

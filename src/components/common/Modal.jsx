@@ -1,28 +1,26 @@
+import Button from "./Button";
+
 import {
   ModalBackground,
   ModalContainer,
-  ModalHeader,
-  ModalTitle,
   ModalContent,
-  ModalButtonContainer,
 } from "../../style/ModalStyle";
-
-import Button from "./Button";
+import { Header, ButtonContainer } from "../../style/CommonStyle";
 
 const Modal = ({ title, content }) => {
   return (
     <ModalBackground>
       <ModalContainer>
-        <ModalHeader>
-          <ModalTitle>{title}</ModalTitle>
+        <Header>
+          <h2>{title}</h2>
           <Button type="resize" text="x"></Button>
-        </ModalHeader>
+        </Header>
         <ModalContent>
-          <p>{content}</p>
-          <ModalButtonContainer>
+          <p className="modal-content">{content}</p>
+          <ButtonContainer>
             <Button type="text" text="no" />
             <Button type="text" text="yes" />
-          </ModalButtonContainer>
+          </ButtonContainer>
         </ModalContent>
       </ModalContainer>
     </ModalBackground>

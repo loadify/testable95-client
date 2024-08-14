@@ -1,30 +1,28 @@
 import styled from "styled-components";
 
-export const MethodBlockContainer = styled.div`
-  p {
+const MethodBlockContainer = styled.li`
+  .method-block-name {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 1rem;
-    width: 10rem;
+    padding: 1rem 1rem;
     background: ${({ theme }) => theme.color.barColor};
     color: ${({ theme }) => theme.color.whiteColor};
-    border: 2px solid ${({ theme }) => theme.color.blackColor};
+    border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   }
 `;
 
-export const InputBlockContainer = styled.div`
+const InputBlockContainer = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
-  width: 8rem;
+  padding: 0.62rem 1rem;
   background: ${({ theme }) => theme.color.grayColor};
   color: ${({ theme }) => theme.color.whiteColor};
-  border: 2px solid ${({ theme }) => theme.color.blackColor};
+  border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
-export const LineBlockContainer = styled.div`
+const LineBlockContainer = styled.li`
   display: flex;
   align-items: center;
   padding: 2rem 4rem;
@@ -32,7 +30,10 @@ export const LineBlockContainer = styled.div`
   width: 16rem;
   background: ${({ theme }) => theme.color.darkGrayColor};
   color: ${({ theme }) => theme.color.blackColor};
-  border: 0.1rem solid ${({ theme }) => theme.color.blackColor};
-  border-bottom: 0.2rem solid ${({ theme }) => theme.color.blackColor};
-  border-right: 0.2rem solid ${({ theme }) => theme.color.blackColor};
+  border-top: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
+  border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
+  border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+  border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
+
+export { MethodBlockContainer, InputBlockContainer, LineBlockContainer };

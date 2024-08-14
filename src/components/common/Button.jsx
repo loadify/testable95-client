@@ -1,4 +1,4 @@
-import { ButtonContainer } from "../../style/ButtonStyle";
+import ButtonContainer from "../../style/ButtonStyle";
 
 const Button = ({ type, text }) => {
   let buttonType;

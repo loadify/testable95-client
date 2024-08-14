@@ -1,36 +1,44 @@
 import styled from "styled-components";
 
-const TextBoxContainer = styled.div`
-  margin: 1rem;
-  background-color: ${({ theme }) => theme.color.darkGrayColor};
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
   border-top: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
   border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+  background-color: ${({ theme }) => theme.color.lightGrayColor};
 `;
 
-const TextBoxHeader = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.2rem;
   background-color: ${({ theme }) => theme.color.barColor};
   color: ${({ theme }) => theme.color.whiteColor};
 `;
 
-const TextBoxContent = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-  background-color: inherit;
-  font-size: ${({ theme }) => theme.fontSize.xxsmall};
-  gap: 1.5rem;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: auto;
 
-  p {
-    width: 100%;
-    display: inline-block;
-    background-color: inherit;
+  .test-code-text {
+    font-size: ${({ theme }) => theme.fontSize.xxlarge};
     color: ${({ theme }) => theme.color.whiteColor};
   }
 `;
 
-export { TextBoxContainer, TextBoxHeader, TextBoxContent };
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 2rem;
+`;
+
+export { Section, Header, Content, ButtonContainer };
