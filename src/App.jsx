@@ -9,6 +9,7 @@ const App = () => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
+      <h1>Testy 95</h1>
       <Main />
     </ThemeProvider>
   );
