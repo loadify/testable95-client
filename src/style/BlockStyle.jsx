@@ -10,6 +10,9 @@ const MethodBlockContainer = styled.li`
     color: ${({ theme }) => theme.color.whiteColor};
     border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   }
+  .method-block-name:active {
+    border-color: ${({ theme }) => theme.color.redColor};
+  }
 `;
 
 const InputBlockContainer = styled.li`
@@ -20,6 +23,10 @@ const InputBlockContainer = styled.li`
   background: ${({ theme }) => theme.color.grayColor};
   color: ${({ theme }) => theme.color.whiteColor};
   border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+
+  &:active {
+    border-color: ${({ theme }) => theme.color.redColor};
+  }
 `;
 
 const LineBlockContainer = styled.li`
