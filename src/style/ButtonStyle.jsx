@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
   button {
     border: 0.15rem solid ${({ theme }) => theme.color.whiteColor};
     border-right-color: ${({ theme }) => theme.color.blackColor};
@@ -31,3 +31,5 @@ export const ButtonContainer = styled.div`
     font-size: ${({ theme }) => theme.fontSize.xxxsmall};
   }
 `;
+
+export default ButtonContainer;

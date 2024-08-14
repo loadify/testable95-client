@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TextBoxContainer = styled.div`
+const TextBoxContainer = styled.div`
   margin: 1rem;
   background-color: ${({ theme }) => theme.color.darkGrayColor};
   border-top: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
@@ -9,7 +9,7 @@ export const TextBoxContainer = styled.div`
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
-export const TextBoxHeader = styled.div`
+const TextBoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,7 +17,7 @@ export const TextBoxHeader = styled.div`
   color: ${({ theme }) => theme.color.whiteColor};
 `;
 
-export const TextBoxContent = styled.div`
+const TextBoxContent = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem;
@@ -32,3 +32,5 @@ export const TextBoxContent = styled.div`
     color: ${({ theme }) => theme.color.whiteColor};
   }
 `;
+
+export { TextBoxContainer, TextBoxHeader, TextBoxContent };

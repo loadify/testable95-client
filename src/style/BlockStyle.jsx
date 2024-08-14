@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MethodBlockContainer = styled.li`
+const MethodBlockContainer = styled.li`
   .method-block-name {
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@ export const MethodBlockContainer = styled.li`
   }
 `;
 
-export const InputBlockContainer = styled.li`
+const InputBlockContainer = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ export const InputBlockContainer = styled.li`
   border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
-export const LineBlockContainer = styled.li`
+const LineBlockContainer = styled.li`
   display: flex;
   align-items: center;
   padding: 2rem 4rem;
@@ -35,3 +35,5 @@ export const LineBlockContainer = styled.li`
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
+
+export { MethodBlockContainer, InputBlockContainer, LineBlockContainer };

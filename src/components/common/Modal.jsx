@@ -1,12 +1,11 @@
+import Button from "./Button";
+
 import {
   ModalBackground,
   ModalContainer,
   ModalContent,
 } from "../../style/ModalStyle";
-
 import { Header, ButtonContainer } from "../../style/CommonStyle";
-
-import Button from "./Button";
 
 const Modal = ({ title, content }) => {
   return (

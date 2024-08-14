@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBackground = styled.div`
+const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@ export const ModalBackground = styled.div`
   z-index: 99999;
 `;
 
-export const ModalContainer = styled.div`
+const ModalContainer = styled.div`
   background-color: ${({ theme }) => theme.color.lightGrayColor};
   border-top: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
   border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
@@ -21,7 +21,7 @@ export const ModalContainer = styled.div`
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
-export const ModalContent = styled.div`
+const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,3 +39,5 @@ export const ModalContent = styled.div`
     color: ${({ theme }) => theme.color.blackColor};
   }
 `;
+
+export { ModalBackground, ModalContainer, ModalContent };

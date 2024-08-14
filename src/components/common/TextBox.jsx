@@ -1,7 +1,7 @@
+import Button from "./Button";
+
 import { Header } from "../../style/CommonStyle";
 import { TextBoxContainer, TextBoxContent } from "../../style/TextBoxStyle";
-
-import Button from "./Button";
 
 const TextBox = ({ title }) => {
   return (

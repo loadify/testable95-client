@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const CodeBoxContainer = styled.div`
+const CodeBoxContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const CodeBoxContent = styled.div`
+const CodeBoxContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -23,3 +23,5 @@ export const CodeBoxContent = styled.div`
     color: ${({ theme }) => theme.color.blackColor};
   }
 `;
+
+export { CodeBoxContainer, CodeBoxContent };

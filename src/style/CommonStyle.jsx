@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Section = styled.section`
+const Section = styled.section`
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -11,7 +11,7 @@ export const Section = styled.section`
   background-color: ${({ theme }) => theme.color.lightGrayColor};
 `;
 
-export const Header = styled.div`
+const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,7 @@ export const Header = styled.div`
   color: ${({ theme }) => theme.color.whiteColor};
 `;
 
-export const Content = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -36,7 +36,9 @@ export const Content = styled.div`
   }
 `;
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   gap: 2rem;
 `;
+
+export { Section, Header, Content, ButtonContainer };

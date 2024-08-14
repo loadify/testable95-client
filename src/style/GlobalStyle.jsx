@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${reset};
 
   * {
@@ -73,3 +73,5 @@ export const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) => theme.color.grayColor};
   }
 `;
+
+export default GlobalStyle;
