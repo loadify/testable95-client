@@ -1,8 +1,8 @@
 import { MethodBlockContainer } from "../../style/BlockStyle";
 
-const MethodBlock = ({ method }) => {
+const MethodBlock = ({ method, onDragStart }) => {
   return (
-    <MethodBlockContainer>
+    <MethodBlockContainer draggable="true" onDragStart={onDragStart}>
       <p className="method-block-name">{method}</p>
     </MethodBlockContainer>
   );

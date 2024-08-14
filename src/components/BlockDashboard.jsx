@@ -12,9 +12,9 @@ import {
   ButtonContainer,
 } from "../style/CommonStyle";
 
-const BlockDashboard = () => {
+const BlockDashboard = ({ blocks, onDrop }) => {
   return (
-    <Section>
+    <Section onDragOver={(e) => e.preventDefault()} onDrop={onDrop}>
       <Header>
         <h2>Block Dashboard</h2>
       </Header>
@@ -23,11 +23,7 @@ const BlockDashboard = () => {
           <Button type="text" text="next" />
         </NextButtonContainer>
         <LineBlockList>
-          <LineBlock number="1" />
-          <LineBlock number="2" />
-          <LineBlock number="3" />
-          <LineBlock number="4" />
-          <LineBlock number="5" />
+          <LineBlock number="1" blocks={blocks}></LineBlock>
         </LineBlockList>
         <ButtonContainer>
           <Button type="text" text="reset" />

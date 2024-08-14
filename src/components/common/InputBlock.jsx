@@ -1,8 +1,8 @@
 import { InputBlockContainer } from "../../style/BlockStyle";
 
-const InputBlock = ({ parameter }) => {
+const InputBlock = ({ parameter, onDragStart }) => {
   return (
-    <InputBlockContainer>
+    <InputBlockContainer draggable="true" onDragStart={onDragStart}>
       <input placeholder={parameter} />
     </InputBlockContainer>
   );
