@@ -27,8 +27,9 @@ const ButtonContainer = styled.div`
 
   .resize-button {
     margin: 0.1rem;
-    font-weight: bold;
-    font-size: ${({ theme }) => theme.fontSize.xxxsmall};
+    padding: 0.1rem 0.2rem 0.1rem;
+    font-weight: 900;
+    font-size: ${({ theme }) => theme.fontSize.xxsmall};
   }
 `;
 
