@@ -18,7 +18,7 @@ const Button = ({ type, text, handleClick, isMinimized }) => {
 
   return (
     <ButtonContainer>
-      <button onClick={handleClick} className={buttonType}>
+      <button className={buttonType} onClick={handleClick}>
         {buttonText}
       </button>
     </ButtonContainer>
