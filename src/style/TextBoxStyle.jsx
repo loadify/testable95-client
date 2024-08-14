@@ -1,37 +1,29 @@
 import styled from "styled-components";
 
 export const TextBoxContainer = styled.div`
+  margin: 1rem;
   background-color: ${({ theme }) => theme.color.darkGrayColor};
-  border: 0.2rem solid ${({ theme }) => theme.color.blackColor};
-`;
-
-export const TextBoxTitle = styled.span`
-  display: flex;
-  align-items: center;
-  padding-left: 0.5rem;
-  height: 2rem;
-  background-color: inherit;
-  font-weight: bold;
-  font-size: ${({ theme }) => theme.fontSize.medium};
+  border-top: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
+  border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
+  border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+  border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
 export const TextBoxHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
   background-color: ${({ theme }) => theme.color.barColor};
   color: ${({ theme }) => theme.color.whiteColor};
-  border-bottom: 0.2rem solid ${({ theme }) => theme.color.blackColor};
 `;
 
 export const TextBoxContent = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2rem;
-  gap: 1.5rem;
+  margin: 1rem;
   background-color: inherit;
-  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-size: ${({ theme }) => theme.fontSize.xxsmall};
+  gap: 1.5rem;
 
   p {
     width: 100%;

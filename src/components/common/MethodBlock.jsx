@@ -3,7 +3,7 @@ import { MethodBlockContainer } from "../../style/BlockStyle";
 const MethodBlock = ({ method }) => {
   return (
     <MethodBlockContainer>
-      <p>{method}</p>
+      <p className="method-block-name">{method}</p>
     </MethodBlockContainer>
   );
 };
