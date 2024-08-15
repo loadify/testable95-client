@@ -10,7 +10,13 @@ const LineBlock = ({ number, blocks }) => {
       {blocks.map((block) => {
         switch (block.type) {
           case "input":
-            return <InputBlock key={block.id} parameter={block.parameter} />;
+            return (
+              <InputBlock
+                key={block.id}
+                parameter={block.parameter}
+                draggedValue={block.value}
+              />
+            );
           case "method":
             return <MethodBlock key={block.id} method={block.method} />;
           default:
