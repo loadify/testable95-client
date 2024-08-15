@@ -13,8 +13,12 @@ import {
 } from "../style/CommonStyle";
 
 const BlockDashboard = ({ blocks, onDrop }) => {
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <Section onDragOver={(e) => e.preventDefault()} onDrop={onDrop}>
+    <Section onDragOver={handleDragOver} onDrop={onDrop}>
       <Header>
         <h2>Block Dashboard</h2>
       </Header>
