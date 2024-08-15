@@ -8,11 +8,13 @@ const LineBlock = ({ number, blocks }) => {
     <LineBlockContainer>
       {number}
       {blocks.map((block) => {
-        if (block.type === "input") {
-          return <InputBlock key={block.id} parameter={block.parameter} />;
-        }
-        if (block.type === "method") {
-          return <MethodBlock key={block.id} method={block.method} />;
+        switch (block.type) {
+          case "input":
+            return <InputBlock key={block.id} parameter={block.parameter} />;
+          case "method":
+            return <MethodBlock key={block.id} method={block.method} />;
+          default:
+            return;
         }
       })}
     </LineBlockContainer>
