@@ -6,28 +6,63 @@ import TestCodeDashboard from "../components/TestCodeDashboard";
 import Modal from "../components/common/Modal";
 
 const Main = () => {
-  const [dashboardBlocks, setDashboardBlocks] = useState([]);
+  const [lineBlocks, setLineBlocks] = useState([]);
   const [draggedBlock, setDraggedBlock] = useState(null);
 
   const handleDragStart = (block) => {
     setDraggedBlock(block);
   };
 
-  const handleDrop = () => {
-    if (draggedBlock) {
-      setDashboardBlocks((prevBlocks) => [
-        ...prevBlocks,
-        { ...draggedBlock, id: Date.now() },
-      ]);
-      setDraggedBlock(null);
+  const handleDrop = (lineBlockId) => {
+    if (draggedBlock !== null) {
+      setLineBlocks((prevLineBlocks) =>
+        prevLineBlocks.map((lineBlock) => {
+          if (lineBlock.id !== lineBlockId) {
+            return lineBlock;
+          }
+
+          return {
+            ...lineBlock,
+            blocks: [...lineBlock.blocks, { ...draggedBlock, id: Date.now() }],
+          };
+        }),
+      );
     }
+    setDraggedBlock(null);
+  };
+
+  const handleCreateLineBlock = () => {
+    setLineBlocks((prevLineBlocks) => [
+      ...prevLineBlocks,
+      {
+        id: Date.now(),
+        blocks: [],
+      },
+    ]);
+  };
+
+  const handleLineBlockReorder = (dragIndex, dropIndex) => {
+    setLineBlocks((prevLineBlocks) => {
+      const newLineBlocks = [...prevLineBlocks];
+      const [removed] = newLineBlocks.splice(dragIndex, 1);
+
+      newLineBlocks.splice(dropIndex, 0, removed);
+
+      return newLineBlocks;
+    });
   };
 
   return (
     <main>
       <Modal title="title" content="content" />
       <BlockContainer handleDragStart={handleDragStart} />
-      <BlockDashboard blocks={dashboardBlocks} handleDrop={handleDrop} />
+      <BlockDashboard
+        lineBlocks={lineBlocks}
+        handleDragStart={handleDragStart}
+        handleDrop={handleDrop}
+        handleCreateLineBlock={handleCreateLineBlock}
+        handleLineBlockReorder={handleLineBlockReorder}
+      />
       <TestCodeDashboard text="Loading" />
     </main>
   );
