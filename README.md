@@ -6,15 +6,6 @@
 
 ## 📌 배포 링크
 
-## 📌 기술 스택
-
-### _`MERN`_
-
-- Mongo DB
-- Express
-- React
-- Node
-
 <br>
 
 ## 📌 프로젝트 구조
