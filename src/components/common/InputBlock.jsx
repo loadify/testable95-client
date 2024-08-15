@@ -1,8 +1,8 @@
 import { InputBlockContainer } from "../../style/BlockStyle";
 
-const InputBlock = ({ parameter, onDragStart }) => {
+const InputBlock = ({ parameter, saveBlockData }) => {
   const handleDragStart = () => {
-    onDragStart({
+    saveBlockData({
       type: "input",
       parameter: parameter,
     });

@@ -1,8 +1,8 @@
 import { MethodBlockContainer } from "../../style/BlockStyle";
 
-const MethodBlock = ({ method, onDragStart }) => {
+const MethodBlock = ({ method, saveBlockData }) => {
   const handleDragStart = () => {
-    onDragStart({
+    saveBlockData({
       type: "method",
       method: method,
     });

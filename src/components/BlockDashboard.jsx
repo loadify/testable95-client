@@ -12,13 +12,13 @@ import {
   ButtonContainer,
 } from "../style/CommonStyle";
 
-const BlockDashboard = ({ blocks, onDrop }) => {
+const BlockDashboard = ({ blocks, handleDrop }) => {
   const handleDragOver = (event) => {
     event.preventDefault();
   };
 
   return (
-    <Section onDragOver={handleDragOver} onDrop={onDrop}>
+    <Section onDragOver={handleDragOver} onDrop={handleDrop}>
       <Header>
         <h2>Block Dashboard</h2>
       </Header>
