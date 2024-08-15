@@ -26,7 +26,7 @@ const Main = () => {
   return (
     <main>
       <Modal title="title" content="content" />
-      <BlockContainer onDragStart={handleDragStart} />
+      <BlockContainer handleDragStart={handleDragStart} />
       <BlockDashboard blocks={dashboardBlocks} onDrop={handleDrop} />
       <TestCodeDashboard text="Loading" />
     </main>

@@ -9,7 +9,7 @@ import {
 } from "../style/BlockContainerStyle";
 import { Header, Section, Content } from "../style/CommonStyle";
 
-const BlockContainer = ({ onDragStart }) => {
+const BlockContainer = ({ handleDragStart }) => {
   return (
     <Section>
       <Header>
@@ -20,18 +20,18 @@ const BlockContainer = ({ onDragStart }) => {
           <InputBlockList>
             <InputBlock
               parameter="https://www.google.com"
-              onDragStart={onDragStart}
+              onDragStart={handleDragStart}
             />
-            <InputBlock parameter="url" onDragStart={onDragStart} />
-            <InputBlock parameter="selector" onDragStart={onDragStart} />
-            <InputBlock parameter="value" onDragStart={onDragStart} />
+            <InputBlock parameter="url" onDragStart={handleDragStart} />
+            <InputBlock parameter="selector" onDragStart={handleDragStart} />
+            <InputBlock parameter="value" onDragStart={handleDragStart} />
           </InputBlockList>
           <MethodBlockList>
-            <MethodBlock method="이동합니다." onDragStart={onDragStart} />
-            <MethodBlock method="클릭합니다." onDragStart={onDragStart} />
-            <MethodBlock method="입력합니다." onDragStart={onDragStart} />
-            <MethodBlock method="로그인합니다." onDragStart={onDragStart} />
-            <MethodBlock method="오픈합니다." onDragStart={onDragStart} />
+            <MethodBlock method="이동합니다." onDragStart={handleDragStart} />
+            <MethodBlock method="클릭합니다." onDragStart={handleDragStart} />
+            <MethodBlock method="입력합니다." onDragStart={handleDragStart} />
+            <MethodBlock method="로그인합니다." onDragStart={handleDragStart} />
+            <MethodBlock method="오픈합니다." onDragStart={handleDragStart} />
           </MethodBlockList>
         </BlockList>
         <TextBox title="Text Box" />
