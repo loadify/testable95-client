@@ -1,6 +1,6 @@
 # **Testy 95**
 
-<img src="../testy95-client/public/testy95.png">
+<img src="/public/testy95.png">
 
 > Playwright 프레임워크 기반 테스트 코드를 생성할 수 있는 서비스입니다.
 
