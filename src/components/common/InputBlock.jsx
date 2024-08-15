@@ -22,7 +22,7 @@ const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
       <input
         placeholder={parameter}
         onChange={handleInputChange}
-        value={inputValue || ""}
+        value={inputValue}
       />
     </InputBlockContainer>
   );
