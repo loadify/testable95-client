@@ -31,9 +31,12 @@ const BlockDashboard = ({
     setDraggedLineBlockIndex(index);
   };
 
-  const handleLineBlockDrop = (dropIndex) => {
-    if (draggedLineBlockIndex !== null && draggedLineBlockIndex !== dropIndex) {
-      handleLineBlockReorder(draggedLineBlockIndex, dropIndex);
+  const handleLineBlockDrop = (dropLineBlockIndex) => {
+    const isDragged = draggedLineBlockIndex !== null;
+    const isChangedIndex = draggedLineBlockIndex !== dropLineBlockIndex;
+
+    if (isDragged && isChangedIndex) {
+      handleLineBlockReorder(draggedLineBlockIndex, dropLineBlockIndex);
     }
 
     setDraggedLineBlockIndex(null);

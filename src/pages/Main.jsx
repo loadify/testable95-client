@@ -13,11 +13,11 @@ const Main = () => {
     setDraggedBlock(block);
   };
 
-  const handleDrop = (lineBlockId) => {
+  const handleDrop = (targetBlockId) => {
     if (draggedBlock !== null) {
       setLineBlocks((prevLineBlocks) =>
         prevLineBlocks.map((lineBlock) => {
-          if (lineBlock.id !== lineBlockId) {
+          if (lineBlock.id !== targetBlockId) {
             return lineBlock;
           }
 
@@ -44,9 +44,9 @@ const Main = () => {
   const handleLineBlockReorder = (dragIndex, dropIndex) => {
     setLineBlocks((prevLineBlocks) => {
       const newLineBlocks = [...prevLineBlocks];
-      const [removed] = newLineBlocks.splice(dragIndex, 1);
+      const [draggedLineBlock] = newLineBlocks.splice(dragIndex, 1);
 
-      newLineBlocks.splice(dropIndex, 0, removed);
+      newLineBlocks.splice(dropIndex, 0, draggedLineBlock);
 
       return newLineBlocks;
     });
