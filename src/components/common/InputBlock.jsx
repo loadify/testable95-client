@@ -3,7 +3,7 @@ import { useState } from "react";
 import { InputBlockContainer } from "../../style/BlockStyle";
 
 const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
-  const [inputValue, setInputValue] = useState(draggedValue);
+  const [inputValue, setInputValue] = useState(draggedValue || "");
 
   const handleDragStart = () => {
     saveBlockData({
@@ -22,7 +22,7 @@ const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
       <input
         placeholder={parameter}
         onChange={handleInputChange}
-        value={inputValue}
+        value={inputValue || ""}
       />
     </InputBlockContainer>
   );
