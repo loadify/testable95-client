@@ -15,6 +15,7 @@ const LineBlock = ({
   handleLineBlockDragStart,
   handleLineBlockDragOver,
   handleLineBlockDrop,
+  setSelectedBlockId,
 }) => {
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", "lineblock");
@@ -52,6 +53,8 @@ const LineBlock = ({
                   parameter={block.parameter}
                   saveBlockData={handleBlockDragStart}
                   draggedValue={block.value}
+                  id={block.id}
+                  setSelectedBlockId={setSelectedBlockId}
                 />
               );
             case "method":
@@ -60,6 +63,8 @@ const LineBlock = ({
                   key={block.id}
                   method={block.method}
                   saveBlockData={handleBlockDragStart}
+                  id={block.id}
+                  setSelectedBlockId={setSelectedBlockId}
                 />
               );
             default:

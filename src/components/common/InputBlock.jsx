@@ -2,7 +2,13 @@ import { useState } from "react";
 
 import { InputBlockContainer } from "../../style/BlockStyle";
 
-const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
+const InputBlock = ({
+  parameter,
+  saveBlockData,
+  draggedValue,
+  id,
+  setSelectedBlockId,
+}) => {
   const [inputValue, setInputValue] = useState(draggedValue || "");
 
   const handleDragStart = () => {
@@ -19,8 +25,17 @@ const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
     setInputValue(event.target.value);
   };
 
+  const handleClickBlock = () => {
+    const selectedBlockId = id;
+    setSelectedBlockId(selectedBlockId);
+  };
+
   return (
-    <InputBlockContainer draggable="true" onDragStart={handleDragStart}>
+    <InputBlockContainer
+      draggable="true"
+      onDragStart={handleDragStart}
+      onClick={handleClickBlock}
+    >
       <input
         placeholder={parameter}
         onChange={handleInputChange}
