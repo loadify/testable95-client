@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     justify-content: space-evenly;
     align-items: center;
     width: 100vw;
-    gap: 4rem;
+    gap: 1rem;
   }
 
   input {
