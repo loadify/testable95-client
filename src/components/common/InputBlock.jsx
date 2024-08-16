@@ -6,11 +6,13 @@ const InputBlock = ({ parameter, saveBlockData, draggedValue }) => {
   const [inputValue, setInputValue] = useState(draggedValue || "");
 
   const handleDragStart = () => {
-    saveBlockData({
+    const draggedBlock = {
       type: "input",
       parameter: parameter,
       value: inputValue,
-    });
+    };
+
+    saveBlockData(draggedBlock);
   };
 
   const handleInputChange = (event) => {

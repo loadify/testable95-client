@@ -2,10 +2,12 @@ import { MethodBlockContainer } from "../../style/BlockStyle";
 
 const MethodBlock = ({ method, saveBlockData }) => {
   const handleDragStart = () => {
-    saveBlockData({
+    const draggedBlock = {
       type: "method",
       method: method,
-    });
+    };
+
+    saveBlockData(draggedBlock);
   };
   return (
     <MethodBlockContainer draggable="true" onDragStart={handleDragStart}>

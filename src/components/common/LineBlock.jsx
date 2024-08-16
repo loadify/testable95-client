@@ -10,8 +10,9 @@ import {
 const LineBlock = ({
   index,
   blocks,
-  handleLineBlockDragStart,
+  handleBlockDragStart,
   handleBlockDrop,
+  handleLineBlockDragStart,
   handleLineBlockDragOver,
   handleLineBlockDrop,
 }) => {
@@ -49,11 +50,18 @@ const LineBlock = ({
                 <InputBlock
                   key={block.id}
                   parameter={block.parameter}
+                  saveBlockData={handleBlockDragStart}
                   draggedValue={block.value}
                 />
               );
             case "method":
-              return <MethodBlock key={block.id} method={block.method} />;
+              return (
+                <MethodBlock
+                  key={block.id}
+                  method={block.method}
+                  saveBlockData={handleBlockDragStart}
+                />
+              );
             default:
               return null;
           }
