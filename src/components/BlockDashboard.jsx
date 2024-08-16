@@ -22,7 +22,11 @@ const BlockDashboard = ({
   handleLineBlockReorder,
 }) => {
   const [draggedLineBlockIndex, setDraggedLineBlockIndex] = useState(null);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isTextButtonDisabled, setIsTextButtonDisabled] = useState({
+    next: false,
+    reset: true,
+    create: true,
+  });
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -47,7 +51,10 @@ const BlockDashboard = ({
     const hasMethodBlock = lineBlocks.every((lineBlock) =>
       lineBlock.blocks.some((block) => block.type === "method"),
     );
-    setIsButtonDisabled(!hasMethodBlock);
+    setIsTextButtonDisabled((prevStates) => ({
+      ...prevStates,
+      next: !hasMethodBlock,
+    }));
   }, [lineBlocks]);
 
   return (
@@ -60,7 +67,7 @@ const BlockDashboard = ({
           <Button
             type="text"
             text="next"
-            isDisabled={isButtonDisabled}
+            isDisabled={isTextButtonDisabled.next}
             handleClick={handleCreateLineBlock}
           />
         </NextButtonContainer>
