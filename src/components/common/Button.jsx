@@ -1,6 +1,6 @@
 import ButtonContainer from "../../style/ButtonStyle";
 
-const Button = ({ type, text, handleClick, isMinimized }) => {
+const Button = ({ type, text, isDisabled, handleClick, isMinimized }) => {
   let buttonType;
   let buttonText = text;
 
@@ -18,9 +18,15 @@ const Button = ({ type, text, handleClick, isMinimized }) => {
 
   return (
     <ButtonContainer>
-      <button className={buttonType} onClick={handleClick}>
-        {buttonText}
-      </button>
+      {isDisabled ? (
+        <button className={buttonType} onClick={handleClick} disabled>
+          {buttonText}
+        </button>
+      ) : (
+        <button className={buttonType} onClick={handleClick}>
+          {buttonText}
+        </button>
+      )}
     </ButtonContainer>
   );
 };
