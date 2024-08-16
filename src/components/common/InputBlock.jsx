@@ -6,7 +6,7 @@ const InputBlock = ({
   parameter,
   saveBlockData,
   draggedValue,
-  id,
+  inputBlockId,
   setSelectedBlockId,
 }) => {
   const [inputValue, setInputValue] = useState(draggedValue || "");
@@ -26,7 +26,7 @@ const InputBlock = ({
   };
 
   const handleClickBlock = () => {
-    const selectedBlockId = id;
+    const selectedBlockId = inputBlockId;
     setSelectedBlockId(selectedBlockId);
   };
 

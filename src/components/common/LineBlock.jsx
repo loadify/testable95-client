@@ -53,7 +53,7 @@ const LineBlock = ({
                   parameter={block.parameter}
                   saveBlockData={handleBlockDragStart}
                   draggedValue={block.value}
-                  id={block.id}
+                  inputBlockId={block.id}
                   setSelectedBlockId={setSelectedBlockId}
                 />
               );
@@ -63,7 +63,7 @@ const LineBlock = ({
                   key={block.id}
                   method={block.method}
                   saveBlockData={handleBlockDragStart}
-                  id={block.id}
+                  methodBlockId={block.id}
                   setSelectedBlockId={setSelectedBlockId}
                 />
               );

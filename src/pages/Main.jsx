@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
@@ -72,22 +72,17 @@ const Main = () => {
     }
   }, [selectedBlockId]);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback(
+    (event) => {
       if (event.key === "Delete" || event.key === "Backspace") {
         handleDeleteBlock();
       }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleDeleteBlock]);
+    },
+    [handleDeleteBlock],
+  );
 
   return (
-    <main>
+    <main onKeyDown={handleKeyDown} tabIndex={-1}>
       <Modal title="title" content="content" />
       <BlockContainer
         handleDragStart={handleDragStart}

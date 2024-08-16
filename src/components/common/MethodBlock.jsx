@@ -1,6 +1,11 @@
 import { MethodBlockContainer } from "../../style/BlockStyle";
 
-const MethodBlock = ({ method, saveBlockData, id, setSelectedBlockId }) => {
+const MethodBlock = ({
+  method,
+  saveBlockData,
+  methodBlockId,
+  setSelectedBlockId,
+}) => {
   const handleDragStart = () => {
     const draggedBlock = {
       type: "method",
@@ -11,7 +16,7 @@ const MethodBlock = ({ method, saveBlockData, id, setSelectedBlockId }) => {
   };
 
   const handleClickBlock = () => {
-    const selectedBlockId = id;
+    const selectedBlockId = methodBlockId;
     setSelectedBlockId(selectedBlockId);
   };
 

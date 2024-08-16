@@ -9,10 +9,7 @@ import {
 } from "../style/BlockContainerStyle";
 import { Header, Section, Content } from "../style/CommonStyle";
 
-const BlockContainer = ({
-  handleDragStart,
-  setSelectedBlockId = { setSelectedBlockId },
-}) => {
+const BlockContainer = ({ handleDragStart, setSelectedBlockId }) => {
   return (
     <Section>
       <Header>
