@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
@@ -22,6 +22,11 @@ const BlockDashboard = ({
   handleLineBlockReorder,
 }) => {
   const [draggedLineBlockIndex, setDraggedLineBlockIndex] = useState(null);
+  const [isTextButtonDisabled, setIsTextButtonDisabled] = useState({
+    next: false,
+    reset: true,
+    create: true,
+  });
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -42,6 +47,16 @@ const BlockDashboard = ({
     setDraggedLineBlockIndex(null);
   };
 
+  useEffect(() => {
+    const hasMethodBlock = lineBlocks.every((lineBlock) =>
+      lineBlock.blocks.some((block) => block.type === "method"),
+    );
+    setIsTextButtonDisabled((prevStates) => ({
+      ...prevStates,
+      next: !hasMethodBlock,
+    }));
+  }, [lineBlocks]);
+
   return (
     <Section>
       <Header>
@@ -49,7 +64,12 @@ const BlockDashboard = ({
       </Header>
       <Content>
         <NextButtonContainer>
-          <Button type="text" text="next" handleClick={handleCreateLineBlock} />
+          <Button
+            type="text"
+            text="next"
+            isDisabled={isTextButtonDisabled.next}
+            handleClick={handleCreateLineBlock}
+          />
         </NextButtonContainer>
         <LineBlockList>
           {lineBlocks.map((lineBlock, lineBlockIndex) => (

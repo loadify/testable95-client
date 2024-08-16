@@ -19,6 +19,8 @@ const ButtonContainer = styled.div`
 
   button:disabled {
     background-color: ${({ theme }) => theme.color.darkGrayColor};
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   .text-button {

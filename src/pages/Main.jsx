@@ -6,7 +6,12 @@ import TestCodeDashboard from "../components/TestCodeDashboard";
 import Modal from "../components/common/Modal";
 
 const Main = () => {
-  const [lineBlocks, setLineBlocks] = useState([]);
+  const [lineBlocks, setLineBlocks] = useState([
+    {
+      id: Date.now(),
+      blocks: [],
+    },
+  ]);
   const [draggedBlock, setDraggedBlock] = useState(null);
 
   const handleDragStart = (block) => {
