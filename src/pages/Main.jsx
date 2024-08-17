@@ -13,6 +13,7 @@ const Main = () => {
     },
   ]);
   const [draggedBlock, setDraggedBlock] = useState(null);
+  const [selectedBlockId, setSelectedBlockId] = useState(null);
 
   const handleDragStart = (block) => {
     setDraggedBlock(block);
@@ -57,16 +58,41 @@ const Main = () => {
     });
   };
 
+  const handleDeleteBlock = () => {
+    if (selectedBlockId !== null) {
+      setLineBlocks((prevLineBlocks) =>
+        prevLineBlocks.map((lineBlock) => ({
+          ...lineBlock,
+          blocks: lineBlock.blocks.filter(
+            (block) => block.id !== selectedBlockId,
+          ),
+        })),
+      );
+      setSelectedBlockId(null);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Delete" || event.key === "Backspace") {
+      handleDeleteBlock();
+    }
+  };
+
   return (
-    <main>
+    <main onKeyDown={handleKeyDown} tabIndex="0">
       <Modal title="title" content="content" />
-      <BlockContainer handleDragStart={handleDragStart} />
+      <BlockContainer
+        handleDragStart={handleDragStart}
+        setSelectedBlockId={setSelectedBlockId}
+      />
       <BlockDashboard
         lineBlocks={lineBlocks}
         handleDragStart={handleDragStart}
         handleDrop={handleDrop}
         handleCreateLineBlock={handleCreateLineBlock}
         handleLineBlockReorder={handleLineBlockReorder}
+        setSelectedBlockId={setSelectedBlockId}
+        handleDeleteBlock={handleDeleteBlock}
       />
       <TestCodeDashboard text="Loading" />
     </main>

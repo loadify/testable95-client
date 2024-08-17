@@ -10,10 +10,12 @@ import {
 const LineBlock = ({
   index,
   blocks,
-  handleLineBlockDragStart,
+  handleBlockDragStart,
   handleBlockDrop,
+  handleLineBlockDragStart,
   handleLineBlockDragOver,
   handleLineBlockDrop,
+  setSelectedBlockId,
 }) => {
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", "lineblock");
@@ -49,11 +51,22 @@ const LineBlock = ({
                 <InputBlock
                   key={block.id}
                   parameter={block.parameter}
+                  saveBlockData={handleBlockDragStart}
                   draggedValue={block.value}
+                  inputBlockId={block.id}
+                  setSelectedBlockId={setSelectedBlockId}
                 />
               );
             case "method":
-              return <MethodBlock key={block.id} method={block.method} />;
+              return (
+                <MethodBlock
+                  key={block.id}
+                  method={block.method}
+                  saveBlockData={handleBlockDragStart}
+                  methodBlockId={block.id}
+                  setSelectedBlockId={setSelectedBlockId}
+                />
+              );
             default:
               return null;
           }

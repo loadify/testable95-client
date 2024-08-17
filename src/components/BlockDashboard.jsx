@@ -20,6 +20,7 @@ const BlockDashboard = ({
   handleDrop,
   handleCreateLineBlock,
   handleLineBlockReorder,
+  setSelectedBlockId,
 }) => {
   const [draggedLineBlockIndex, setDraggedLineBlockIndex] = useState(null);
   const [isTextButtonDisabled, setIsTextButtonDisabled] = useState({
@@ -84,6 +85,7 @@ const BlockDashboard = ({
               }
               handleLineBlockDragOver={handleDragOver}
               handleLineBlockDrop={() => handleLineBlockDrop(lineBlockIndex)}
+              setSelectedBlockId={setSelectedBlockId}
             />
           ))}
         </LineBlockList>

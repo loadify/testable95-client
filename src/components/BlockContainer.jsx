@@ -9,7 +9,7 @@ import {
 } from "../style/BlockContainerStyle";
 import { Header, Section, Content } from "../style/CommonStyle";
 
-const BlockContainer = ({ handleDragStart }) => {
+const BlockContainer = ({ handleDragStart, setSelectedBlockId }) => {
   return (
     <Section>
       <Header>
@@ -21,20 +21,50 @@ const BlockContainer = ({ handleDragStart }) => {
             <InputBlock
               parameter="https://www.google.com"
               saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
             />
-            <InputBlock parameter="url" saveBlockData={handleDragStart} />
-            <InputBlock parameter="selector" saveBlockData={handleDragStart} />
-            <InputBlock parameter="value" saveBlockData={handleDragStart} />
+            <InputBlock
+              parameter="url"
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
+            <InputBlock
+              parameter="selector"
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
+            <InputBlock
+              parameter="value"
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
           </InputBlockList>
           <MethodBlockList>
-            <MethodBlock method="이동합니다." saveBlockData={handleDragStart} />
-            <MethodBlock method="클릭합니다." saveBlockData={handleDragStart} />
-            <MethodBlock method="입력합니다." saveBlockData={handleDragStart} />
+            <MethodBlock
+              method="이동합니다."
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
+            <MethodBlock
+              method="클릭합니다."
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
+            <MethodBlock
+              method="입력합니다."
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
             <MethodBlock
               method="로그인합니다."
               saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
             />
-            <MethodBlock method="오픈합니다." saveBlockData={handleDragStart} />
+            <MethodBlock
+              method="오픈합니다."
+              saveBlockData={handleDragStart}
+              setSelectedBlockId={setSelectedBlockId}
+            />
           </MethodBlockList>
         </BlockList>
         <TextBox title="Text Box" />
