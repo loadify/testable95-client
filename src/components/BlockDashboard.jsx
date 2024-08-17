@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
+import Modal from "./common/Modal";
+
+import useModal from "../hooks/useModal";
+import useButtonState from "../hooks/useButtonState";
 
 import {
   NextButtonContainer,
@@ -16,6 +20,7 @@ import {
 
 const BlockDashboard = ({
   lineBlocks,
+  setLineBlocks,
   handleDragStart,
   handleDrop,
   handleCreateLineBlock,
@@ -23,11 +28,11 @@ const BlockDashboard = ({
   setSelectedBlockId,
 }) => {
   const [draggedLineBlockIndex, setDraggedLineBlockIndex] = useState(null);
-  const [isTextButtonDisabled, setIsTextButtonDisabled] = useState({
-    next: false,
-    reset: true,
-    create: true,
-  });
+
+  const [showResetModal, openResetModal, closeResetModal] = useModal();
+  const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
+
+  const isTextButtonDisabled = useButtonState(lineBlocks);
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -38,25 +43,33 @@ const BlockDashboard = ({
   };
 
   const handleLineBlockDrop = (dropLineBlockIndex) => {
-    const isDragged = draggedLineBlockIndex !== null;
-    const isChangedIndex = draggedLineBlockIndex !== dropLineBlockIndex;
-
-    if (isDragged && isChangedIndex) {
+    if (
+      draggedLineBlockIndex !== null &&
+      draggedLineBlockIndex !== dropLineBlockIndex
+    ) {
       handleLineBlockReorder(draggedLineBlockIndex, dropLineBlockIndex);
     }
-
     setDraggedLineBlockIndex(null);
   };
 
-  useEffect(() => {
-    const hasMethodBlock = lineBlocks.every((lineBlock) =>
-      lineBlock.blocks.some((block) => block.type === "method"),
-    );
-    setIsTextButtonDisabled((prevStates) => ({
-      ...prevStates,
-      next: !hasMethodBlock,
-    }));
-  }, [lineBlocks]);
+  const resetBlocks = () => {
+    setLineBlocks([
+      {
+        id: Date.now(),
+        blocks: [],
+      },
+    ]);
+  };
+
+  const handleCreateConfirm = () => {
+    resetBlocks();
+    closeCreateModal();
+  };
+
+  const handleResetConfirm = () => {
+    resetBlocks();
+    closeResetModal();
+  };
 
   return (
     <Section>
@@ -90,10 +103,36 @@ const BlockDashboard = ({
           ))}
         </LineBlockList>
         <ButtonContainer>
-          <Button type="text" text="reset" />
-          <Button type="text" text="create" />
+          <Button
+            type="text"
+            text="reset"
+            isDisabled={isTextButtonDisabled.reset}
+            handleClick={openResetModal}
+          />
+          <Button
+            type="text"
+            text="create"
+            isDisabled={isTextButtonDisabled.create}
+            handleClick={openCreateModal}
+          />
         </ButtonContainer>
       </Content>
+      {showResetModal && (
+        <Modal
+          title="Reset"
+          content="초기화 하시겠습니까?"
+          handleConfirm={handleResetConfirm}
+          handleCancel={closeResetModal}
+        />
+      )}
+      {showCreateModal && (
+        <Modal
+          title="Create"
+          content="생성 하시겠습니까?"
+          handleConfirm={handleCreateConfirm}
+          handleCancel={closeCreateModal}
+        />
+      )}
     </Section>
   );
 };
