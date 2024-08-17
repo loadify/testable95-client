@@ -7,19 +7,18 @@ import {
 } from "../../style/ModalStyle";
 import { Header, ButtonContainer } from "../../style/CommonStyle";
 
-const Modal = ({ title, content }) => {
+const Modal = ({ title, content, handleCancel, handleConfirm }) => {
   return (
     <ModalBackground>
       <ModalContainer>
         <Header>
           <h2>{title}</h2>
-          <Button type="resize" text="x"></Button>
         </Header>
         <ModalContent>
           <p className="modal-content">{content}</p>
           <ButtonContainer>
-            <Button type="text" text="no" />
-            <Button type="text" text="yes" />
+            <Button type="text" text="no" handleClick={handleCancel} />
+            <Button type="text" text="yes" handleClick={handleConfirm} />
           </ButtonContainer>
         </ModalContent>
       </ModalContainer>
