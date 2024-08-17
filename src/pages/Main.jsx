@@ -3,7 +3,6 @@ import { useState } from "react";
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
 import TestCodeDashboard from "../components/TestCodeDashboard";
-import Modal from "../components/common/Modal";
 
 const Main = () => {
   const [lineBlocks, setLineBlocks] = useState([
@@ -80,13 +79,13 @@ const Main = () => {
 
   return (
     <main onKeyDown={handleKeyDown} tabIndex="0">
-      <Modal title="title" content="content" />
       <BlockContainer
         handleDragStart={handleDragStart}
         setSelectedBlockId={setSelectedBlockId}
       />
       <BlockDashboard
         lineBlocks={lineBlocks}
+        setLineBlocks={setLineBlocks}
         handleDragStart={handleDragStart}
         handleDrop={handleDrop}
         handleCreateLineBlock={handleCreateLineBlock}
