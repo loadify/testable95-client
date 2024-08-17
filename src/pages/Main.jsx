@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
@@ -58,7 +58,7 @@ const Main = () => {
     });
   };
 
-  const handleDeleteBlock = useCallback(() => {
+  const handleDeleteBlock = () => {
     if (selectedBlockId !== null) {
       setLineBlocks((prevLineBlocks) =>
         prevLineBlocks.map((lineBlock) => ({
@@ -70,23 +70,20 @@ const Main = () => {
       );
       setSelectedBlockId(null);
     }
-  }, [selectedBlockId]);
+  };
 
-  const handleKeyDown = useCallback(
-    (event) => {
-      if (event.key === "Delete" || event.key === "Backspace") {
-        handleDeleteBlock();
-      }
-    },
-    [handleDeleteBlock],
-  );
+  const handleKeyDown = (event) => {
+    if (event.key === "Delete" || event.key === "Backspace") {
+      handleDeleteBlock();
+    }
+  };
 
   return (
-    <main onKeyDown={handleKeyDown} tabIndex={-1}>
+    <main onKeyDown={handleKeyDown} tabIndex="0">
       <Modal title="title" content="content" />
       <BlockContainer
         handleDragStart={handleDragStart}
-        setSelectedBlockId={selectedBlockId}
+        setSelectedBlockId={setSelectedBlockId}
       />
       <BlockDashboard
         lineBlocks={lineBlocks}
