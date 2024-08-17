@@ -18,6 +18,7 @@ const InputBlock = ({
       value: inputValue,
     };
 
+    setInputValue("");
     saveBlockData(draggedBlock);
   };
 
