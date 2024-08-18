@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const BlockList = styled.ul`
   display: flex;
-  gap: 0.5rem;
+  gap: 2rem;
+  margin: 4rem;
 `;
 
 const InputBlockList = styled.ul`
