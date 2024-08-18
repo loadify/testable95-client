@@ -6,8 +6,11 @@ const MethodBlock = ({
   methodBlockId,
   setSelectedBlockId,
 }) => {
-  const handleDragStart = () => {
+  const handleDragStart = (event) => {
+    event.stopPropagation();
+
     const draggedBlock = {
+      id: methodBlockId,
       type: "method",
       method: method,
     };
@@ -16,8 +19,7 @@ const MethodBlock = ({
   };
 
   const handleClickBlock = () => {
-    const selectedBlockId = methodBlockId;
-    setSelectedBlockId(selectedBlockId);
+    setSelectedBlockId(methodBlockId);
   };
 
   return (

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
 import Modal from "./common/Modal";
@@ -21,36 +19,18 @@ import {
 const BlockDashboard = ({
   lineBlocks,
   setLineBlocks,
-  handleDragStart,
-  handleDrop,
+  handleBlockDragStart,
+  handleBlockDrop,
+  handleDragOver,
+  handleLineBlockDragStart,
+  handleLineBlockDrop,
   handleCreateLineBlock,
-  handleLineBlockReorder,
   setSelectedBlockId,
 }) => {
-  const [draggedLineBlockIndex, setDraggedLineBlockIndex] = useState(null);
-
   const [showResetModal, openResetModal, closeResetModal] = useModal();
   const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
 
   const isTextButtonDisabled = useButtonState(lineBlocks);
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleLineBlockDragStart = (index) => {
-    setDraggedLineBlockIndex(index);
-  };
-
-  const handleLineBlockDrop = (dropLineBlockIndex) => {
-    if (
-      draggedLineBlockIndex !== null &&
-      draggedLineBlockIndex !== dropLineBlockIndex
-    ) {
-      handleLineBlockReorder(draggedLineBlockIndex, dropLineBlockIndex);
-    }
-    setDraggedLineBlockIndex(null);
-  };
 
   const resetBlocks = () => {
     setLineBlocks([
@@ -91,8 +71,10 @@ const BlockDashboard = ({
               key={lineBlock.id}
               index={lineBlockIndex + 1}
               blocks={lineBlock.blocks}
-              handleBlockDragStart={handleDragStart}
-              handleBlockDrop={() => handleDrop(lineBlock.id)}
+              handleBlockDragStart={(block) =>
+                handleBlockDragStart(block, lineBlockIndex)
+              }
+              handleBlockDrop={() => handleBlockDrop(lineBlockIndex)}
               handleLineBlockDragStart={() =>
                 handleLineBlockDragStart(lineBlockIndex)
               }

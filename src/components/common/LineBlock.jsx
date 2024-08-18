@@ -55,6 +55,11 @@ const LineBlock = ({
                   draggedValue={block.value}
                   inputBlockId={block.id}
                   setSelectedBlockId={setSelectedBlockId}
+                  draggable
+                  onDragStart={(event) => {
+                    event.stopPropagation();
+                    handleBlockDragStart(block.id, index);
+                  }}
                 />
               );
             case "method":
@@ -65,6 +70,11 @@ const LineBlock = ({
                   saveBlockData={handleBlockDragStart}
                   methodBlockId={block.id}
                   setSelectedBlockId={setSelectedBlockId}
+                  draggable
+                  onDragStart={(event) => {
+                    event.stopPropagation();
+                    handleBlockDragStart(block.id, index);
+                  }}
                 />
               );
             default:
