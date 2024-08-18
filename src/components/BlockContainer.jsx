@@ -9,9 +9,14 @@ import {
 } from "../style/BlockContainerStyle";
 import { Header, Section, Content } from "../style/CommonStyle";
 
-const BlockContainer = ({ handleDragStart, setSelectedBlockId }) => {
+const BlockContainer = ({
+  handleDragStart,
+  setSelectedBlockId,
+  handleDeleteBlock,
+  handleDragOver,
+}) => {
   return (
-    <Section>
+    <Section onDragOver={handleDragOver} onDrop={handleDeleteBlock}>
       <Header>
         <h2>Block Container</h2>
       </Header>
