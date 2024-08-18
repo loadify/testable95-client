@@ -1,97 +1,43 @@
-import { useState } from "react";
+import useBlock from "../hooks/useBlock";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
 import TestCodeDashboard from "../components/TestCodeDashboard";
 
 const Main = () => {
-  const [lineBlocks, setLineBlocks] = useState([
-    {
-      id: Date.now(),
-      blocks: [],
-    },
-  ]);
-  const [draggedBlock, setDraggedBlock] = useState(null);
-  const [selectedBlockId, setSelectedBlockId] = useState(null);
-
-  const handleDragStart = (block) => {
-    setDraggedBlock(block);
-  };
-
-  const handleDrop = (targetBlockId) => {
-    if (draggedBlock !== null) {
-      setLineBlocks((prevLineBlocks) =>
-        prevLineBlocks.map((lineBlock) => {
-          if (lineBlock.id !== targetBlockId) {
-            return lineBlock;
-          }
-
-          return {
-            ...lineBlock,
-            blocks: [...lineBlock.blocks, { ...draggedBlock, id: Date.now() }],
-          };
-        }),
-      );
-    }
-    setDraggedBlock(null);
-  };
-
-  const handleCreateLineBlock = () => {
-    setLineBlocks((prevLineBlocks) => [
-      ...prevLineBlocks,
-      {
-        id: Date.now(),
-        blocks: [],
-      },
-    ]);
-  };
-
-  const handleLineBlockReorder = (dragIndex, dropIndex) => {
-    setLineBlocks((prevLineBlocks) => {
-      const newLineBlocks = [...prevLineBlocks];
-      const [draggedLineBlock] = newLineBlocks.splice(dragIndex, 1);
-
-      newLineBlocks.splice(dropIndex, 0, draggedLineBlock);
-
-      return newLineBlocks;
-    });
-  };
-
-  const handleDeleteBlock = () => {
-    if (selectedBlockId !== null) {
-      setLineBlocks((prevLineBlocks) =>
-        prevLineBlocks.map((lineBlock) => ({
-          ...lineBlock,
-          blocks: lineBlock.blocks.filter(
-            (block) => block.id !== selectedBlockId,
-          ),
-        })),
-      );
-      setSelectedBlockId(null);
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Delete" || event.key === "Backspace") {
-      handleDeleteBlock();
-    }
-  };
-
+  const {
+    lineBlocks,
+    setLineBlocks,
+    draggedBlock,
+    handleBlockDragStart,
+    handleBlockDrop,
+    handleDragOver,
+    handleLineBlockDragStart,
+    handleLineBlockDrop,
+    handleCreateLineBlock,
+    handleDeleteBlock,
+    handleKeyDown,
+    setSelectedBlockId,
+  } = useBlock([{ id: Date.now(), blocks: [] }]);
   return (
     <main onKeyDown={handleKeyDown} tabIndex="0">
       <BlockContainer
-        handleDragStart={handleDragStart}
+        handleDragStart={handleBlockDragStart}
+        handleDragOver={handleDragOver}
+        handleDeleteBlock={handleDeleteBlock}
         setSelectedBlockId={setSelectedBlockId}
       />
       <BlockDashboard
         lineBlocks={lineBlocks}
         setLineBlocks={setLineBlocks}
-        handleDragStart={handleDragStart}
-        handleDrop={handleDrop}
+        draggedBlock={draggedBlock}
+        handleBlockDragStart={handleBlockDragStart}
+        handleBlockDrop={handleBlockDrop}
+        handleDragOver={handleDragOver}
+        handleLineBlockDragStart={handleLineBlockDragStart}
+        handleLineBlockDrop={handleLineBlockDrop}
         handleCreateLineBlock={handleCreateLineBlock}
-        handleLineBlockReorder={handleLineBlockReorder}
         setSelectedBlockId={setSelectedBlockId}
-        handleDeleteBlock={handleDeleteBlock}
       />
       <TestCodeDashboard text="Loading" />
     </main>
