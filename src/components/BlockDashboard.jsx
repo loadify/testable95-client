@@ -23,28 +23,19 @@ import {
 const BlockDashboard = () => {
   const {
     lineBlocks,
-    setLineBlocks,
     setTestCodes,
     handleBlockDragStart,
     handleBlockDrop,
     handleLineBlockDragStart,
     handleLineBlockDrop,
     handleCreateLineBlock,
+    handleResetLineBlocks,
   } = useStore();
 
   const [showResetModal, openResetModal, closeResetModal] = useModal();
   const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
 
   const isTextButtonDisabled = useButtonState(lineBlocks);
-
-  const resetBlocks = () => {
-    setLineBlocks([
-      {
-        id: Date.now(),
-        blocks: [],
-      },
-    ]);
-  };
 
   const handleCreateConfirm = async () => {
     const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
@@ -54,14 +45,14 @@ const BlockDashboard = () => {
     }));
 
     const userBlocks = await handleBlocks(collectedLineBlockInfo);
-    setTestCodes(userBlocks);
 
-    resetBlocks();
+    setTestCodes(userBlocks.response);
+    handleResetLineBlocks();
     closeCreateModal();
   };
 
   const handleResetConfirm = () => {
-    resetBlocks();
+    handleResetLineBlocks();
     closeResetModal();
   };
 
