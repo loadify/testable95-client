@@ -10,7 +10,7 @@ const Main = () => {
     <main onKeyDown={handleKeyDown} tabIndex="0">
       <BlockContainer />
       <BlockDashboard />
-      <TestCodeDashboard text="Loading" />
+      <TestCodeDashboard />
     </main>
   );
 };

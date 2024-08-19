@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import useLoading from "../hooks/useLoading";
 
 import CodeBox from "./common/CodeBox";
 import Button from "./common/Button";
@@ -6,20 +6,8 @@ import TextBox from "./common/TextBox";
 
 import { Section, Header, Content } from "../style/CommonStyle";
 
-const TestCodeDashboard = ({ text }) => {
-  const [content, setContent] = useState(text);
-
-  const testCode = "TestCode";
-
-  useEffect(() => {
-    const interval = window.setInterval(() => {
-      setContent((content) =>
-        content === text + "..." ? text : content + ".",
-      );
-    }, 300);
-
-    return () => window.clearInterval(interval);
-  }, [text]);
+const TestCodeDashboard = () => {
+  const { content, isLoading, showCodeBox, testCodes } = useLoading();
 
   return (
     <Section>
@@ -27,9 +15,9 @@ const TestCodeDashboard = ({ text }) => {
         <h2>Test Code Dashboard</h2>
       </Header>
       <Content>
-        <TextBox title="Text Box" />
-        <h3 className="test-code-text">{content}</h3>
-        <CodeBox testCode={testCode} />
+        {!isLoading && !showCodeBox && <TextBox title="Text Box" />}
+        {isLoading && <h3 className="test-code-text">{content}</h3>}
+        {showCodeBox && <CodeBox testCode={testCodes} />}
         <Button type="text" text="copy" />
       </Content>
     </Section>
