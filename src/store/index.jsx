@@ -5,9 +5,11 @@ const useStore = create((set, get) => ({
   draggedBlock: null,
   draggedLineIndex: null,
   selectedBlockId: null,
+  testCodes: {},
 
   setLineBlocks: (lineBlocks) => set({ lineBlocks }),
   setSelectedBlockId: (selectedBlockId) => set({ selectedBlockId }),
+  setTestCodes: (testCodes) => set({ testCodes }),
 
   handleBlockDragStart: (block, lineIndex) =>
     set({
