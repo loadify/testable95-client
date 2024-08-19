@@ -1,11 +1,11 @@
 import useStore from "../store";
 
+import useModal from "../hooks/useModal";
+import useButtonState from "../hooks/useButtonState";
+
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
 import Modal from "./common/Modal";
-
-import useModal from "../hooks/useModal";
-import useButtonState from "../hooks/useButtonState";
 
 import { handleBlocks } from "../services/blocks";
 
