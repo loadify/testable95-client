@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useStore from "../../store";
 import { InputBlockContainer } from "../../style/BlockStyle";
 
 const InputBlock = ({
@@ -6,8 +7,8 @@ const InputBlock = ({
   saveBlockData,
   draggedValue,
   inputBlockId,
-  setSelectedBlockId,
 }) => {
+  const { setSelectedBlockId } = useStore();
   const [inputValue, setInputValue] = useState(draggedValue || "");
 
   const handleDragStart = (event) => {

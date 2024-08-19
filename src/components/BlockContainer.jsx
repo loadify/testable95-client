@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-
+import useStore from "../store";
 import InputBlock from "./common/InputBlock";
 import MethodBlock from "./common/MethodBlock";
-
 import { fetchBlocks } from "../services/blocks";
-
 import {
   BlockList,
   InputBlockList,
@@ -12,12 +10,9 @@ import {
 } from "../style/BlockContainerStyle";
 import { Header, Section, Content } from "../style/CommonStyle";
 
-const BlockContainer = ({
-  handleDragStart,
-  setSelectedBlockId,
-  handleDeleteBlock,
-  handleDragOver,
-}) => {
+const BlockContainer = () => {
+  const { handleBlockDragStart, handleBlockDragOver, handleDeleteBlock } =
+    useStore();
   const [inputBlocks, setInputBlocks] = useState([]);
   const [methodBlocks, setMethodBlocks] = useState([]);
 
@@ -25,19 +20,17 @@ const BlockContainer = ({
     const renderBlocks = async () => {
       try {
         const blocks = await fetchBlocks();
-
         setInputBlocks(blocks.inputBlocks);
         setMethodBlocks(blocks.methodBlocks);
       } catch (error) {
         console.error("Fetch Error");
       }
     };
-
     renderBlocks();
   }, []);
 
   return (
-    <Section onDragOver={handleDragOver} onDrop={handleDeleteBlock}>
+    <Section onDragOver={handleBlockDragOver} onDrop={handleDeleteBlock}>
       <Header>
         <h2>Block Container</h2>
       </Header>
@@ -48,8 +41,7 @@ const BlockContainer = ({
               <InputBlock
                 key={inputBlock._id}
                 parameter={inputBlock.parameter}
-                saveBlockData={handleDragStart}
-                setSelectedBlockId={setSelectedBlockId}
+                saveBlockData={handleBlockDragStart}
               />
             ))}
           </InputBlockList>
@@ -58,8 +50,7 @@ const BlockContainer = ({
               <MethodBlock
                 key={methodBlock._id}
                 method={methodBlock.method}
-                saveBlockData={handleDragStart}
-                setSelectedBlockId={setSelectedBlockId}
+                saveBlockData={handleBlockDragStart}
               />
             ))}
           </MethodBlockList>

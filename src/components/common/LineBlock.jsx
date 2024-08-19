@@ -1,3 +1,4 @@
+import useStore from "../../store";
 import InputBlock from "./InputBlock";
 import MethodBlock from "./MethodBlock";
 
@@ -13,10 +14,9 @@ const LineBlock = ({
   handleBlockDragStart,
   handleBlockDrop,
   handleLineBlockDragStart,
-  handleLineBlockDragOver,
   handleLineBlockDrop,
-  setSelectedBlockId,
 }) => {
+  const { handleBlockDragOver } = useStore();
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", "lineblock");
 
@@ -25,7 +25,6 @@ const LineBlock = ({
 
   const updateDrop = (event) => {
     event.preventDefault();
-
     const data = event.dataTransfer.getData("text/plain");
 
     if (data === "lineblock") {
@@ -39,7 +38,7 @@ const LineBlock = ({
     <LineBlockContainer
       draggable
       onDragStart={handleDragStart}
-      onDragOver={handleLineBlockDragOver}
+      onDragOver={handleBlockDragOver}
       onDrop={updateDrop}
     >
       <BlockListContainer>
@@ -54,7 +53,6 @@ const LineBlock = ({
                   saveBlockData={handleBlockDragStart}
                   draggedValue={block.value}
                   inputBlockId={block.id}
-                  setSelectedBlockId={setSelectedBlockId}
                   draggable
                   onDragStart={(event) => {
                     event.stopPropagation();
@@ -69,7 +67,6 @@ const LineBlock = ({
                   method={block.method}
                   saveBlockData={handleBlockDragStart}
                   methodBlockId={block.id}
-                  setSelectedBlockId={setSelectedBlockId}
                   draggable
                   onDragStart={(event) => {
                     event.stopPropagation();

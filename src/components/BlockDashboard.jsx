@@ -1,10 +1,9 @@
+import useStore from "../store";
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
 import Modal from "./common/Modal";
-
 import useModal from "../hooks/useModal";
 import useButtonState from "../hooks/useButtonState";
-
 import {
   NextButtonContainer,
   LineBlockList,
@@ -16,17 +15,17 @@ import {
   ButtonContainer,
 } from "../style/CommonStyle";
 
-const BlockDashboard = ({
-  lineBlocks,
-  setLineBlocks,
-  handleBlockDragStart,
-  handleBlockDrop,
-  handleDragOver,
-  handleLineBlockDragStart,
-  handleLineBlockDrop,
-  handleCreateLineBlock,
-  setSelectedBlockId,
-}) => {
+const BlockDashboard = () => {
+  const {
+    lineBlocks,
+    setLineBlocks,
+    handleBlockDragStart,
+    handleBlockDrop,
+    handleLineBlockDragStart,
+    handleLineBlockDrop,
+    handleCreateLineBlock,
+  } = useStore();
+
   const [showResetModal, openResetModal, closeResetModal] = useModal();
   const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
 
@@ -78,9 +77,7 @@ const BlockDashboard = ({
               handleLineBlockDragStart={() =>
                 handleLineBlockDragStart(lineBlockIndex)
               }
-              handleLineBlockDragOver={handleDragOver}
               handleLineBlockDrop={() => handleLineBlockDrop(lineBlockIndex)}
-              setSelectedBlockId={setSelectedBlockId}
             />
           ))}
         </LineBlockList>
