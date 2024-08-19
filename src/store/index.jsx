@@ -17,6 +17,7 @@ const useStore = create((set, get) => ({
 
   handleBlockDrop: (targetLineIndex, targetBlockId = null) => {
     const { draggedBlock, draggedLineIndex } = get();
+
     if (draggedBlock !== null) {
       set((state) => ({
         lineBlocks: state.lineBlocks.map((lineBlock, index) => {
@@ -35,6 +36,7 @@ const useStore = create((set, get) => ({
               const targetIndex = newBlocks.findIndex(
                 (block) => block.id === targetBlockId,
               );
+
               newBlocks.splice(targetIndex, 0, {
                 ...draggedBlock,
                 id: Date.now(),
@@ -52,7 +54,7 @@ const useStore = create((set, get) => ({
     }
   },
 
-  handleDragOver: (event) => {
+  handleBlockDragOver: (event) => {
     event.preventDefault();
   },
 
@@ -62,6 +64,7 @@ const useStore = create((set, get) => ({
 
   handleLineBlockDrop: (targetIndex) => {
     const { lineBlocks, draggedLineIndex } = get();
+
     if (draggedLineIndex !== null && draggedLineIndex !== targetIndex) {
       const newLineBlocks = [...lineBlocks];
       const [draggedLineBlock] = newLineBlocks.splice(draggedLineIndex, 1);
@@ -78,6 +81,7 @@ const useStore = create((set, get) => ({
 
   handleDeleteBlock: () => {
     const { draggedBlock } = get();
+
     if (draggedBlock !== null) {
       set((state) => ({
         lineBlocks: state.lineBlocks.map((lineBlock) => ({
@@ -86,6 +90,7 @@ const useStore = create((set, get) => ({
             (block) => block.id !== draggedBlock.id,
           ),
         })),
+
         draggedBlock: null,
         draggedLineIndex: null,
       }));
@@ -95,6 +100,7 @@ const useStore = create((set, get) => ({
   handleKeyDown: (event) => {
     if (event.key === "Delete" || event.key === "Backspace") {
       const { selectedBlockId } = get();
+
       if (selectedBlockId !== null) {
         set((state) => ({
           lineBlocks: state.lineBlocks.map((lineBlock) => ({
@@ -103,6 +109,7 @@ const useStore = create((set, get) => ({
               (block) => block.id !== selectedBlockId,
             ),
           })),
+
           selectedBlockId: null,
         }));
       }

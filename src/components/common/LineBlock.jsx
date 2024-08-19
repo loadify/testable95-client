@@ -16,7 +16,7 @@ const LineBlock = ({
   handleLineBlockDragStart,
   handleLineBlockDrop,
 }) => {
-  const { handleDragOver } = useStore();
+  const { handleBlockDragOver } = useStore();
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", "lineblock");
 
@@ -38,7 +38,7 @@ const LineBlock = ({
     <LineBlockContainer
       draggable
       onDragStart={handleDragStart}
-      onDragOver={handleDragOver}
+      onDragOver={handleBlockDragOver}
       onDrop={updateDrop}
     >
       <BlockListContainer>

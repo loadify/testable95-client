@@ -11,7 +11,7 @@ import {
 import { Header, Section, Content } from "../style/CommonStyle";
 
 const BlockContainer = () => {
-  const { handleDragOver, handleDeleteBlock, handleBlockDragStart } =
+  const { handleBlockDragStart, handleBlockDragOver, handleDeleteBlock } =
     useStore();
   const [inputBlocks, setInputBlocks] = useState([]);
   const [methodBlocks, setMethodBlocks] = useState([]);
@@ -30,7 +30,7 @@ const BlockContainer = () => {
   }, []);
 
   return (
-    <Section onDragOver={handleDragOver} onDrop={handleDeleteBlock}>
+    <Section onDragOver={handleBlockDragOver} onDrop={handleDeleteBlock}>
       <Header>
         <h2>Block Container</h2>
       </Header>
