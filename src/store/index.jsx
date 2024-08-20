@@ -1,17 +1,18 @@
 import { create } from "zustand";
+import { v4 as uuidv4 } from "uuid";
 
 const useLineBlocksStore = create((set) => ({
-  lineBlocks: [{ id: Date.now(), blocks: [] }],
+  lineBlocks: [{ id: uuidv4(), blocks: [] }],
 
   setLineBlocks: (lineBlocks) => set({ lineBlocks }),
 
   handleCreateLineBlock: () =>
     set((state) => ({
-      lineBlocks: [...state.lineBlocks, { id: Date.now(), blocks: [] }],
+      lineBlocks: [...state.lineBlocks, { id: uuidv4(), blocks: [] }],
     })),
 
   handleResetLineBlocks: () =>
-    set({ lineBlocks: [{ id: Date.now(), blocks: [] }] }),
+    set({ lineBlocks: [{ id: uuidv4(), blocks: [] }] }),
 }));
 
 const useDragStore = create((set, get) => ({
@@ -25,6 +26,7 @@ const useDragStore = create((set, get) => ({
     }),
 
   handleBlockDrop: (targetLineIndex, targetBlockId = null) => {
+    console.log(targetBlockId);
     const { draggedBlock, draggedLineIndex } = get();
     const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
@@ -45,10 +47,10 @@ const useDragStore = create((set, get) => ({
             );
             newBlocks.splice(targetIndex, 0, {
               ...draggedBlock,
-              id: Date.now(),
+              id: uuidv4(),
             });
           } else {
-            newBlocks.push({ ...draggedBlock, id: Date.now() });
+            newBlocks.push({ ...draggedBlock, id: uuidv4() });
           }
         }
 
