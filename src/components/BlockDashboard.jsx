@@ -46,7 +46,7 @@ const BlockDashboard = () => {
 
     const userBlocks = await handleBlocks(collectedLineBlockInfo);
 
-    setTestCodes(userBlocks.response);
+    setTestCodes(userBlocks.formattedTestCodes);
     handleResetLineBlocks();
     closeCreateModal();
   };
