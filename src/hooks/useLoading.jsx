@@ -12,7 +12,7 @@ const useLoading = () => {
     if (testCodes) {
       setIsLoading(true);
 
-      const loadingInterval = window.setInterval(() => {
+      const loadingInterval = setInterval(() => {
         setContent((currentContent) =>
           currentContent === "Loading" + "..."
             ? "Loading"
