@@ -1,13 +1,22 @@
 import { create } from "zustand";
 
-const useStore = create((set, get) => ({
+const useLineBlocksStore = create((set) => ({
   lineBlocks: [{ id: Date.now(), blocks: [] }],
-  draggedBlock: null,
-  draggedLineIndex: null,
-  selectedBlockId: null,
 
   setLineBlocks: (lineBlocks) => set({ lineBlocks }),
-  setSelectedBlockId: (selectedBlockId) => set({ selectedBlockId }),
+
+  handleCreateLineBlock: () =>
+    set((state) => ({
+      lineBlocks: [...state.lineBlocks, { id: Date.now(), blocks: [] }],
+    })),
+
+  handleResetLineBlocks: () =>
+    set({ lineBlocks: [{ id: Date.now(), blocks: [] }] }),
+}));
+
+const useDragStore = create((set, get) => ({
+  draggedBlock: null,
+  draggedLineIndex: null,
 
   handleBlockDragStart: (block, lineIndex) =>
     set({
@@ -17,40 +26,38 @@ const useStore = create((set, get) => ({
 
   handleBlockDrop: (targetLineIndex, targetBlockId = null) => {
     const { draggedBlock, draggedLineIndex } = get();
+    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
     if (draggedBlock !== null) {
-      set((state) => ({
-        lineBlocks: state.lineBlocks.map((lineBlock, index) => {
-          const isDraggedLine = index === draggedLineIndex;
-          const isTargetLine = index === targetLineIndex;
-          let newBlocks = [...lineBlock.blocks];
+      const newLineBlocks = lineBlocks.map((lineBlock, index) => {
+        const isDraggedLine = index === draggedLineIndex;
+        const isTargetLine = index === targetLineIndex;
+        let newBlocks = [...lineBlock.blocks];
 
-          if (isDraggedLine) {
-            newBlocks = newBlocks.filter(
-              (block) => block.id !== draggedBlock.id,
+        if (isDraggedLine) {
+          newBlocks = newBlocks.filter((block) => block.id !== draggedBlock.id);
+        }
+
+        if (isTargetLine) {
+          if (targetBlockId !== null) {
+            const targetIndex = newBlocks.findIndex(
+              (block) => block.id === targetBlockId,
             );
+            newBlocks.splice(targetIndex, 0, {
+              ...draggedBlock,
+              id: Date.now(),
+            });
+          } else {
+            newBlocks.push({ ...draggedBlock, id: Date.now() });
           }
+        }
 
-          if (isTargetLine) {
-            if (targetBlockId !== null) {
-              const targetIndex = newBlocks.findIndex(
-                (block) => block.id === targetBlockId,
-              );
+        return { ...lineBlock, blocks: newBlocks };
+      });
 
-              newBlocks.splice(targetIndex, 0, {
-                ...draggedBlock,
-                id: Date.now(),
-              });
-            } else {
-              newBlocks.push({ ...draggedBlock, id: Date.now() });
-            }
-          }
+      setLineBlocks(newLineBlocks);
 
-          return { ...lineBlock, blocks: newBlocks };
-        }),
-        draggedBlock: null,
-        draggedLineIndex: null,
-      }));
+      set({ draggedBlock: null, draggedLineIndex: null });
     }
   },
 
@@ -63,58 +70,121 @@ const useStore = create((set, get) => ({
   },
 
   handleLineBlockDrop: (targetIndex) => {
-    const { lineBlocks, draggedLineIndex } = get();
+    const { draggedLineIndex } = get();
+    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
     if (draggedLineIndex !== null && draggedLineIndex !== targetIndex) {
       const newLineBlocks = [...lineBlocks];
       const [draggedLineBlock] = newLineBlocks.splice(draggedLineIndex, 1);
 
       newLineBlocks.splice(targetIndex, 0, draggedLineBlock);
-      set({ lineBlocks: newLineBlocks, draggedLineIndex: null });
+
+      setLineBlocks(newLineBlocks);
+
+      set({ draggedLineIndex: null });
     }
   },
+}));
 
-  handleCreateLineBlock: () =>
-    set((state) => ({
-      lineBlocks: [...state.lineBlocks, { id: Date.now(), blocks: [] }],
-    })),
-
+const useSelectionStore = create((set, get) => ({
+  selectedBlockId: null,
+  setSelectedBlockId: (selectedBlockId) => set({ selectedBlockId }),
   handleDeleteBlock: () => {
-    const { draggedBlock } = get();
+    const { draggedBlock } = useDragStore.getState();
+    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
     if (draggedBlock !== null) {
-      set((state) => ({
-        lineBlocks: state.lineBlocks.map((lineBlock) => ({
-          ...lineBlock,
-          blocks: lineBlock.blocks.filter(
-            (block) => block.id !== draggedBlock.id,
-          ),
-        })),
-
-        draggedBlock: null,
-        draggedLineIndex: null,
+      const newLineBlocks = lineBlocks.map((lineBlock) => ({
+        ...lineBlock,
+        blocks: lineBlock.blocks.filter(
+          (block) => block.id !== draggedBlock.id,
+        ),
       }));
+
+      setLineBlocks(newLineBlocks);
+
+      useDragStore.setState({ draggedBlock: null, draggedLineIndex: null });
     }
   },
 
   handleKeyDown: (event) => {
     if (event.key === "Delete" || event.key === "Backspace") {
       const { selectedBlockId } = get();
+      const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
       if (selectedBlockId !== null) {
-        set((state) => ({
-          lineBlocks: state.lineBlocks.map((lineBlock) => ({
-            ...lineBlock,
-            blocks: lineBlock.blocks.filter(
-              (block) => block.id !== selectedBlockId,
-            ),
-          })),
-
-          selectedBlockId: null,
+        const newLineBlocks = lineBlocks.map((lineBlock) => ({
+          ...lineBlock,
+          blocks: lineBlock.blocks.filter(
+            (block) => block.id !== selectedBlockId,
+          ),
         }));
+
+        setLineBlocks(newLineBlocks);
+
+        set({ selectedBlockId: null });
       }
     }
   },
 }));
+
+const useTestCodeStore = create((set) => ({
+  testCodes: "",
+  setTestCodes: (testCodes) => set({ testCodes }),
+}));
+
+const useModalStore = create((set) => ({
+  showResetModal: false,
+  showCreateModal: false,
+  showCopyModal: false,
+
+  openResetModal: () => set({ showResetModal: true }),
+  closeResetModal: () => set({ showResetModal: false }),
+
+  openCreateModal: () => set({ showCreateModal: true }),
+  closeCreateModal: () => set({ showCreateModal: false }),
+
+  openCopyModal: () => set({ showCopyModal: true }),
+  closeCopyModal: () => set({ showCopyModal: false }),
+
+  openErrorModal: () => set({ showErrorModal: true }),
+  closeErrorModal: () => set({ showErrorModal: false }),
+}));
+
+const useButtonStore = create((set) => ({
+  isTextButtonDisabled: {
+    next: false,
+    reset: false,
+    create: false,
+    copy: true,
+  },
+
+  updateButtonState: (lineBlocks, showCodeBox) => {
+    const hasBlock = lineBlocks.some(
+      (lineBlock) => lineBlock.blocks.length > 0,
+    );
+    const hasMethodBlock = lineBlocks.every((lineBlock) =>
+      lineBlock.blocks.some((block) => block.type === "method"),
+    );
+
+    set({
+      isTextButtonDisabled: {
+        reset: !hasBlock,
+        next: !hasMethodBlock,
+        create: !hasMethodBlock,
+        copy: !showCodeBox,
+      },
+    });
+  },
+}));
+
+const useStore = () => ({
+  ...useLineBlocksStore(),
+  ...useDragStore(),
+  ...useSelectionStore(),
+  ...useTestCodeStore(),
+  ...useModalStore(),
+  ...useButtonStore(),
+});
 
 export default useStore;

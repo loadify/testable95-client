@@ -6,4 +6,10 @@ const fetchBlocks = async () => {
   return response.data;
 };
 
-export { fetchBlocks };
+const handleBlocks = async (blockData) => {
+  const response = await axiosInstance.post("/", { blockData });
+
+  return response.data;
+};
+
+export { fetchBlocks, handleBlocks };

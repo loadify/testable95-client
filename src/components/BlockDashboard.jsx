@@ -1,9 +1,13 @@
+import { useEffect } from "react";
+
 import useStore from "../store";
+
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
 import Modal from "./common/Modal";
-import useModal from "../hooks/useModal";
-import useButtonState from "../hooks/useButtonState";
+
+import { handleBlocks } from "../services/blocks";
+
 import {
   NextButtonContainer,
   LineBlockList,
@@ -18,35 +22,44 @@ import {
 const BlockDashboard = () => {
   const {
     lineBlocks,
-    setLineBlocks,
+    setTestCodes,
     handleBlockDragStart,
     handleBlockDrop,
     handleLineBlockDragStart,
     handleLineBlockDrop,
     handleCreateLineBlock,
+    handleResetLineBlocks,
+    showResetModal,
+    openResetModal,
+    closeResetModal,
+    showCreateModal,
+    openCreateModal,
+    closeCreateModal,
+    isTextButtonDisabled,
+    updateButtonState,
   } = useStore();
 
-  const [showResetModal, openResetModal, closeResetModal] = useModal();
-  const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
+  useEffect(() => {
+    updateButtonState(lineBlocks);
+  }, [lineBlocks, updateButtonState]);
 
-  const isTextButtonDisabled = useButtonState(lineBlocks);
+  const handleCreateConfirm = async () => {
+    const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
+      lineBlockId: lineBlock.id,
+      blocks: lineBlock.blocks,
+      index: index + 1,
+    }));
 
-  const resetBlocks = () => {
-    setLineBlocks([
-      {
-        id: Date.now(),
-        blocks: [],
-      },
-    ]);
-  };
+    const userBlocks = await handleBlocks(collectedLineBlockInfo);
 
-  const handleCreateConfirm = () => {
-    resetBlocks();
+    setTestCodes(userBlocks.formattedTestCodes);
+
+    handleResetLineBlocks();
     closeCreateModal();
   };
 
   const handleResetConfirm = () => {
-    resetBlocks();
+    handleResetLineBlocks();
     closeResetModal();
   };
 

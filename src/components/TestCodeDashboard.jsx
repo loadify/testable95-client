@@ -1,25 +1,44 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
+import useStore from "../store";
+
+import useLoading from "../hooks/useLoading";
 
 import CodeBox from "./common/CodeBox";
 import Button from "./common/Button";
 import TextBox from "./common/TextBox";
+import Modal from "./common/Modal";
 
 import { Section, Header, Content } from "../style/CommonStyle";
 
-const TestCodeDashboard = ({ text }) => {
-  const [content, setContent] = useState(text);
+const TestCodeDashboard = () => {
+  const {
+    lineBlocks,
+    showCopyModal,
+    openCopyModal,
+    closeCopyModal,
+    showErrorModal,
+    openErrorModal,
+    closeErrorModal,
+    isTextButtonDisabled,
+    updateButtonState,
+  } = useStore();
 
-  const testCode = "TestCode";
+  const { content, isLoading, showCodeBox, testCodes } = useLoading();
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setContent((content) =>
-        content === text + "..." ? text : content + ".",
-      );
-    }, 300);
+    updateButtonState(lineBlocks, showCodeBox);
+  }, [lineBlocks, showCodeBox, updateButtonState]);
 
-    return () => window.clearInterval(interval);
-  }, [text]);
+  const handleCopyConfirm = async () => {
+    try {
+      await navigator.clipboard.writeText(testCodes);
+    } catch (error) {
+      closeCopyModal();
+      openErrorModal();
+    }
+    closeCopyModal();
+  };
 
   return (
     <Section>
@@ -27,11 +46,32 @@ const TestCodeDashboard = ({ text }) => {
         <h2>Test Code Dashboard</h2>
       </Header>
       <Content>
-        <TextBox title="Text Box" />
-        <h3 className="test-code-text">{content}</h3>
-        <CodeBox testCode={testCode} />
-        <Button type="text" text="copy" />
+        {!isLoading && !showCodeBox && <TextBox title="Text Box" />}
+        {isLoading && <h3 className="test-code-text">{content}</h3>}
+        {showCodeBox && <CodeBox testCode={testCodes} />}
+        <Button
+          type="text"
+          text="copy"
+          isDisabled={isTextButtonDisabled.copy}
+          handleClick={openCopyModal}
+        />
       </Content>
+      {showCopyModal && (
+        <Modal
+          title="Copy"
+          content="복사가 완료되었습니다."
+          handleConfirm={handleCopyConfirm}
+          handleCancle={closeCopyModal}
+        />
+      )}
+      {showErrorModal && (
+        <Modal
+          title="Error"
+          content="복사에 실패하였습니다."
+          handleConfirm={closeErrorModal}
+          handleCancle={closeErrorModal}
+        />
+      )}
     </Section>
   );
 };

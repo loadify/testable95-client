@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
+
 import useStore from "../store";
+
 import InputBlock from "./common/InputBlock";
 import MethodBlock from "./common/MethodBlock";
+
 import { fetchBlocks } from "../services/blocks";
+
 import {
   BlockList,
   InputBlockList,
