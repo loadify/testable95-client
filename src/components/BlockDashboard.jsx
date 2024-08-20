@@ -1,7 +1,6 @@
-import useStore from "../store";
+import { useEffect } from "react";
 
-import useModal from "../hooks/useModal";
-import useButtonState from "../hooks/useButtonState";
+import useStore from "../store";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
@@ -30,12 +29,19 @@ const BlockDashboard = () => {
     handleLineBlockDrop,
     handleCreateLineBlock,
     handleResetLineBlocks,
+    showResetModal,
+    openResetModal,
+    closeResetModal,
+    showCreateModal,
+    openCreateModal,
+    closeCreateModal,
+    isTextButtonDisabled,
+    updateButtonState,
   } = useStore();
 
-  const [showResetModal, openResetModal, closeResetModal] = useModal();
-  const [showCreateModal, openCreateModal, closeCreateModal] = useModal();
-
-  const isTextButtonDisabled = useButtonState(lineBlocks);
+  useEffect(() => {
+    updateButtonState(lineBlocks);
+  }, [lineBlocks, updateButtonState]);
 
   const handleCreateConfirm = async () => {
     const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
@@ -47,6 +53,7 @@ const BlockDashboard = () => {
     const userBlocks = await handleBlocks(collectedLineBlockInfo);
 
     setTestCodes(userBlocks.formattedTestCodes);
+
     handleResetLineBlocks();
     closeCreateModal();
   };

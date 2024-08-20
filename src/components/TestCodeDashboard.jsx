@@ -1,8 +1,8 @@
+import { useEffect } from "react";
+
 import useStore from "../store";
 
 import useLoading from "../hooks/useLoading";
-import useModal from "../hooks/useModal";
-import useButtonState from "../hooks/useButtonState";
 
 import CodeBox from "./common/CodeBox";
 import Button from "./common/Button";
@@ -12,14 +12,23 @@ import Modal from "./common/Modal";
 import { Section, Header, Content } from "../style/CommonStyle";
 
 const TestCodeDashboard = () => {
-  const { lineBlocks } = useStore();
+  const {
+    lineBlocks,
+    showCopyModal,
+    openCopyModal,
+    closeCopyModal,
+    showErrorModal,
+    openErrorModal,
+    closeErrorModal,
+    isTextButtonDisabled,
+    updateButtonState,
+  } = useStore();
 
   const { content, isLoading, showCodeBox, testCodes } = useLoading();
 
-  const [showCopyModal, openCopyModal, closeCopyModal] = useModal();
-  const [showErrorModal, openErrorModal, closeErrorModal] = useModal();
-
-  const isTextButtonDisabled = useButtonState(lineBlocks, showCodeBox);
+  useEffect(() => {
+    updateButtonState(lineBlocks, showCodeBox);
+  }, [lineBlocks, showCodeBox, updateButtonState]);
 
   const handleCopyConfirm = async () => {
     try {

@@ -133,11 +133,58 @@ const useTestCodeStore = create((set) => ({
   setTestCodes: (testCodes) => set({ testCodes }),
 }));
 
+const useModalStore = create((set) => ({
+  showResetModal: false,
+  showCreateModal: false,
+  showCopyModal: false,
+
+  openResetModal: () => set({ showResetModal: true }),
+  closeResetModal: () => set({ showResetModal: false }),
+
+  openCreateModal: () => set({ showCreateModal: true }),
+  closeCreateModal: () => set({ showCreateModal: false }),
+
+  openCopyModal: () => set({ showCopyModal: true }),
+  closeCopyModal: () => set({ showCopyModal: false }),
+
+  openErrorModal: () => set({ showErrorModal: true }),
+  closeErrorModal: () => set({ showErrorModal: false }),
+}));
+
+const useButtonStore = create((set) => ({
+  isTextButtonDisabled: {
+    next: false,
+    reset: false,
+    create: false,
+    copy: true,
+  },
+
+  updateButtonState: (lineBlocks, showCodeBox) => {
+    const hasBlock = lineBlocks.some(
+      (lineBlock) => lineBlock.blocks.length > 0,
+    );
+    const hasMethodBlock = lineBlocks.every((lineBlock) =>
+      lineBlock.blocks.some((block) => block.type === "method"),
+    );
+
+    set({
+      isTextButtonDisabled: {
+        reset: !hasBlock,
+        next: !hasMethodBlock,
+        create: !hasMethodBlock,
+        copy: !showCodeBox,
+      },
+    });
+  },
+}));
+
 const useStore = () => ({
   ...useLineBlocksStore(),
   ...useDragStore(),
   ...useSelectionStore(),
   ...useTestCodeStore(),
+  ...useModalStore(),
+  ...useButtonStore(),
 });
 
 export default useStore;
