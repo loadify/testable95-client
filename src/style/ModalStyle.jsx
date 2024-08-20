@@ -25,6 +25,7 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: 1rem;
   background-color: inherit;
   font-size: ${({ theme }) => theme.fontSize.small};

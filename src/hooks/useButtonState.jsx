@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-const useButtonState = (lineBlocks) => {
+const useButtonState = (lineBlocks, showCodeBox) => {
   const [isTextButtonDisabled, setIsTextButtonDisabled] = useState({
     next: false,
     reset: false,
     create: false,
+    copy: true,
   });
 
   useEffect(() => {
@@ -19,8 +20,9 @@ const useButtonState = (lineBlocks) => {
       reset: !hasBlock,
       next: !hasMethodBlock,
       create: !hasMethodBlock,
+      copy: !showCodeBox,
     });
-  }, [lineBlocks]);
+  }, [lineBlocks, showCodeBox]);
 
   return isTextButtonDisabled;
 };

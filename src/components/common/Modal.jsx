@@ -17,8 +17,14 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
         <ModalContent>
           <p className="modal-content">{content}</p>
           <ButtonContainer>
-            <Button type="text" text="no" handleClick={handleCancel} />
-            <Button type="text" text="yes" handleClick={handleConfirm} />
+            {title === "Copy" || title === "Error" ? (
+              <Button type="text" text="back" handleClick={handleConfirm} />
+            ) : (
+              <>
+                <Button type="text" text="no" handleClick={handleCancel} />
+                <Button type="text" text="yes" handleClick={handleConfirm} />
+              </>
+            )}
           </ButtonContainer>
         </ModalContent>
       </ModalContainer>
