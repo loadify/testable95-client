@@ -162,6 +162,11 @@ const useSelectionStore = create((set, get) => ({
       const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
       const isSelectedBlockId = selectedBlockId !== null;
+      const isTyping = ["INPUT"].includes(event.target.tagName);
+
+      if (isTyping) {
+        return;
+      }
 
       if (isSelectedBlockId) {
         const newLineBlocks = lineBlocks.map((lineBlock) => ({
