@@ -86,7 +86,9 @@ const BlockDashboard = () => {
               handleBlockDragStart={(block) =>
                 handleBlockDragStart(block, lineBlockIndex)
               }
-              handleBlockDrop={() => handleBlockDrop(lineBlockIndex)}
+              handleBlockDrop={(draggedBlock, targetBlock) =>
+                handleBlockDrop(lineBlockIndex, draggedBlock.id, targetBlock.id)
+              }
               handleLineBlockDragStart={() =>
                 handleLineBlockDragStart(lineBlockIndex)
               }
