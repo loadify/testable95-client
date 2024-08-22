@@ -45,6 +45,7 @@ const InputBlock = ({
         placeholder={parameter}
         onChange={handleInputChange}
         value={inputValue}
+        id={inputBlockId}
       />
     </InputBlockContainer>
   );

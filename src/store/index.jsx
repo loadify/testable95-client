@@ -1,17 +1,18 @@
 import { create } from "zustand";
+import { v4 as uuidv4 } from "uuid";
 
 const useLineBlocksStore = create((set) => ({
-  lineBlocks: [{ id: Date.now(), blocks: [] }],
+  lineBlocks: [{ id: uuidv4(), blocks: [] }],
 
   setLineBlocks: (lineBlocks) => set({ lineBlocks }),
 
   handleCreateLineBlock: () =>
     set((state) => ({
-      lineBlocks: [...state.lineBlocks, { id: Date.now(), blocks: [] }],
+      lineBlocks: [...state.lineBlocks, { id: uuidv4(), blocks: [] }],
     })),
 
   handleResetLineBlocks: () =>
-    set({ lineBlocks: [{ id: Date.now(), blocks: [] }] }),
+    set({ lineBlocks: [{ id: uuidv4(), blocks: [] }] }),
 }));
 
 const useDragStore = create((set, get) => ({
@@ -24,35 +25,78 @@ const useDragStore = create((set, get) => ({
       draggedLineIndex: lineIndex,
     }),
 
-  handleBlockDrop: (targetLineIndex, targetBlockId = null) => {
+  handleBlockDrop: (
+    targetLineIndex,
+    draggedBlockId = null,
+    targetBlockId = null,
+  ) => {
     const { draggedBlock, draggedLineIndex } = get();
     const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
+    const isSameLine = draggedLineIndex === targetLineIndex;
+
     if (draggedBlock !== null) {
       const newLineBlocks = lineBlocks.map((lineBlock, index) => {
-        const isDraggedLine = index === draggedLineIndex;
         const isTargetLine = index === targetLineIndex;
-        let newBlocks = [...lineBlock.blocks];
+        const isDraggedLine = index === draggedLineIndex;
+        const hasDraggedBlockId = draggedBlockId !== null;
 
-        if (isDraggedLine) {
-          newBlocks = newBlocks.filter((block) => block.id !== draggedBlock.id);
-        }
+        const newBlocks = [...lineBlock.blocks];
+
+        const targetBlockIndex = newBlocks.findIndex(
+          (block) => block.id === targetBlockId,
+        );
+        const draggedBlockIndex = newBlocks.findIndex(
+          (block) => block.id === draggedBlock.id,
+        );
 
         if (isTargetLine) {
-          if (targetBlockId !== null) {
-            const targetIndex = newBlocks.findIndex(
-              (block) => block.id === targetBlockId,
-            );
-            newBlocks.splice(targetIndex, 0, {
-              ...draggedBlock,
-              id: Date.now(),
-            });
+          if (hasDraggedBlockId) {
+            if (isSameLine) {
+              newBlocks.splice(draggedBlockIndex, 1);
+              newBlocks.splice(targetBlockIndex, 0, {
+                ...draggedBlock,
+                value: draggedBlock.value,
+              });
+            } else {
+              if (!targetBlockId) {
+                newBlocks.push({
+                  ...draggedBlock,
+                  id: draggedBlock.id || uuidv4(),
+                  value: draggedBlock.value,
+                });
+              } else {
+                newBlocks.splice(targetBlockIndex, 0, {
+                  ...draggedBlock,
+                  id: draggedBlock.id || uuidv4(),
+                  value: draggedBlock.value,
+                });
+              }
+            }
           } else {
-            newBlocks.push({ ...draggedBlock, id: Date.now() });
+            if (!targetBlockId) {
+              newBlocks.push({
+                ...draggedBlock,
+                id: draggedBlock.id || uuidv4(),
+                value: draggedBlock.value,
+              });
+            } else {
+              newBlocks.splice(targetBlockIndex, 0, {
+                ...draggedBlock,
+                id: draggedBlock.id || uuidv4(),
+                value: draggedBlock.value,
+              });
+            }
           }
         }
 
-        return { ...lineBlock, blocks: newBlocks };
+        return {
+          ...lineBlock,
+          blocks:
+            isDraggedLine && !isSameLine
+              ? newBlocks.filter((block) => block.id !== draggedBlock.id)
+              : newBlocks,
+        };
       });
 
       setLineBlocks(newLineBlocks);
@@ -73,7 +117,10 @@ const useDragStore = create((set, get) => ({
     const { draggedLineIndex } = get();
     const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
-    if (draggedLineIndex !== null && draggedLineIndex !== targetIndex) {
+    const isOtherLine =
+      draggedLineIndex !== null && draggedLineIndex !== targetIndex;
+
+    if (isOtherLine) {
       const newLineBlocks = [...lineBlocks];
       const [draggedLineBlock] = newLineBlocks.splice(draggedLineIndex, 1);
 
@@ -93,7 +140,9 @@ const useSelectionStore = create((set, get) => ({
     const { draggedBlock } = useDragStore.getState();
     const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
-    if (draggedBlock !== null) {
+    const isDraggedBlock = draggedBlock !== null;
+
+    if (isDraggedBlock) {
       const newLineBlocks = lineBlocks.map((lineBlock) => ({
         ...lineBlock,
         blocks: lineBlock.blocks.filter(
@@ -112,7 +161,14 @@ const useSelectionStore = create((set, get) => ({
       const { selectedBlockId } = get();
       const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
-      if (selectedBlockId !== null) {
+      const isSelectedBlockId = selectedBlockId !== null;
+      const isTyping = ["INPUT"].includes(event.target.tagName);
+
+      if (isTyping) {
+        return;
+      }
+
+      if (isSelectedBlockId) {
         const newLineBlocks = lineBlocks.map((lineBlock) => ({
           ...lineBlock,
           blocks: lineBlock.blocks.filter(

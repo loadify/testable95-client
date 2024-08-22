@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import useStore from "../../store";
 
 import InputBlock from "./InputBlock";
@@ -17,7 +19,9 @@ const LineBlock = ({
   handleLineBlockDragStart,
   handleLineBlockDrop,
 }) => {
-  const { handleBlockDragOver } = useStore();
+  const { handleBlockDragOver, draggedBlock } = useStore();
+  const [targetBlock, setTargetBlock] = useState(null);
+
   const handleDragStart = (event) => {
     event.dataTransfer.setData("text/plain", "lineblock");
 
@@ -31,8 +35,12 @@ const LineBlock = ({
     if (data === "lineblock") {
       handleLineBlockDrop(index);
     } else {
-      handleBlockDrop(index);
+      handleBlockDrop(draggedBlock, targetBlock);
     }
+  };
+
+  const handleDragEnter = (event) => {
+    setTargetBlock(event.target);
   };
 
   return (
@@ -41,6 +49,7 @@ const LineBlock = ({
       onDragStart={handleDragStart}
       onDragOver={handleBlockDragOver}
       onDrop={updateDrop}
+      onDragEnter={handleDragEnter}
     >
       <BlockListContainer>
         <OrderNumber>{index}</OrderNumber>

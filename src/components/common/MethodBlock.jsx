@@ -26,7 +26,9 @@ const MethodBlock = ({ method, saveBlockData, methodBlockId }) => {
       onDragStart={handleDragStart}
       onClick={handleClickBlock}
     >
-      <p className="method-block-name">{method}</p>
+      <p className="method-block-name" id={methodBlockId}>
+        {method}
+      </p>
     </MethodBlockContainer>
   );
 };
