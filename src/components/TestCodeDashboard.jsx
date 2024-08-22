@@ -48,7 +48,7 @@ const TestCodeDashboard = () => {
       <Content>
         {!isLoading && !showCodeBox && <TextBox title="Text Box" />}
         {isLoading && <h3 className="test-code-text">{content}</h3>}
-        {showCodeBox && <CodeBox testCode={testCodes} />}
+        {!isLoading && showCodeBox && <CodeBox testCode={testCodes} />}
         <Button
           type="text"
           text="copy"

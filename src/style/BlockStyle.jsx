@@ -11,8 +11,9 @@ const MethodBlockContainer = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 0;
+    padding: 1rem 0.5rem;
     height: 2rem;
+    font-size: ${({ theme }) => theme.fontSize.xxsmall};
     background: ${({ theme }) => theme.color.barColor};
     color: ${({ theme }) => theme.color.whiteColor};
     border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
