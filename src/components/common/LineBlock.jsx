@@ -49,16 +49,16 @@ const LineBlock = ({
       event.target.tagName !== "INPUT";
 
     if (hasDroppedPosition) {
-      event.target.classList.add("dropped-position");
+      event.target.classList.add("border");
     }
 
     if (targetBlock) {
-      targetBlock.classList.remove("dropped-position");
+      targetBlock.classList.remove("border");
     }
   };
 
   const handleDragEnd = (event) => {
-    event.target.classList.remove("dropped-position");
+    event.target.classList.remove("border");
   };
 
   return (

@@ -54,7 +54,7 @@ const LineBlockContainer = styled.li`
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
 
-  .dropped-position {
+  .border {
     opacity: 50%;
     border: 5px solid blue;
   }
