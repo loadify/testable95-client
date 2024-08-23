@@ -13,11 +13,13 @@ const MethodBlockContainer = styled.li`
     align-items: center;
     padding: 1rem 0.5rem;
     height: 2rem;
+    width: 6rem;
     font-size: ${({ theme }) => theme.fontSize.xxsmall};
     background: ${({ theme }) => theme.color.barColor};
     color: ${({ theme }) => theme.color.whiteColor};
     border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   }
+
   .method-block-name:active {
     border-color: ${({ theme }) => theme.color.redColor};
   }
@@ -28,6 +30,7 @@ const InputBlockContainer = styled.li`
   justify-content: center;
   align-items: center;
   height: 2rem;
+  width: 8rem;
   padding: 1rem 0.8rem;
   background: ${({ theme }) => theme.color.grayColor};
   color: ${({ theme }) => theme.color.whiteColor};
@@ -50,6 +53,11 @@ const LineBlockContainer = styled.li`
   border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+
+  .border {
+    opacity: 50%;
+    border: 5px solid blue;
+  }
 `;
 
 const OrderNumber = styled.div`
