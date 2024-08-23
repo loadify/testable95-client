@@ -14,6 +14,7 @@ const CodeBoxContent = styled.div`
   background-color: ${({ theme }) => theme.color.whiteColor};
   border: 0.1rem solid ${({ theme }) => theme.color.blackColor};
   font-size: ${({ theme }) => theme.fontSize.xxsmall};
+  font-weight: bold;
   overflow: scroll;
   overflow-x: auto;
   gap: 1rem;
