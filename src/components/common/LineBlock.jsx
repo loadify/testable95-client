@@ -36,11 +36,29 @@ const LineBlock = ({
       handleLineBlockDrop(index);
     } else {
       handleBlockDrop(draggedBlock, targetBlock);
+      targetBlock.classList.remove("border");
     }
   };
 
   const handleDragEnter = (event) => {
     setTargetBlock(event.target);
+
+    const hasDroppedPosition =
+      event.target &&
+      event.target !== targetBlock &&
+      event.target.tagName !== "INPUT";
+
+    if (hasDroppedPosition) {
+      event.target.classList.add("dropped-position");
+    }
+
+    if (targetBlock) {
+      targetBlock.classList.remove("dropped-position");
+    }
+  };
+
+  const handleDragEnd = (event) => {
+    event.target.classList.remove("dropped-position");
   };
 
   return (
@@ -50,6 +68,7 @@ const LineBlock = ({
       onDragOver={handleBlockDragOver}
       onDrop={updateDrop}
       onDragEnter={handleDragEnter}
+      onDragEnd={handleDragEnd}
     >
       <BlockListContainer>
         <OrderNumber>{index}</OrderNumber>

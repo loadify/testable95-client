@@ -36,6 +36,7 @@ const GlobalStyle = createGlobalStyle`
 
   input {
     padding: 0.2rem;
+    width: 7rem;
     border: 0.2rem solid ${({ theme }) => theme.color.blackColor};
     background-color: ${({ theme }) => theme.color.whiteColor};
   }

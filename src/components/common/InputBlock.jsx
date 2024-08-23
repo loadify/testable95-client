@@ -40,12 +40,12 @@ const InputBlock = ({
       draggable="true"
       onDragStart={handleDragStart}
       onClick={handleClickBlock}
+      id={inputBlockId}
     >
       <input
         placeholder={parameter}
         onChange={handleInputChange}
         value={inputValue}
-        id={inputBlockId}
       />
     </InputBlockContainer>
   );
