@@ -28,7 +28,7 @@ const TextBoxContent = styled.div`
   flex-direction: column;
   margin: 1rem;
   background-color: inherit;
-  font-size: ${({ theme }) => theme.fontSize.xxsmall};
+  font-size: ${({ theme }) => theme.fontSize.xsmall};
   gap: 1.5rem;
 
   p {
@@ -36,6 +36,11 @@ const TextBoxContent = styled.div`
     width: 100%;
     background-color: inherit;
     color: ${({ theme }) => theme.color.whiteColor};
+
+    strong {
+      color: ${({ theme }) => theme.color.blackColor};
+      font-weight: bold;
+    }
   }
 `;
 
