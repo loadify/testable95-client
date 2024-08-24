@@ -25,16 +25,19 @@ const BlockContainer = () => {
     const renderBlocks = async () => {
       try {
         const blocks = await fetchBlocks();
+
         setInputBlocks(blocks.inputBlocks);
         setMethodBlocks(blocks.methodBlocks);
 
         const allActions = new Set(["All"]);
-        blocks.inputBlocks.forEach((block) =>
-          block.actions.forEach((action) => allActions.add(action)),
-        );
-        blocks.methodBlocks.forEach((block) =>
-          block.actions.forEach((action) => allActions.add(action)),
-        );
+
+        const updateAction = (allBlocks) => {
+          allBlocks.forEach((block) =>
+            block.actions.forEach((action) => allActions.add(action)),
+          );
+        };
+
+        [blocks.inputBlocks, blocks.methodBlocks].forEach(updateAction);
 
         setActions([...allActions]);
       } catch (error) {
@@ -44,19 +47,18 @@ const BlockContainer = () => {
     renderBlocks();
   }, []);
 
+  const filterBlocksByAction = (blocks, action) => {
+    return blocks.filter((block) => block.actions.includes(action));
+  };
+
   const filterBlocks = (action) => {
     if (action === "All") {
       return { inputBlocks, methodBlocks };
     }
 
     return {
-      inputBlocks: inputBlocks.filter((block) =>
-        block.actions.includes(action),
-      ),
-
-      methodBlocks: methodBlocks.filter((block) =>
-        block.actions.includes(action),
-      ),
+      inputBlocks: filterBlocksByAction(inputBlocks, action),
+      methodBlocks: filterBlocksByAction(methodBlocks, action),
     };
   };
 
