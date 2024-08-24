@@ -6,7 +6,7 @@ const useLoading = () => {
   const [content, setContent] = useState("Loading");
   const [isLoading, setIsLoading] = useState(false);
   const [showCodeBox, setShowCodeBox] = useState(false);
-  const { testCodes } = useStore();
+  const { testCodes, isCreateClicked } = useStore();
 
   useEffect(() => {
     if (testCodes) {
@@ -32,7 +32,7 @@ const useLoading = () => {
         clearTimeout(timer);
       };
     }
-  }, [testCodes]);
+  }, [testCodes, isCreateClicked]);
 
   return {
     content,
