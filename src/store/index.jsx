@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 
-const useLineBlocksStore = create((set, get) => ({
+const useLineBlocksStore = create((set) => ({
   lineBlocks: [{ id: uuidv4(), blocks: [] }],
 
   setLineBlocks: (lineBlocks) => set({ lineBlocks }),
@@ -15,15 +15,34 @@ const useLineBlocksStore = create((set, get) => ({
     set({ lineBlocks: [{ id: uuidv4(), blocks: [] }] }),
 
   updateBlockValue: (blockId, newValue) =>
-    set(() => {
-      const lineBlocks = get().lineBlocks;
-      const newLineBlocks = lineBlocks.map((lineBlock) => ({
-        ...lineBlock,
-        blocks: lineBlock.blocks.map((block) =>
-          block.id === blockId ? { ...block, value: newValue } : block,
-        ),
-      }));
-      return { lineBlocks: newLineBlocks };
+    set((state) => {
+      const { lineBlocks } = state;
+
+      const updateNewValue = (block) =>
+        block.id === blockId && block.value !== newValue
+          ? { ...block, value: newValue }
+          : block;
+
+      const hasUpdatedBlock = (blocks) =>
+        blocks.some(
+          (block) => block.id === blockId && block.value === newValue,
+        );
+
+      const newLineBlocks = lineBlocks.reduce((result, lineBlock) => {
+        const newBlocks = lineBlock.blocks.map(updateNewValue);
+
+        result.push(
+          hasUpdatedBlock(newBlocks)
+            ? { ...lineBlock, blocks: newBlocks }
+            : lineBlock,
+        );
+
+        return result;
+      }, []);
+
+      const lineBlocksUpdated = newLineBlocks.length === lineBlocks.length;
+
+      return lineBlocksUpdated ? { lineBlocks: newLineBlocks } : state;
     }),
 }));
 
