@@ -37,6 +37,7 @@ const BlockDashboard = () => {
     closeCreateModal,
     isTextButtonDisabled,
     updateButtonState,
+    setIsCreateClicked,
   } = useStore();
 
   useEffect(() => {
@@ -44,6 +45,8 @@ const BlockDashboard = () => {
   }, [lineBlocks, updateButtonState]);
 
   const handleCreateConfirm = async () => {
+    setIsCreateClicked(true);
+
     const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
       lineBlockId: lineBlock.id,
       blocks: lineBlock.blocks,
@@ -54,8 +57,9 @@ const BlockDashboard = () => {
 
     setTestCodes(userBlocks.formattedTestCodes);
 
-    handleResetLineBlocks();
     closeCreateModal();
+    handleResetLineBlocks();
+    setIsCreateClicked(false);
   };
 
   const handleResetConfirm = () => {

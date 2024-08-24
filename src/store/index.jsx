@@ -13,6 +13,37 @@ const useLineBlocksStore = create((set) => ({
 
   handleResetLineBlocks: () =>
     set({ lineBlocks: [{ id: uuidv4(), blocks: [] }] }),
+
+  updateBlockValue: (blockId, newValue) =>
+    set((state) => {
+      const { lineBlocks } = state;
+
+      const updateNewValue = (block) =>
+        block.id === blockId && block.value !== newValue
+          ? { ...block, value: newValue }
+          : block;
+
+      const hasUpdatedBlock = (blocks) =>
+        blocks.some(
+          (block) => block.id === blockId && block.value === newValue,
+        );
+
+      const newLineBlocks = lineBlocks.reduce((result, lineBlock) => {
+        const newBlocks = lineBlock.blocks.map(updateNewValue);
+
+        result.push(
+          hasUpdatedBlock(newBlocks)
+            ? { ...lineBlock, blocks: newBlocks }
+            : lineBlock,
+        );
+
+        return result;
+      }, []);
+
+      const lineBlocksUpdated = newLineBlocks.length === lineBlocks.length;
+
+      return lineBlocksUpdated ? { lineBlocks: newLineBlocks } : state;
+    }),
 }));
 
 const useDragStore = create((set, get) => ({
@@ -135,9 +166,12 @@ const useDragStore = create((set, get) => ({
 
 const useSelectionStore = create((set, get) => ({
   selectedBlockId: null,
+
   setSelectedBlockId: (selectedBlockId) => set({ selectedBlockId }),
+
   handleDeleteBlock: () => {
     const { draggedBlock } = useDragStore.getState();
+
     const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
 
     const isDraggedBlock = draggedBlock !== null;
@@ -214,6 +248,10 @@ const useButtonStore = create((set) => ({
     create: false,
     copy: true,
   },
+
+  isCreateClicked: false,
+
+  setIsCreateClicked: (value) => set({ isCreateClicked: value }),
 
   updateButtonState: (lineBlocks, showCodeBox) => {
     const hasBlock = lineBlocks.some(

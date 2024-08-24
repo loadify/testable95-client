@@ -10,7 +10,7 @@ const InputBlock = ({
   draggedValue,
   inputBlockId,
 }) => {
-  const { setSelectedBlockId } = useStore();
+  const { setSelectedBlockId, updateBlockValue } = useStore();
   const [inputValue, setInputValue] = useState(draggedValue || "");
 
   const handleDragStart = (event) => {
@@ -23,12 +23,18 @@ const InputBlock = ({
       value: inputValue,
     };
 
-    setInputValue("");
+    if (!draggedBlock.id) {
+      setInputValue("");
+    }
+
     saveBlockData(draggedBlock);
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    const targetValue = event.target.value;
+
+    setInputValue(targetValue);
+    updateBlockValue(inputBlockId, targetValue);
   };
 
   const handleClickBlock = () => {
