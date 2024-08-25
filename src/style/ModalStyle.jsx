@@ -32,6 +32,18 @@ const ModalContent = styled.div`
   text-align: center;
   gap: 1.5rem;
 
+  img {
+    width: 50rem;
+
+    @media (max-height: 1000px) {
+      width: 30rem;
+    }
+
+    @media (max-height: 700px) {
+      width: 20rem;
+    }
+  }
+
   .modal-content {
     display: inline-block;
     margin-top: 1rem;

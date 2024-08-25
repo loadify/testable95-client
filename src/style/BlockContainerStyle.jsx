@@ -38,7 +38,7 @@ const Tab = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.grayColor};
+    background-color: ${({ theme }) => theme.color.darkGrayColor};
   }
 
   &:focus {

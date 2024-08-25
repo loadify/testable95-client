@@ -15,9 +15,13 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
           <h2>{title}</h2>
         </Header>
         <ModalContent>
-          <p className="modal-content">{content}</p>
+          {title === "Manual" ? (
+            <img src={content} />
+          ) : (
+            <p className="modal-content">{content}</p>
+          )}
           <ButtonContainer>
-            {title === "Copy" || title === "Error" ? (
+            {title === "Copy" || title === "Error" || title === "Manual" ? (
               <Button type="text" text="back" handleClick={handleConfirm} />
             ) : (
               <>
