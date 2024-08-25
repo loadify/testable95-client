@@ -38,6 +38,7 @@ const BlockDashboard = () => {
     isTextButtonDisabled,
     updateButtonState,
     setIsCreateClicked,
+    resetAudio,
   } = useStore();
 
   useEffect(() => {
@@ -65,6 +66,8 @@ const BlockDashboard = () => {
   const handleResetConfirm = () => {
     handleResetLineBlocks();
     closeResetModal();
+
+    resetAudio.play();
   };
 
   return (

@@ -6,7 +6,7 @@ const useLoading = () => {
   const [content, setContent] = useState("Loading");
   const [isLoading, setIsLoading] = useState(false);
   const [showCodeBox, setShowCodeBox] = useState(false);
-  const { testCodes, isCreateClicked } = useStore();
+  const { testCodes, isCreateClicked, createAudio } = useStore();
 
   useEffect(() => {
     if (testCodes) {
@@ -23,6 +23,7 @@ const useLoading = () => {
       const timer = setTimeout(() => {
         setIsLoading(false);
         setShowCodeBox(true);
+        createAudio.play();
 
         clearInterval(loadingInterval);
       }, 1000);
