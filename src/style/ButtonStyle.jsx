@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const ManualButtonContainer = styled.div`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+`;
+
 const ButtonContainer = styled.div`
   button {
     border: 0.15rem solid ${({ theme }) => theme.color.whiteColor};
@@ -35,4 +41,4 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export default ButtonContainer;
+export { ManualButtonContainer, ButtonContainer };

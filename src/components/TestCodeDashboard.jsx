@@ -6,7 +6,6 @@ import useLoading from "../hooks/useLoading";
 
 import CodeBox from "./common/CodeBox";
 import Button from "./common/Button";
-import TextBox from "./common/TextBox";
 import Modal from "./common/Modal";
 
 import { Section, Header, Content } from "../style/CommonStyle";
@@ -22,6 +21,7 @@ const TestCodeDashboard = () => {
     closeErrorModal,
     isTextButtonDisabled,
     updateButtonState,
+    copyAudio,
   } = useStore();
 
   const { content, isLoading, showCodeBox, testCodes } = useLoading();
@@ -29,6 +29,12 @@ const TestCodeDashboard = () => {
   useEffect(() => {
     updateButtonState(lineBlocks, showCodeBox);
   }, [lineBlocks, showCodeBox, updateButtonState]);
+
+  const updateCopy = () => {
+    copyAudio.play();
+
+    openCopyModal();
+  };
 
   const handleCopyConfirm = async () => {
     try {
@@ -46,14 +52,13 @@ const TestCodeDashboard = () => {
         <h2>Test Code Dashboard</h2>
       </Header>
       <Content>
-        {!isLoading && !showCodeBox && <TextBox title="Text Box" />}
         {isLoading && <h3 className="test-code-text">{content}</h3>}
         {!isLoading && showCodeBox && <CodeBox testCode={testCodes} />}
         <Button
           type="text"
           text="copy"
           isDisabled={isTextButtonDisabled.copy}
-          handleClick={openCopyModal}
+          handleClick={updateCopy}
         />
       </Content>
       {showCopyModal && (
