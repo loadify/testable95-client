@@ -13,7 +13,6 @@ const MethodBlockContainer = styled.li`
     align-items: center;
     padding: 1rem 0.5rem;
     height: 2rem;
-    width: 6rem;
     font-size: ${({ theme }) => theme.fontSize.xxsmall};
     background: ${({ theme }) => theme.color.barColor};
     color: ${({ theme }) => theme.color.whiteColor};
