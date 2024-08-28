@@ -55,7 +55,7 @@ const TestCodeDashboard = () => {
         {isLoading && <h3 className="test-code-text">{content}</h3>}
         {!isLoading && showCodeBox && <CodeBox testCode={testCodes} />}
         <Button
-          type="text"
+          className="text-button"
           text="copy"
           isDisabled={isTextButtonDisabled.copy}
           handleClick={updateCopy}

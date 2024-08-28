@@ -52,13 +52,13 @@ const TutorialModal = ({ title, tutorials, onClose }) => {
           </ContentContainer>
           <ButtonContainer>
             <Button
-              type="text"
+              className="text-button"
               text="prev"
               handleClick={handlePreviousButton}
               disabled={currentIndex === 0}
             />
             <Button
-              type="text"
+              className="text-button"
               text={currentIndex === tutorials.length - 1 ? "start" : "next"}
               handleClick={handleNextButton}
             />
