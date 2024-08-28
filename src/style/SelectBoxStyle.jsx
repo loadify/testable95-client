@@ -10,11 +10,11 @@ const SelectBox = styled.select`
   width: 100%;
   padding: 0.3rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   font-weight: bold;
 
-  &: focus {
+  &:focus {
     outline: none;
   }
 `;

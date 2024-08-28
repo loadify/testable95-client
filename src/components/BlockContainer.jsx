@@ -1,8 +1,13 @@
-import { useState, useEffect } from "react";
-import useStore from "../store";
+import { useEffect } from "react";
+
+import useDragStore from "../store/useDragStore";
+import useBlockStore from "../store/useBlockStore";
+
 import InputBlock from "./common/InputBlock";
 import MethodBlock from "./common/MethodBlock";
+
 import { fetchBlocks } from "../services/blocks";
+
 import {
   Content,
   Tab,
@@ -14,12 +19,18 @@ import {
 import { Header, Section } from "../style/CommonStyle";
 
 const BlockContainer = () => {
-  const { handleBlockDragStart, handleBlockDragOver, handleDeleteBlock } =
-    useStore();
-  const [inputBlocks, setInputBlocks] = useState([]);
-  const [methodBlocks, setMethodBlocks] = useState([]);
-  const [activeTab, setActiveTab] = useState("All");
-  const [actions, setActions] = useState(["All"]);
+  const { handleBlockDragStart, handleBlockDragOver } = useDragStore();
+  const {
+    inputBlocks,
+    setInputBlocks,
+    methodBlocks,
+    setMethodBlocks,
+    activeTab,
+    setActiveTab,
+    actions,
+    setActions,
+    handleDragDelete,
+  } = useBlockStore();
 
   useEffect(() => {
     const renderBlocks = async () => {
@@ -68,7 +79,7 @@ const BlockContainer = () => {
   } = filterBlocks(activeTab);
 
   return (
-    <Section onDragOver={handleBlockDragOver} onDrop={handleDeleteBlock}>
+    <Section onDragOver={handleBlockDragOver} onDrop={handleDragDelete}>
       <Header>
         <h2>Block Container</h2>
       </Header>

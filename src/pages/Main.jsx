@@ -1,4 +1,5 @@
-import useStore from "../store";
+import useBlockStore from "../store/useBlockStore";
+import useTutorialStore from "../store/useTutorialStore";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
@@ -9,16 +10,12 @@ import Button from "../components/common/Button";
 import { ManualButtonContainer } from "../style/ButtonStyle";
 
 const Main = () => {
-  const {
-    handleKeyDown,
-    tutorials,
-    showTutorial,
-    setShowTutorial,
-    handleShowTutorial,
-  } = useStore();
+  const { handleKeyboardDelete } = useBlockStore();
+  const { tutorials, showTutorial, setShowTutorial, handleShowTutorial } =
+    useTutorialStore();
 
   return (
-    <main onKeyDown={handleKeyDown} tabIndex="0">
+    <main onKeyDown={handleKeyboardDelete} tabIndex="0">
       <BlockContainer />
       <BlockDashboard />
       <TestCodeDashboard />

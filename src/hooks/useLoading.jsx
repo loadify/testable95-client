@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
 
-import useStore from "../store";
+import useTestCodeStore from "../store/useTestCodeStore";
+import useButtonStore from "../store/useButtonStore";
+import useAudioStore from "../store/useAudioStore";
 
 const useLoading = () => {
   const [content, setContent] = useState("Loading");
   const [isLoading, setIsLoading] = useState(false);
   const [showCodeBox, setShowCodeBox] = useState(false);
-  const { testCodes, isCreateClicked, createAudio } = useStore();
+  const { testCodes } = useTestCodeStore();
+  const { isCreateClicked } = useButtonStore();
+  const { createAudio } = useAudioStore();
 
   useEffect(() => {
     if (testCodes) {

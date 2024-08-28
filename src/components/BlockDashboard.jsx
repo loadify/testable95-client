@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 
-import useStore from "../store";
+import useLineBlocksStore from "../store/useLineBlockStore";
+import useDragStore from "../store/useDragStore";
+import useTestCodeStore from "../store/useTestCodeStore";
+import useModalStore from "../store/useModalStore";
+import useButtonStore from "../store/useButtonStore";
+import useAudioStore from "../store/useAudioStore";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
@@ -17,13 +22,15 @@ import { Section, Content, Header } from "../style/CommonStyle";
 const BlockDashboard = () => {
   const {
     lineBlocks,
-    setTestCodes,
-    handleBlockDragStart,
-    handleBlockDrop,
-    handleLineBlockDragStart,
-    handleLineBlockDrop,
     handleCreateLineBlock,
     handleResetLineBlocks,
+    handleLineBlockDragStart,
+    handleLineBlockDrop,
+  } = useLineBlocksStore();
+  const { handleBlockDragStart, handleBlockDrop } = useDragStore();
+  const { setTestCodes } = useTestCodeStore();
+
+  const {
     showTemplateModal,
     openTemplateModal,
     closeTemplateModal,
@@ -33,12 +40,11 @@ const BlockDashboard = () => {
     showCreateModal,
     openCreateModal,
     closeCreateModal,
-    isTextButtonDisabled,
-    updateButtonState,
-    setIsCreateClicked,
-    resetAudio,
     setSelectedTemplate,
-  } = useStore();
+  } = useModalStore();
+  const { isTextButtonDisabled, updateButtonState, setIsCreateClicked } =
+    useButtonStore();
+  const { resetAudio } = useAudioStore();
 
   useEffect(() => {
     updateButtonState(lineBlocks);

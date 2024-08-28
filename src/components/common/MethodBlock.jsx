@@ -1,9 +1,9 @@
-import useStore from "../../store";
+import useBlockStore from "../../store/useBlockStore";
 
 import { MethodBlockContainer } from "../../style/BlockStyle";
 
 const MethodBlock = ({ method, saveBlockData, methodBlockId }) => {
-  const { setSelectedBlockId } = useStore();
+  const { setSelectedBlockId } = useBlockStore();
 
   const handleDragStart = (event) => {
     event.stopPropagation();
