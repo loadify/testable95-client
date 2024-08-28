@@ -1,29 +1,21 @@
-import useStore from "../store";
+import useBlockStore from "../store/useBlockStore";
+import useTutorialStore from "../store/useTutorialStore";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
 import TestCodeDashboard from "../components/TestCodeDashboard";
-
-import Modal from "../components/common/Modal";
-import ManualImage from "../assets/manual.png";
 import Tutorial from "../components/common/Tutorial";
 import Button from "../components/common/Button";
 
 import { ManualButtonContainer } from "../style/ButtonStyle";
 
 const Main = () => {
-  const {
-    handleKeyDown,
-    showTutorial,
-    showManual,
-    setShowManual,
-    setShowTutorial,
-    handleShowTutorial,
-    tutorials,
-  } = useStore();
+  const { handleKeyboardDelete } = useBlockStore();
+  const { tutorials, showTutorial, setShowTutorial, handleShowTutorial } =
+    useTutorialStore();
 
   return (
-    <main onKeyDown={handleKeyDown} tabIndex="0">
+    <main onKeyDown={handleKeyboardDelete} tabIndex="0">
       <BlockContainer />
       <BlockDashboard />
       <TestCodeDashboard />
@@ -41,13 +33,6 @@ const Main = () => {
             handleClick={handleShowTutorial}
           />
         </ManualButtonContainer>
-      )}
-      {showManual && (
-        <Modal
-          title="Manual"
-          content={ManualImage}
-          handleConfirm={() => setShowManual(false)}
-        />
       )}
     </main>
   );

@@ -19,6 +19,10 @@ const ModalContainer = styled.div`
   border-left: 0.1rem solid ${({ theme }) => theme.color.whiteColor};
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+
+  .template-content {
+    gap: 0;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -32,16 +36,9 @@ const ModalContent = styled.div`
   text-align: center;
   gap: 1.5rem;
 
-  img {
-    width: 50rem;
-
-    @media (max-height: 1000px) {
-      width: 30rem;
-    }
-
-    @media (max-height: 700px) {
-      width: 20rem;
-    }
+  .template-modal-content {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .modal-content {

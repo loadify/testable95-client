@@ -1,11 +1,7 @@
 import Button from "./Button";
 
-import loginTemplate from "../../mock/loginTemplate";
-import paymentTemplate from "../../mock/paymentTemplate";
-import signupTemplate from "../../mock/signUpTemplate";
-import searchTemplate from "../../mock/searchTemplate";
-
-import useStore from "../../store";
+import useLineBlockStore from "../../store/useLineBlockStore";
+import useModalStore from "../../store/useModalStore";
 
 import {
   ModalBackground,
@@ -14,40 +10,30 @@ import {
 } from "../../style/ModalStyle";
 import { Header, ButtonContainer } from "../../style/CommonStyle";
 import { FormContainer, SelectBox } from "../../style/SelectBoxStyle";
+import useTemplateStore from "../../store/useTemplateStore";
 
 const Modal = ({ title, content, handleCancel, handleConfirm }) => {
-  const { closeTemplateModal, setLineBlocks } = useStore();
+  const { setLineBlocks } = useLineBlockStore();
+  const { closeTemplateModal } = useModalStore();
+  const { templates } = useTemplateStore();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const selectedValue = event.target.template.value;
-    switch (selectedValue) {
-      case "login":
-        setLineBlocks(loginTemplate);
-        break;
-      case "payment":
-        setLineBlocks(paymentTemplate);
-        break;
-      case "signup":
-        setLineBlocks(signupTemplate);
-        break;
-      case "search":
-        setLineBlocks(searchTemplate);
-        break;
-      default:
-        null;
-    }
+    const selectedTemplate = templates[selectedValue];
+
+    setLineBlocks(selectedTemplate);
     closeTemplateModal();
   };
 
   const handleTitle = (title) => {
     switch (title) {
       case "Manual":
-        return <img src={content} />;
+        return <img className="manual-content" src={content} />;
       case "Template":
         return (
           <>
-            <p className="template-content">{content}</p>
+            <p className="template-modal-content">{content}</p>
             <FormContainer onSubmit={handleSubmit}>
               <SelectBox name="template">
                 <option value="login">login</option>
@@ -62,7 +48,7 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
                   text="back"
                   handleClick={closeTemplateModal}
                 />
-                <Button className="under-form" type="submit" text="create" />
+                <Button className="under-form" type="submit" text="confirm" />
               </ButtonContainer>
             </FormContainer>
           </>

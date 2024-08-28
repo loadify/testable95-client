@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useStore from "../../store";
+import useDragStore from "../../store/useDragStore";
 
 import InputBlock from "./InputBlock";
 import MethodBlock from "./MethodBlock";
@@ -19,7 +19,7 @@ const LineBlock = ({
   handleLineBlockDragStart,
   handleLineBlockDrop,
 }) => {
-  const { handleBlockDragOver, draggedBlock } = useStore();
+  const { draggedBlock, handleBlockDragOver } = useDragStore();
   const [targetBlock, setTargetBlock] = useState(null);
 
   const handleDragStart = (event) => {
