@@ -250,9 +250,16 @@ const useTestCodeStore = create((set) => ({
 }));
 
 const useModalStore = create((set) => ({
+  selectedTemplate: null,
+  showTemplateModal: false,
   showResetModal: false,
   showCreateModal: false,
   showCopyModal: false,
+
+  setSelectedTemplate: (value) => set({ selectedTemplate: value }),
+
+  openTemplateModal: () => set({ showTemplateModal: true }),
+  closeTemplateModal: () => set({ showTemplateModal: false }),
 
   openResetModal: () => set({ showResetModal: true }),
   closeResetModal: () => set({ showResetModal: false }),
@@ -269,6 +276,7 @@ const useModalStore = create((set) => ({
 
 const useButtonStore = create((set) => ({
   isTextButtonDisabled: {
+    template: true,
     next: false,
     reset: false,
     create: false,
