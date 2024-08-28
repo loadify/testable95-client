@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-const NextButtonContainer = styled.div`
-  position: absolute;
-  top: 5%;
+const BlockDashboardButtonContainer = styled.div`
+  display: flex;
+  position: sticky;
+  z-index: 9999;
+  gap: 10rem;
+  top: 0%;
   right: 5%;
+  margin-bottom: 2rem;
 `;
 
 const LineBlockList = styled.ul`
@@ -13,4 +17,4 @@ const LineBlockList = styled.ul`
   gap: 2rem;
 `;
 
-export { NextButtonContainer, LineBlockList };
+export { BlockDashboardButtonContainer, LineBlockList };

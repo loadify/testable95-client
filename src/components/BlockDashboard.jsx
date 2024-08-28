@@ -9,15 +9,10 @@ import Modal from "./common/Modal";
 import { handleBlocks } from "../services/blocks";
 
 import {
-  NextButtonContainer,
+  BlockDashboardButtonContainer,
   LineBlockList,
 } from "../style/BlockDashboardStyle";
-import {
-  Section,
-  Header,
-  Content,
-  ButtonContainer,
-} from "../style/CommonStyle";
+import { Section, Content, Header } from "../style/CommonStyle";
 
 const BlockDashboard = () => {
   const {
@@ -29,6 +24,9 @@ const BlockDashboard = () => {
     handleLineBlockDrop,
     handleCreateLineBlock,
     handleResetLineBlocks,
+    showTemplateModal,
+    openTemplateModal,
+    closeTemplateModal,
     showResetModal,
     openResetModal,
     closeResetModal,
@@ -39,6 +37,7 @@ const BlockDashboard = () => {
     updateButtonState,
     setIsCreateClicked,
     resetAudio,
+    setSelectedTemplate,
   } = useStore();
 
   useEffect(() => {
@@ -75,15 +74,21 @@ const BlockDashboard = () => {
       <Header>
         <h2>Block Dashboard</h2>
       </Header>
-      <Content>
-        <NextButtonContainer>
+      <Content className="dashboard-content">
+        <BlockDashboardButtonContainer>
           <Button
-            type="text"
+            className="text-button"
+            text="template"
+            isDisabled={isTextButtonDisabled.test}
+            handleClick={openTemplateModal}
+          />
+          <Button
+            className="text-button"
             text="next"
             isDisabled={isTextButtonDisabled.next}
             handleClick={handleCreateLineBlock}
           />
-        </NextButtonContainer>
+        </BlockDashboardButtonContainer>
         <LineBlockList>
           {lineBlocks.map((lineBlock, lineBlockIndex) => (
             <LineBlock
@@ -103,21 +108,29 @@ const BlockDashboard = () => {
             />
           ))}
         </LineBlockList>
-        <ButtonContainer>
+        <BlockDashboardButtonContainer>
           <Button
-            type="text"
+            className="text-button"
             text="reset"
             isDisabled={isTextButtonDisabled.reset}
             handleClick={openResetModal}
           />
           <Button
-            type="text"
+            className="text-button"
             text="create"
             isDisabled={isTextButtonDisabled.create}
             handleClick={openCreateModal}
           />
-        </ButtonContainer>
+        </BlockDashboardButtonContainer>
       </Content>
+      {showTemplateModal && (
+        <Modal
+          title="Template"
+          content="원하는 테스트 시나리오를 선택하세요."
+          handleConfirm={setSelectedTemplate}
+          handleCancel={closeTemplateModal}
+        />
+      )}
       {showResetModal && (
         <Modal
           title="Reset"

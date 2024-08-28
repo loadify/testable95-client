@@ -35,7 +35,11 @@ const Main = () => {
         />
       ) : (
         <ManualButtonContainer>
-          <Button type="text" text="Manual" handleClick={handleShowTutorial} />
+          <Button
+            className="text-button"
+            text="Manual"
+            handleClick={handleShowTutorial}
+          />
         </ManualButtonContainer>
       )}
       {showManual && (

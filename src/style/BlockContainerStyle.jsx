@@ -30,7 +30,7 @@ const TabList = styled.nav`
 
 const Tab = styled.button`
   border: none;
-  background: ${({ theme }) => theme.color.lightGrayColor};
+  background: transparent;
   color: ${({ theme, "data-active": active }) =>
     active ? theme.color.whiteColor : theme.color.blackColor};
   font-size: ${({ theme }) => theme.fontSize.xsmall};
