@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import useStore from "../../store";
+import useAudioStore from "../../store/useAudioStore";
 
 import Button from "./Button";
 
@@ -11,10 +9,11 @@ import {
 } from "../../style/ModalStyle";
 import { Header, ButtonContainer } from "../../style/CommonStyle";
 import { ImageContainer, ContentContainer } from "../../style/TutorialStyle";
+import useTutorialStore from "../../store/useTutorialStore";
 
 const TutorialModal = ({ title, tutorials, onClose }) => {
-  const { startAudio } = useStore();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const { startAudio } = useAudioStore();
+  const { currentIndex, setCurrentIndex, resetTutorial } = useTutorialStore();
 
   const handleNextButton = () => {
     if (currentIndex < tutorials.length - 1) {
@@ -22,6 +21,7 @@ const TutorialModal = ({ title, tutorials, onClose }) => {
     } else {
       startAudio.play();
 
+      resetTutorial();
       onClose();
     }
   };

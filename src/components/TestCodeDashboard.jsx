@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 
-import useStore from "../store";
+import useLineBlocksStore from "../store/useLineBlockStore";
+import useModalStore from "../store/useModalStore";
+import useButtonStore from "../store/useButtonStore";
+import useAudioStore from "../store/useAudioStore";
 
 import useLoading from "../hooks/useLoading";
 
@@ -12,17 +15,16 @@ import { Section, Header, Content } from "../style/CommonStyle";
 
 const TestCodeDashboard = () => {
   const {
-    lineBlocks,
     showCopyModal,
     openCopyModal,
     closeCopyModal,
     showErrorModal,
     openErrorModal,
     closeErrorModal,
-    isTextButtonDisabled,
-    updateButtonState,
-    copyAudio,
-  } = useStore();
+  } = useModalStore();
+  const { lineBlocks } = useLineBlocksStore();
+  const { isTextButtonDisabled, updateButtonState } = useButtonStore();
+  const { copyAudio } = useAudioStore();
 
   const { content, isLoading, showCodeBox, testCodes } = useLoading();
 
