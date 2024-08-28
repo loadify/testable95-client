@@ -9,6 +9,10 @@ const Section = styled.section`
   border-right: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   border-bottom: 0.15rem solid ${({ theme }) => theme.color.blackColor};
   background-color: ${({ theme }) => theme.color.lightGrayColor};
+
+  .dashboard-content {
+    justify-content: space-between;
+  }
 `;
 
 const Header = styled.div`
@@ -38,7 +42,7 @@ const Content = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 4rem;
 `;
 
 export { Section, Header, Content, ButtonContainer };
