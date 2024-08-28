@@ -26,6 +26,18 @@ const useLineBlocksStore = create((set) => ({
   handleResetLineBlocks: () =>
     set({ lineBlocks: [{ id: uuidv4(), blocks: [] }] }),
 
+  cleanUpEmptyLineBlock: (lineBlocks) => {
+    const filledLineBlocks = lineBlocks.filter(
+      (lineBlock) => lineBlock.blocks.length > 0,
+    );
+
+    if (filledLineBlocks.length === 0) {
+      return [{ id: uuidv4(), blocks: [] }];
+    }
+
+    return filledLineBlocks;
+  },
+
   updateBlockValue: (blockId, newValue) =>
     set((state) => {
       const { lineBlocks } = state;
@@ -184,7 +196,8 @@ const useSelectionStore = create((set, get) => ({
   handleDeleteBlock: () => {
     const { draggedBlock } = useDragStore.getState();
 
-    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
+    const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
+      useLineBlocksStore.getState();
 
     const isDraggedBlock = draggedBlock !== null;
 
@@ -196,7 +209,7 @@ const useSelectionStore = create((set, get) => ({
         ),
       }));
 
-      setLineBlocks(newLineBlocks);
+      setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
       useDragStore.setState({ draggedBlock: null, draggedLineIndex: null });
     }
@@ -205,7 +218,8 @@ const useSelectionStore = create((set, get) => ({
   handleKeyDown: (event) => {
     if (event.key === "Delete" || event.key === "Backspace") {
       const { selectedBlockId } = get();
-      const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
+      const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
+        useLineBlocksStore.getState();
 
       const isSelectedBlockId = selectedBlockId !== null;
       const isTyping = ["INPUT"].includes(event.target.tagName);
@@ -222,7 +236,7 @@ const useSelectionStore = create((set, get) => ({
           ),
         }));
 
-        setLineBlocks(newLineBlocks);
+        setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
         set({ selectedBlockId: null });
       }

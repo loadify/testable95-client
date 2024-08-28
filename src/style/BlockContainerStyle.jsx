@@ -51,18 +51,24 @@ const BlockList = styled.ul`
   flex-direction: column;
   gap: 2rem;
   padding: 2rem;
+  margin-left: 8rem;
 `;
 
 const InputBlockList = styled.ul`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
   gap: 1rem;
+  max-width: 90rem;
 `;
 
 const MethodBlockList = styled.ul`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 1rem;
+  max-width: 90rem;
 `;
 
 export { Content, Tab, TabList, BlockList, InputBlockList, MethodBlockList };
