@@ -43,7 +43,7 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
   const handleTitle = (title) => {
     switch (title) {
       case "Manual":
-        return <img src={content} />;
+        return <img className="manual-content" src={content} />;
       case "Template":
         return (
           <>
