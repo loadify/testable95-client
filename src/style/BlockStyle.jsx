@@ -13,6 +13,7 @@ const MethodBlockContainer = styled.li`
     align-items: center;
     padding: 1rem 0.5rem;
     height: 2rem;
+    width: 9rem;
     font-size: ${({ theme }) => theme.fontSize.xxsmall};
     background: ${({ theme }) => theme.color.barColor};
     color: ${({ theme }) => theme.color.whiteColor};
@@ -26,17 +27,26 @@ const MethodBlockContainer = styled.li`
 
 const InputBlockContainer = styled.li`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 2rem;
-  width: 8rem;
+  width: 8.4rem;
   padding: 1rem 0.8rem;
   background: ${({ theme }) => theme.color.grayColor};
   color: ${({ theme }) => theme.color.whiteColor};
   border: 0.15rem solid ${({ theme }) => theme.color.blackColor};
+  position: relative;
 
   &:active {
     border-color: ${({ theme }) => theme.color.redColor};
+  }
+
+  .parameter {
+    font-size: ${({ theme }) => theme.fontSize.xxsmall};
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
   }
 `;
 
