@@ -32,15 +32,18 @@ const ModalContent = styled.div`
   text-align: center;
   gap: 1.5rem;
 
-  img {
+  .manual-content {
     width: 50rem;
+    height: 50rem;
 
-    @media (max-height: 1000px) {
-      width: 30rem;
+    @media (max-height: 900px) {
+      width: 40rem;
+      height: 40rem;
     }
 
     @media (max-height: 700px) {
-      width: 20rem;
+      width: 30rem;
+      height: 30rem;
     }
   }
 

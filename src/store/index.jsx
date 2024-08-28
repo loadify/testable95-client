@@ -315,7 +315,6 @@ const useAudioStore = create(() => ({
 
 const useTutorialStore = create((set) => ({
   showTutorial: true,
-  showManual: false,
   tutorials: [
     {
       image: blockDescription,
@@ -347,8 +346,8 @@ const useTutorialStore = create((set) => ({
   ],
 
   setShowTutorial: (value) => set(() => ({ showTutorial: value })),
-  setShowManual: (value) => set(() => ({ showManual: value })),
-  handleShowTutorial: () => set((state) => ({ showManual: !state.showManual })),
+  handleShowTutorial: () =>
+    set((state) => ({ showTutorial: !state.showTutorial })),
 }));
 
 const useStore = () => ({

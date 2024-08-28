@@ -2,13 +2,10 @@ import styled from "styled-components";
 
 const ImageContainer = styled.div`
   display: flex;
+  justify-content: center;
   gap: 4rem;
-  width: 50rem;
+  width: 100%;
   height: 20rem;
-
-  img {
-    width: 50rem;
-  }
 `;
 
 const ContentContainer = styled.pre`
