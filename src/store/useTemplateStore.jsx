@@ -108,7 +108,7 @@ const useTemplateStore = create(() => ({
             id: uuidv4(),
             parameter: "class (.)",
             type: "input",
-            value: "submit-button",
+            value: "modal-content",
           },
           {
             id: uuidv4(),
