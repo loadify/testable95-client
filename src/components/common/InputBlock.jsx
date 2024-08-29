@@ -50,7 +50,7 @@ const InputBlock = ({
     >
       <p className="parameter">{inputBlockId && inputValue ? parameter : ""}</p>
       <input
-        placeholder={parameter}
+        placeholder={parameter === "anything" ? "value" : parameter}
         onChange={handleInputChange}
         value={inputValue}
       />
