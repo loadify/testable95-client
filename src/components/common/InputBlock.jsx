@@ -48,7 +48,7 @@ const InputBlock = ({
       onClick={handleClickBlock}
       id={inputBlockId}
     >
-      <p className="parameter">{inputBlockId ? parameter : ""}</p>
+      <p className="parameter">{inputBlockId && inputValue ? parameter : ""}</p>
       <input
         placeholder={parameter}
         onChange={handleInputChange}

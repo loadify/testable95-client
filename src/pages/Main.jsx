@@ -4,10 +4,10 @@ import useTutorialStore from "../store/useTutorialStore";
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
 import TestCodeDashboard from "../components/TestCodeDashboard";
-import Tutorial from "../components/common/Tutorial";
+import TutorialModal from "../components/common/Tutorial";
 import Button from "../components/common/Button";
 
-import { ManualButtonContainer } from "../style/ButtonStyle";
+import { TutorialButtonContainer } from "../style/TutorialStyle";
 
 const Main = () => {
   const { handleKeyboardDelete } = useBlockStore();
@@ -20,19 +20,19 @@ const Main = () => {
       <BlockDashboard />
       <TestCodeDashboard />
       {showTutorial ? (
-        <Tutorial
+        <TutorialModal
           title="Tutorial"
           tutorials={tutorials}
           onClose={() => setShowTutorial(false)}
         />
       ) : (
-        <ManualButtonContainer>
+        <TutorialButtonContainer>
           <Button
             className="text-button"
-            text="Manual"
+            text="Tutorial"
             handleClick={handleShowTutorial}
           />
-        </ManualButtonContainer>
+        </TutorialButtonContainer>
       )}
     </main>
   );

@@ -13,13 +13,14 @@ import useTutorialStore from "../../store/useTutorialStore";
 
 const TutorialModal = ({ title, tutorials, onClose }) => {
   const { startAudio } = useAudioStore();
-  const { currentIndex, setCurrentIndex, resetTutorial } = useTutorialStore();
+  const { currentIndex, setCurrentIndex, resetTutorial, isStart } =
+    useTutorialStore();
 
   const handleNextButton = () => {
     if (currentIndex < tutorials.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      startAudio.play();
+      !isStart && startAudio.play();
 
       resetTutorial();
       onClose();

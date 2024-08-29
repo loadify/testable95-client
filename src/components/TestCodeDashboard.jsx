@@ -53,11 +53,11 @@ const TestCodeDashboard = () => {
       <Header>
         <h2>Test Code Dashboard</h2>
       </Header>
-      <Content>
+      <Content className="testcode-dashboard-content">
         {isLoading && <h3 className="test-code-text">{content}</h3>}
         {!isLoading && showCodeBox && <CodeBox testCode={testCodes} />}
         <Button
-          className="text-button"
+          className="text-button copy"
           text="copy"
           isDisabled={isTextButtonDisabled.copy}
           handleClick={updateCopy}

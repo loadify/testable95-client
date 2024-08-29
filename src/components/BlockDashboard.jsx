@@ -14,7 +14,8 @@ import Modal from "./common/Modal";
 import { handleBlocks } from "../services/blocks";
 
 import {
-  BlockDashboardButtonContainer,
+  TopButtonContainer,
+  BottomButtonContainer,
   LineBlockList,
 } from "../style/BlockDashboardStyle";
 import { Section, Content, Header } from "../style/CommonStyle";
@@ -81,7 +82,7 @@ const BlockDashboard = () => {
         <h2>Block Dashboard</h2>
       </Header>
       <Content className="dashboard-content">
-        <BlockDashboardButtonContainer>
+        <TopButtonContainer>
           <Button
             className="text-button"
             text="template"
@@ -94,7 +95,7 @@ const BlockDashboard = () => {
             isDisabled={isTextButtonDisabled.next}
             handleClick={handleCreateLineBlock}
           />
-        </BlockDashboardButtonContainer>
+        </TopButtonContainer>
         <LineBlockList>
           {lineBlocks.map((lineBlock, lineBlockIndex) => (
             <LineBlock
@@ -114,7 +115,7 @@ const BlockDashboard = () => {
             />
           ))}
         </LineBlockList>
-        <BlockDashboardButtonContainer>
+        <BottomButtonContainer>
           <Button
             className="text-button"
             text="reset"
@@ -127,7 +128,7 @@ const BlockDashboard = () => {
             isDisabled={isTextButtonDisabled.create}
             handleClick={openCreateModal}
           />
-        </BlockDashboardButtonContainer>
+        </BottomButtonContainer>
       </Content>
       {showTemplateModal && (
         <Modal

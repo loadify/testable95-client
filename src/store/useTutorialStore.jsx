@@ -39,12 +39,29 @@ const useTutorialStore = create((set) => ({
     },
   ],
   currentIndex: 0,
+  isStart: false,
 
   setCurrentIndex: (index) => set(() => ({ currentIndex: index })),
   setShowTutorial: (value) => set(() => ({ showTutorial: value })),
-  resetTutorial: () => set(() => ({ currentIndex: 0 })),
+  resetTutorial: () =>
+    set({
+      currentIndex: 0,
+      isStart: false,
+    }),
   handleShowTutorial: () =>
-    set((state) => ({ showTutorial: !state.showTutorial })),
+    set((state) => {
+      if (!state.isStart) {
+        return {
+          isStart: true,
+          currentIndex: 0,
+          showTutorial: true,
+        };
+      } else {
+        return {
+          showTutorial: !state.showTutorial,
+        };
+      }
+    }),
 }));
 
 export default useTutorialStore;
