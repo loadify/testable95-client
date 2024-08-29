@@ -68,7 +68,8 @@ const useBlockStore = create((set, get) => ({
 
   updateBlockValue: (blockId, newValue) =>
     set((state) => {
-      const { lineBlocks } = state;
+      const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
+        useLineBlocksStore.getState();
 
       const updateNewValue = (block) =>
         block.id === blockId && block.value !== newValue
@@ -91,6 +92,8 @@ const useBlockStore = create((set, get) => ({
 
         return result;
       }, []);
+
+      setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
       const lineBlocksUpdated = newLineBlocks.length === lineBlocks.length;
 

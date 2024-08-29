@@ -19,7 +19,8 @@ const useDragStore = create((set, get) => ({
     targetBlockId = null,
   ) => {
     const { draggedBlock, draggedLineIndex } = get();
-    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
+    const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
+      useLineBlocksStore.getState();
 
     const isSameLine = draggedLineIndex === targetLineIndex;
 
@@ -96,7 +97,7 @@ const useDragStore = create((set, get) => ({
         };
       });
 
-      setLineBlocks(newLineBlocks);
+      setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
       set({ draggedBlock: null, draggedLineIndex: null });
     }
@@ -112,7 +113,8 @@ const useDragStore = create((set, get) => ({
 
   handleLineBlockDrop: (targetIndex) => {
     const { draggedLineIndex } = get();
-    const { lineBlocks, setLineBlocks } = useLineBlocksStore.getState();
+    const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
+      useLineBlocksStore.getState();
 
     const isOtherLine =
       draggedLineIndex !== null && draggedLineIndex !== targetIndex;
@@ -123,7 +125,7 @@ const useDragStore = create((set, get) => ({
 
       newLineBlocks.splice(targetIndex, 0, draggedLineBlock);
 
-      setLineBlocks(newLineBlocks);
+      setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
       set({ draggedLineIndex: null });
     }

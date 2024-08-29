@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const TutorialButtonContainer = styled.div`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+`;
+
 const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -14,4 +20,4 @@ const ContentContainer = styled.pre`
   font-weight: bold;
 `;
 
-export { ImageContainer, ContentContainer };
+export { TutorialButtonContainer, ImageContainer, ContentContainer };
