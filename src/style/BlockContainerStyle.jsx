@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  height: 100vh;
-  overflow: scroll;
-  overflow-x: auto;
-`;
-
 const TabList = styled.nav`
   display: flex;
   flex-direction: column;
@@ -71,4 +61,4 @@ const MethodBlockList = styled.ul`
   max-width: 90rem;
 `;
 
-export { Content, Tab, TabList, BlockList, InputBlockList, MethodBlockList };
+export { Tab, TabList, BlockList, InputBlockList, MethodBlockList };

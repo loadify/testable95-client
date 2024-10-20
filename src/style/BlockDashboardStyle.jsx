@@ -6,7 +6,7 @@ const TopButtonContainer = styled.div`
   position: sticky;
   z-index: 9999;
   gap: 10rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
   width: 100%;
   top: 0%;
   right: 5%;
@@ -17,15 +17,17 @@ const TopButtonContainer = styled.div`
 const BottomButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+  position: sticky;
   gap: 10rem;
-  padding: 4rem 0;
+  padding: 2rem 0;
   width: 100%;
+  bottom: 0%;
+  background-color: ${({ theme }) => theme.color.lightGrayColor};
 `;
 
 const LineBlockList = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0;
   gap: 2rem;
 `;
 

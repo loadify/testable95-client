@@ -9,14 +9,13 @@ import MethodBlock from "./common/MethodBlock";
 import { fetchBlocks } from "../services/blocks";
 
 import {
-  Content,
   Tab,
   TabList,
   BlockList,
   InputBlockList,
   MethodBlockList,
 } from "../style/BlockContainerStyle";
-import { Header, Section } from "../style/CommonStyle";
+import { Header, Section, Content } from "../style/CommonStyle";
 
 const BlockContainer = () => {
   const { handleBlockDragStart, handleBlockDragOver } = useDragStore();

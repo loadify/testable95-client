@@ -5,7 +5,6 @@ import useDragStore from "../store/useDragStore";
 import useTestCodeStore from "../store/useTestCodeStore";
 import useModalStore from "../store/useModalStore";
 import useButtonStore from "../store/useButtonStore";
-import useAudioStore from "../store/useAudioStore";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
@@ -45,7 +44,6 @@ const BlockDashboard = () => {
   } = useModalStore();
   const { isTextButtonDisabled, updateButtonState, setIsCreateClicked } =
     useButtonStore();
-  const { resetAudio } = useAudioStore();
 
   useEffect(() => {
     updateButtonState(lineBlocks);
@@ -72,8 +70,6 @@ const BlockDashboard = () => {
   const handleResetConfirm = () => {
     handleResetLineBlocks();
     closeResetModal();
-
-    resetAudio.play();
   };
 
   return (

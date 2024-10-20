@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import useTestCodeStore from "../store/useTestCodeStore";
 import useButtonStore from "../store/useButtonStore";
-import useAudioStore from "../store/useAudioStore";
 
 const useLoading = () => {
   const [content, setContent] = useState("Loading");
@@ -10,7 +9,6 @@ const useLoading = () => {
   const [showCodeBox, setShowCodeBox] = useState(false);
   const { testCodes } = useTestCodeStore();
   const { isCreateClicked } = useButtonStore();
-  const { createAudio } = useAudioStore();
 
   useEffect(() => {
     if (testCodes) {
@@ -27,7 +25,6 @@ const useLoading = () => {
       const timer = setTimeout(() => {
         setIsLoading(false);
         setShowCodeBox(true);
-        createAudio.play();
 
         clearInterval(loadingInterval);
       }, 1000);
