@@ -3,7 +3,7 @@ import { create } from "zustand";
 import useDragStore from "./useDragStore";
 import useLineBlocksStore from "./useLineBlockStore";
 
-const useBlockStore = create((set, get) => ({
+const useBlockStore = create((set) => ({
   selectedBlockId: null,
   inputBlocks: [],
   methodBlocks: [],
@@ -35,34 +35,6 @@ const useBlockStore = create((set, get) => ({
       setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
 
       useDragStore.setState({ draggedBlock: null, draggedLineIndex: null });
-    }
-  },
-
-  handleKeyboardDelete: (event) => {
-    if (event.key === "Delete" || event.key === "Backspace") {
-      const { selectedBlockId } = get();
-      const { lineBlocks, setLineBlocks, cleanUpEmptyLineBlock } =
-        useLineBlocksStore.getState();
-
-      const isSelectedBlockId = selectedBlockId !== null;
-      const isTyping = ["INPUT"].includes(event.target.tagName);
-
-      if (isTyping) {
-        return;
-      }
-
-      if (isSelectedBlockId) {
-        const newLineBlocks = lineBlocks.map((lineBlock) => ({
-          ...lineBlock,
-          blocks: lineBlock.blocks.filter(
-            (block) => block.id !== selectedBlockId,
-          ),
-        }));
-
-        setLineBlocks(cleanUpEmptyLineBlock(newLineBlocks));
-
-        set({ selectedBlockId: null });
-      }
     }
   },
 

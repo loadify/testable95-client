@@ -30,13 +30,18 @@ const Content = styled.div`
   justify-content: space-evenly;
   align-items: center;
   position: relative;
-  height: 100vh;
+  height: 90vh;
   overflow: scroll;
   overflow-x: auto;
 
   .test-code-text {
     font-size: ${({ theme }) => theme.fontSize.xxlarge};
     color: ${({ theme }) => theme.color.whiteColor};
+  }
+
+  .copy {
+    position: absolute;
+    bottom: 2rem;
   }
 `;
 

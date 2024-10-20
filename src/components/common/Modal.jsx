@@ -79,8 +79,8 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
   };
 
   return (
-    <ModalBackground>
-      <ModalContainer>
+    <ModalBackground onClick={handleCancel}>
+      <ModalContainer onClick={(event) => event.stopPropagation()}>
         <Header>
           <h2>{title}</h2>
         </Header>

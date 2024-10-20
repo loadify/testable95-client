@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import useLineBlocksStore from "../store/useLineBlockStore";
 import useModalStore from "../store/useModalStore";
 import useButtonStore from "../store/useButtonStore";
-import useAudioStore from "../store/useAudioStore";
 
 import useLoading from "../hooks/useLoading";
 
@@ -24,7 +23,6 @@ const TestCodeDashboard = () => {
   } = useModalStore();
   const { lineBlocks } = useLineBlocksStore();
   const { isTextButtonDisabled, updateButtonState } = useButtonStore();
-  const { copyAudio } = useAudioStore();
 
   const { content, isLoading, showCodeBox, testCodes } = useLoading();
 
@@ -33,8 +31,6 @@ const TestCodeDashboard = () => {
   }, [lineBlocks, showCodeBox, updateButtonState]);
 
   const updateCopy = () => {
-    copyAudio.play();
-
     openCopyModal();
   };
 
