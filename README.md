@@ -1,116 +1,126 @@
-# **Testy 95**
+<br>
+<br>
+<div align="center">
 
-<img src="https://github.com/user-attachments/assets/50369f68-445d-4d74-97e0-696ced3bfa0b">
+**Testable95**는 Playwright 기반 E2E **테스트 코드 생성기**입니다.
 
+테스트 코드는 프로젝트의 품질을 보장하는 데 필수적이지만<br>
+작성하기 번거롭고 시간이 많이 소요됩니다.<br>
+이러한 번거로움을 해결하기 위해 누구나 쉽게 테스트 코드를 생성할 수 있는 도구를 개발하였습니다.
 
-> Playwright 프레임워크 기반 테스트 코드를 생성할 수 있는 서비스입니다.
+</div>
+<br>
+<span id="top"></span>
+<br>
 
-## 📌 배포 링크
+## 목차
 
-### Client
-### Server
+<!-- toc -->
+
+- [한 눈에 보기](#%ED%95%9C-%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0)
+  - [1️⃣ 테스트 코드 생성하기](#1%EF%B8%8F%E2%83%A3-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0)
+  - [2️⃣ 기술 스택](#2%EF%B8%8F%E2%83%A3-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+- [자세히 살펴보기](#%EC%9E%90%EC%84%B8%ED%9E%88-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0)
+  - [1️⃣ 테스트](#1%EF%B8%8F%E2%83%A3-%ED%85%8C%EC%8A%A4%ED%8A%B8)
+    - [(1) 왜 E2E 테스트인가?](#1-%EC%99%9C-e2e-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%9D%B8%EA%B0%80)
+    - [(2) 왜 Playwright 기반 테스트인가?](#2-%EC%99%9C-playwright-%EA%B8%B0%EB%B0%98-%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%9D%B8%EA%B0%80)
+  - [2️⃣ 코드 생성기](#2%EF%B8%8F%E2%83%A3-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1%EA%B8%B0)
+    - [(1) 누구나 쉽게 코드를 생성할 수 있는 방식](#1-%EB%88%84%EA%B5%AC%EB%82%98-%EC%89%BD%EA%B2%8C-%EC%BD%94%EB%93%9C%EB%A5%BC-%EC%83%9D%EC%84%B1%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%B0%A9%EC%8B%9D)
+    - [(2) 블록 코딩 직접 구현하기](#2-%EB%B8%94%EB%A1%9D-%EC%BD%94%EB%94%A9-%EC%A7%81%EC%A0%91-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+    - [(3) 자연어 처리 방식 고민하기](#3-%EC%9E%90%EC%97%B0%EC%96%B4-%EC%B2%98%EB%A6%AC-%EB%B0%A9%EC%8B%9D-%EA%B3%A0%EB%AF%BC%ED%95%98%EA%B8%B0)
+    - [(4) 블록의 순서가 바뀌어도 코드가 생성될까요?](#4-%EB%B8%94%EB%A1%9D%EC%9D%98-%EC%88%9C%EC%84%9C%EA%B0%80-%EB%B0%94%EB%80%8C%EC%96%B4%EB%8F%84-%EC%BD%94%EB%93%9C%EA%B0%80-%EC%83%9D%EC%84%B1%EB%90%A0%EA%B9%8C%EC%9A%94)
+- [함께 작업하기](#%ED%95%A8%EA%BB%98-%EC%9E%91%EC%97%85%ED%95%98%EA%B8%B0)
+  - [1️⃣ 함께 기록하기](#1%EF%B8%8F%E2%83%A3-%ED%95%A8%EA%BB%98-%EA%B8%B0%EB%A1%9D%ED%95%98%EA%B8%B0)
+    - [기억은 날아가지만 기록은 영원하다.](#%EA%B8%B0%EC%96%B5%EC%9D%80-%EB%82%A0%EC%95%84%EA%B0%80%EC%A7%80%EB%A7%8C-%EA%B8%B0%EB%A1%9D%EC%9D%80-%EC%98%81%EC%9B%90%ED%95%98%EB%8B%A4)
+  - [2️⃣ 함께 이해하기](#2%EF%B8%8F%E2%83%A3-%ED%95%A8%EA%BB%98-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0)
+    - [이해를 돕기 위한 자료](#%EC%9D%B4%ED%95%B4%EB%A5%BC-%EB%8F%95%EA%B8%B0-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%A3%8C)
+
+<!-- tocstop -->
+
+<br>
+<br>
+
+## 한 눈에 보기
+
+### 1️⃣ 테스트 코드 생성하기
+
+영상 자료 첨부
 
 <br>
 
-## 📌 프로젝트 구조
+### 2️⃣ 기술 스택
 
-### Client
+사진 자료 첨부
 
-- `components`: 프로젝트에서 사용되는 컴포넌트
-- `pages`: 프로젝트에서 사용되는 페이지
-- `services`: 데이터를 받아오는 api 관련 로직
-- `style`: 스타일 코드 파일
-- `App.jsx`: 해당 프로젝트 루트 파일
+<br>
+<br>
 
-```
-🗂️testy95-client
- ┣ 📂src
- ┃ ┣ 📂components
- ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┣ Button.jsx
- ┃ ┃ ┃ ┣ CodeBox.jsx
- ┃ ┃ ┃ ┣ InputBlock.jsx
- ┃ ┃ ┃ ┣ LineBlock.jsx
- ┃ ┃ ┃ ┣ MethodBlock.jsx
- ┃ ┃ ┃ ┣ Modal.jsx
- ┃ ┃ ┃ ┗ TextBox.jsx
- ┃ ┃ ┣ BoardContainer.jsx
- ┃ ┃ ┣ BoardDashboard.jsx
- ┃ ┃ ┣ Loading.jsx
- ┃ ┃ ┗ TestCodeDashboard.jsx
- ┃ ┣ 📂pages
- ┃ ┃ ┗ Main.jsx
- ┃ ┣ 📂services
- ┃ ┃ ┣ instance.js
- ┃ ┃ ┗ codes.js
- ┃ ┣ 📂style
- ┃ ┃ ┣ BlockStyle.jsx
- ┃ ┃ ┣ BoardContainerStyle.jsx
- ┃ ┃ ┣ BoardDashboardStyle.jsx
- ┃ ┃ ┣ ButtonStyle.jsx
- ┃ ┃ ┣ CodeBoxStyle.jsx
- ┃ ┃ ┣ GlobalStyle.jsx
- ┃ ┃ ┣ ModalStyle.jsx
- ┃ ┃ ┣ TextBoxStyle.jsx
- ┃ ┃ ┣ Theme.jsx
- ┃ ┃ ┗ TestCodeDashboardStyles.jsx
- ┃ ┣ App.jsx
- ┃ ┗ main.jsx
- ┣ package.json
- ┣ package-lock.json
- ┗ README.md
-```
+## 자세히 살펴보기
 
-### Server
+### 1️⃣ 테스트
 
-- `bin`: 서버 실행 파일
-- `controllers`: 프로젝트의 요청 로직을 처리하는 함수
-- `database`: MongoDB에 연결을 설정하는 파일
-- `models`: 컨트롤러와 데이터베이스 사이에서 데이터의 유효성을 검사하는 함수 (스키마 정의)
-- `middlewares`: 요청과 응답 사이에 인증 및 초기화를 담당하는 함수
-- `public`: 정적인 CSS, JavaScript, 이미지 파일
-- `routes`: HTTP 메서드를 사용한 앱 경로 지정 핸들러 파일
-- `app.js`: 해당 프로젝트 루트 파일
+#### (1) 왜 E2E 테스트인가?
 
-```
-🗂️testy95-server
- ┣ 📂bin
- ┃ ┗ www
- ┣ 📂controller
- ┃ ┗ codesControllers.js
- ┣ 📂database
- ┃ ┗ connection.js
- ┣ 📂middlewares
- ┃ ┗ 
- ┣ 📂models
- ┃ ┣ Blocks.js
- ┃ ┣ Classes.js
- ┃ ┣ Methods.js
- ┃ ┗ TestCodes.js
- ┣ 📂public
- ┃ ┣ 📂stylesheets
- ┃ ┃ ┗ style.css
- ┣ 📂routes
- ┃ ┗ index.js
- ┣ app.js
- ┣ package.json
- ┣ package-lock.json
- ┗ README.md
-```
-
+- 단위 테스트
+- 통합 테스트
+- E2E 테스트
 
 <br>
 
-## 📌 기술적 챌린지
+#### (2) 왜 Playwright 기반 테스트인가?
+
+|      | Playwright | Selenium | Cypress |
+| ---- | ---------- | -------- | ------- |
+| 장점 |            |          |         |
+| 단점 |            |          |         |
 
 <br>
 
-## 📌 트러블 슈팅
+### 2️⃣ 코드 생성기
+
+#### (1) 누구나 쉽게 코드를 생성할 수 있는 방식
+
+GUI, 스크래처 코딩 참고
+
+블록 코딩, 자연어 처리
 
 <br>
 
-## 📌 개발 일정
+#### (2) 블록 코딩 직접 구현하기
+
+블록 코딩 구현
 
 <br>
 
-## 📌 서비스에 대한 팀원들의 이야기
+#### (3) 자연어 처리 방식 고민하기
+
+|      | Wit AI | Google NLA | Open AI | Hugging Face |
+| ---- | ------ | ---------- | ------- | ------------ |
+| 장점 |        |            |         |              |
+| 단점 |        |            |         |              |
+
+<br>
+
+#### (4) 블록의 순서가 바뀌어도 코드가 생성될까요?
+
+자연어 처리 방식 (intent, content)
+
+<br>
+<br>
+
+## 함께 작업하기
+
+### 1️⃣ 함께 기록하기
+
+#### 기억은 날아가지만 기록은 영원하다.
+
+노션 회의록
+
+<br>
+
+### 2️⃣ 함께 이해하기
+
+#### 이해를 돕기 위한 자료
+
+- PR 리뷰
+- 이해 자료
