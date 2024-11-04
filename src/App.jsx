@@ -1,5 +1,7 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
+import SplashPage from "./pages/SplashPage";
 import MainPage from "./pages/MainPage";
 
 import GlobalStyle from "./style/GlobalStyle";
@@ -9,7 +11,12 @@ const App = () => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
-      <MainPage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SplashPage />} />
+          <Route path="/blocks" element={<MainPage />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
