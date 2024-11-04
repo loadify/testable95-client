@@ -51,6 +51,9 @@ const BlockContainer = () => {
 
         setActions([...allActions]);
       } catch (error) {
+        setInputBlocks([]);
+        setMethodBlocks([]);
+        setActions(["All"]);
         console.error("Fetch Error");
       }
     };
@@ -63,12 +66,15 @@ const BlockContainer = () => {
 
   const filterBlocks = (action) => {
     if (action === "All") {
-      return { inputBlocks, methodBlocks };
+      return {
+        inputBlocks: inputBlocks || [],
+        methodBlocks: methodBlocks || [],
+      };
     }
 
     return {
-      inputBlocks: filterBlocksByAction(inputBlocks, action),
-      methodBlocks: filterBlocksByAction(methodBlocks, action),
+      inputBlocks: filterBlocksByAction(inputBlocks || [], action),
+      methodBlocks: filterBlocksByAction(methodBlocks || [], action),
     };
   };
 
