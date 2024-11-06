@@ -11,7 +11,7 @@
 <br>
 <br>
 
-[<img src="https://github.com/user-attachments/assets/b229a8e9-44d6-439f-b9d4-e63c03cfa6a1">](https://testable95.web.app/)
+[<img src="https://github.com/user-attachments/assets/b229a8e9-44d6-439f-b9d4-e63c03cfa6a1">](https://testable95.co.kr/)
 
 <br>
 
@@ -61,6 +61,8 @@
 <img width="1015" alt="기술스택" src="https://github.com/user-attachments/assets/192c4881-d32c-4eb5-bfab-18925b72e5d8">
 
 #### Client
+
+![Redux](https://img.shields.io/badge/redux-%23404d59.svg?style=for-the-badge&logo=redux&logoColor=%23DB7093)
 
 ![React](https://img.shields.io/badge/react-%23404d59.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Vite](https://img.shields.io/badge/vite-%23404d59.svg?style=for-the-badge&logo=vite&logoColor=w)
