@@ -47,21 +47,21 @@ const TestCodeDashboard = () => {
   return (
     <Section>
       <Header>
-        <h2>Test Code Dashboard</h2>
+        <h2>테스트 코드</h2>
       </Header>
       <Content className="testcode-dashboard-content">
         {isLoading && <h3 className="test-code-text">{content}</h3>}
         {!isLoading && showCodeBox && <CodeBox testCode={testCodes} />}
         <Button
           className="text-button copy"
-          text="copy"
+          text="생성"
           isDisabled={isTextButtonDisabled.copy}
           handleClick={updateCopy}
         />
       </Content>
       {showCopyModal && (
         <Modal
-          title="Copy"
+          title="복사 성공"
           content="복사가 완료되었습니다."
           handleConfirm={handleCopyConfirm}
           handleCancle={closeCopyModal}
@@ -69,7 +69,7 @@ const TestCodeDashboard = () => {
       )}
       {showErrorModal && (
         <Modal
-          title="Error"
+          title="복사 실패"
           content="복사에 실패하였습니다."
           handleConfirm={closeErrorModal}
           handleCancle={closeErrorModal}

@@ -83,10 +83,25 @@ const BlockContainer = () => {
     methodBlocks: filteredMethodBlocks,
   } = filterBlocks(activeTab);
 
+  const getTabName = (action) => {
+    switch (action) {
+      case "All":
+        return "전체";
+      case "login":
+        return "로그인";
+      case "payment":
+        return "결제";
+      case "signup":
+        return "회원가입";
+      case "search":
+        return "검색";
+    }
+  };
+
   return (
     <Section onDragOver={handleBlockDragOver} onDrop={handleDragDelete}>
       <Header>
-        <h2>Block Container</h2>
+        <h2>블록 저장소</h2>
       </Header>
       <Content>
         <TabList>
@@ -96,7 +111,7 @@ const BlockContainer = () => {
               data-active={activeTab === action}
               onClick={() => setActiveTab(action)}
             >
-              {action}
+              {getTabName(action)}
             </Tab>
           ))}
         </TabList>

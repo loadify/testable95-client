@@ -9,7 +9,7 @@ const SplashPage = () => {
     <SplashPageContainer>
       <SplashPageTitle>Testable 95</SplashPageTitle>
       <Link to="/blocks" style={{ textDecoration: "none" }}>
-        <Button text="Start" />
+        <Button text="시작" />
       </Link>
     </SplashPageContainer>
   );

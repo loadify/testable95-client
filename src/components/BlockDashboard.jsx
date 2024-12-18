@@ -75,19 +75,19 @@ const BlockDashboard = () => {
   return (
     <Section>
       <Header>
-        <h2>Block Dashboard</h2>
+        <h2>블록 작업 공간</h2>
       </Header>
       <Content className="dashboard-content">
         <TopButtonContainer>
           <Button
             className="text-button"
-            text="template"
+            text="템플릿"
             isDisabled={isTextButtonDisabled.test}
             handleClick={openTemplateModal}
           />
           <Button
             className="text-button"
-            text="next"
+            text="라인 블록 생성"
             isDisabled={isTextButtonDisabled.next}
             handleClick={handleCreateLineBlock}
           />
@@ -114,13 +114,13 @@ const BlockDashboard = () => {
         <BottomButtonContainer>
           <Button
             className="text-button"
-            text="reset"
+            text="초기화"
             isDisabled={isTextButtonDisabled.reset}
             handleClick={openResetModal}
           />
           <Button
             className="text-button"
-            text="create"
+            text="테스트 코드 생성"
             isDisabled={isTextButtonDisabled.create}
             handleClick={openCreateModal}
           />
@@ -128,7 +128,7 @@ const BlockDashboard = () => {
       </Content>
       {showTemplateModal && (
         <Modal
-          title="Template"
+          title="템플릿 선택"
           content="원하는 테스트 시나리오를 선택하세요."
           handleConfirm={setSelectedTemplate}
           handleCancel={closeTemplateModal}
@@ -136,7 +136,7 @@ const BlockDashboard = () => {
       )}
       {showResetModal && (
         <Modal
-          title="Reset"
+          title="초기화"
           content="초기화 하시겠습니까?"
           handleConfirm={handleResetConfirm}
           handleCancel={closeResetModal}
@@ -144,7 +144,7 @@ const BlockDashboard = () => {
       )}
       {showCreateModal && (
         <Modal
-          title="Create"
+          title="테스트 코드 생성"
           content="생성 하시겠습니까?"
           handleConfirm={handleCreateConfirm}
           handleCancel={closeCreateModal}
