@@ -19,7 +19,7 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2rem;
+  padding: 0.4rem;
   background-color: ${({ theme }) => theme.color.barColor};
   color: ${({ theme }) => theme.color.whiteColor};
 `;

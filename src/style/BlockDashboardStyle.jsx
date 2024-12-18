@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 const TopButtonContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: sticky;
   z-index: 9999;
-  gap: 10rem;
   padding-top: 2rem;
-  width: 100%;
+  width: 80%;
   top: 0%;
   right: 5%;
   margin-bottom: 2rem;
@@ -16,11 +15,10 @@ const TopButtonContainer = styled.div`
 
 const BottomButtonContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: sticky;
-  gap: 10rem;
   padding: 2rem 0;
-  width: 100%;
+  width: 80%;
   bottom: 0%;
   background-color: ${({ theme }) => theme.color.lightGrayColor};
 `;

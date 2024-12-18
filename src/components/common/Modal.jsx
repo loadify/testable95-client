@@ -30,25 +30,25 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
     switch (title) {
       case "Manual":
         return <img className="manual-content" src={content} />;
-      case "Template":
+      case "템플릿 선택":
         return (
           <>
             <p className="template-modal-content">{content}</p>
             <FormContainer onSubmit={handleSubmit}>
               <SelectBox name="template">
-                <option value="login">login</option>
-                <option value="payment">payment</option>
-                <option value="signup">signup</option>
-                <option value="search">search</option>
+                <option value="login">로그인</option>
+                <option value="payment">결제</option>
+                <option value="signup">회원가입</option>
+                <option value="search">검색</option>
               </SelectBox>
               <ButtonContainer className="form-button-container">
                 <Button
                   className="under-form"
                   type="button"
-                  text="back"
+                  text="뒤로"
                   handleClick={closeTemplateModal}
                 />
-                <Button className="under-form" type="submit" text="confirm" />
+                <Button className="under-form" type="submit" text="확인" />
               </ButtonContainer>
             </FormContainer>
           </>
@@ -60,19 +60,18 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
 
   const handleButton = (title) => {
     switch (title) {
-      case "Copy":
+      case "복사":
       case "Error":
-      case "Manual":
         return (
-          <Button className="text" text="back" handleClick={handleConfirm} />
+          <Button className="text" text="뒤로" handleClick={handleConfirm} />
         );
-      case "Template":
+      case "템플릿 선택":
         return null;
       default:
         return (
           <>
-            <Button className="text" text="no" handleClick={handleCancel} />
-            <Button className="text" text="yes" handleClick={handleConfirm} />
+            <Button className="text" text="아니오" handleClick={handleCancel} />
+            <Button className="text" text="예" handleClick={handleConfirm} />
           </>
         );
     }
@@ -85,7 +84,7 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
           <h2>{title}</h2>
         </Header>
         <ModalContent
-          className={title === "Template" ? "template-content" : ""}
+          className={title === "템플릿 선택" ? "template-content" : ""}
         >
           {handleTitle(title)}
           <ButtonContainer>{handleButton(title)}</ButtonContainer>
