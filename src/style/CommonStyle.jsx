@@ -34,11 +34,6 @@ const Content = styled.div`
   overflow: scroll;
   overflow-x: auto;
 
-  .test-code-text {
-    font-size: ${({ theme }) => theme.fontSize.xxlarge};
-    color: ${({ theme }) => theme.color.whiteColor};
-  }
-
   .copy {
     position: absolute;
     bottom: 2rem;
