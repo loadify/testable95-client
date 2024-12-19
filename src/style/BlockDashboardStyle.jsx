@@ -5,7 +5,7 @@ const TopButtonContainer = styled.div`
   justify-content: space-between;
   position: sticky;
   z-index: 9999;
-  padding-top: 2rem;
+  padding: 2rem 4rem;
   width: 80%;
   top: 0%;
   right: 5%;
@@ -17,7 +17,7 @@ const BottomButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   position: sticky;
-  padding: 2rem 0;
+  padding: 2rem 4rem;
   width: 80%;
   bottom: 0%;
   background-color: ${({ theme }) => theme.color.lightGrayColor};

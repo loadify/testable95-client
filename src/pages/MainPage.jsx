@@ -1,17 +1,18 @@
-import useKeyboardEvent from "../hooks/useKeyboardEvent";
+import { useState } from "react";
 
 import BlockContainer from "../components/BlockContainer";
 import BlockDashboard from "../components/BlockDashboard";
 import TestCodeDashboard from "../components/TestCodeDashboard";
 
 const MainPage = () => {
-  useKeyboardEvent();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return (
     <main>
       <BlockContainer />
-      <BlockDashboard />
-      <TestCodeDashboard />
+      <BlockDashboard setIsLoading={setIsLoading} setIsError={setIsError} />
+      <TestCodeDashboard isLoading={isLoading} isError={isError} />
     </main>
   );
 };

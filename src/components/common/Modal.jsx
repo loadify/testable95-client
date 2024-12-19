@@ -2,6 +2,7 @@ import Button from "./Button";
 
 import useLineBlockStore from "../../store/useLineBlockStore";
 import useModalStore from "../../store/useModalStore";
+import useTemplateStore from "../../store/useTemplateStore";
 
 import {
   ModalBackground,
@@ -10,7 +11,6 @@ import {
 } from "../../style/ModalStyle";
 import { Header, ButtonContainer } from "../../style/CommonStyle";
 import { FormContainer, SelectBox } from "../../style/SelectBoxStyle";
-import useTemplateStore from "../../store/useTemplateStore";
 
 const Modal = ({ title, content, handleCancel, handleConfirm }) => {
   const { setLineBlocks } = useLineBlockStore();
@@ -27,46 +27,43 @@ const Modal = ({ title, content, handleCancel, handleConfirm }) => {
   };
 
   const handleTitle = (title) => {
-    switch (title) {
-      case "Manual":
-        return <img className="manual-content" src={content} />;
-      case "템플릿 선택":
-        return (
-          <>
-            <p className="template-modal-content">{content}</p>
-            <FormContainer onSubmit={handleSubmit}>
-              <SelectBox name="template">
-                <option value="login">로그인</option>
-                <option value="payment">결제</option>
-                <option value="signup">회원가입</option>
-                <option value="search">검색</option>
-              </SelectBox>
-              <ButtonContainer className="form-button-container">
-                <Button
-                  className="under-form"
-                  type="button"
-                  text="뒤로"
-                  handleClick={closeTemplateModal}
-                />
-                <Button className="under-form" type="submit" text="확인" />
-              </ButtonContainer>
-            </FormContainer>
-          </>
-        );
-      default:
-        return <p className="modal-content">{content}</p>;
+    if (title === "템플릿 선택") {
+      return (
+        <>
+          <p className="template-modal-content">{content}</p>
+          <FormContainer onSubmit={handleSubmit}>
+            <SelectBox name="template">
+              <option value="login">로그인</option>
+              <option value="payment">결제</option>
+              <option value="signup">회원가입</option>
+              <option value="search">검색</option>
+            </SelectBox>
+            <ButtonContainer className="form-button-container">
+              <Button
+                className="under-form"
+                type="button"
+                text="뒤로"
+                handleClick={closeTemplateModal}
+              />
+              <Button className="under-form" type="submit" text="확인" />
+            </ButtonContainer>
+          </FormContainer>
+        </>
+      );
+    } else {
+      return <p className="modal-content">{content}</p>;
     }
   };
 
   const handleButton = (title) => {
     switch (title) {
-      case "복사":
-      case "Error":
+      case "템플릿 선택":
+        return null;
+      case "복사 성공":
+      case "에러":
         return (
           <Button className="text" text="뒤로" handleClick={handleConfirm} />
         );
-      case "템플릿 선택":
-        return null;
       default:
         return (
           <>

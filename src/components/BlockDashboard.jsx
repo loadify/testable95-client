@@ -1,16 +1,15 @@
-import { useEffect } from "react";
-
-import useLineBlocksStore from "../store/useLineBlockStore";
+import useLineBlockStore from "../store/useLineBlockStore";
 import useDragStore from "../store/useDragStore";
 import useTestCodeStore from "../store/useTestCodeStore";
 import useModalStore from "../store/useModalStore";
-import useButtonStore from "../store/useButtonStore";
 
 import Button from "./common/Button";
 import LineBlock from "./common/LineBlock";
 import Modal from "./common/Modal";
 
 import { handleBlocks } from "../services/blocks";
+
+import { hasBlock, hasMethodBlock } from "../utils/validators";
 
 import {
   TopButtonContainer,
@@ -19,15 +18,15 @@ import {
 } from "../style/BlockDashboardStyle";
 import { Section, Content, Header } from "../style/CommonStyle";
 
-const BlockDashboard = () => {
+const BlockDashboard = ({ setIsLoading, setIsError }) => {
+  const { lineBlocks, handleCreateLineBlock, handleResetLineBlocks } =
+    useLineBlockStore();
   const {
-    lineBlocks,
-    handleCreateLineBlock,
-    handleResetLineBlocks,
+    handleBlockDragStart,
+    handleBlockDrop,
     handleLineBlockDragStart,
     handleLineBlockDrop,
-  } = useLineBlocksStore();
-  const { handleBlockDragStart, handleBlockDrop } = useDragStore();
+  } = useDragStore();
   const { setTestCodes } = useTestCodeStore();
 
   const {
@@ -41,30 +40,31 @@ const BlockDashboard = () => {
     openCreateModal,
     closeCreateModal,
     setSelectedTemplate,
+    openErrorModal,
   } = useModalStore();
-  const { isTextButtonDisabled, updateButtonState, setIsCreateClicked } =
-    useButtonStore();
-
-  useEffect(() => {
-    updateButtonState(lineBlocks);
-  }, [lineBlocks, updateButtonState]);
 
   const handleCreateConfirm = async () => {
-    setIsCreateClicked(true);
-
-    const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
-      lineBlockId: lineBlock.id,
-      blocks: lineBlock.blocks,
-      index: index + 1,
-    }));
-
-    const userBlocks = await handleBlocks(collectedLineBlockInfo);
-
-    setTestCodes(userBlocks.formattedTestCodes);
-
     closeCreateModal();
-    handleResetLineBlocks();
-    setIsCreateClicked(false);
+    setIsLoading(true);
+
+    try {
+      const collectedLineBlockInfo = lineBlocks.map((lineBlock, index) => ({
+        lineBlockId: lineBlock.id,
+        blocks: lineBlock.blocks,
+        index: index + 1,
+      }));
+
+      const userBlocks = await handleBlocks(collectedLineBlockInfo);
+
+      setTestCodes(userBlocks.formattedTestCodes);
+      handleResetLineBlocks();
+    } catch (error) {
+      openErrorModal();
+      setIsLoading(false);
+      setIsError(true);
+    }
+
+    setIsLoading(false);
   };
 
   const handleResetConfirm = () => {
@@ -82,13 +82,12 @@ const BlockDashboard = () => {
           <Button
             className="text-button"
             text="템플릿"
-            isDisabled={isTextButtonDisabled.test}
             handleClick={openTemplateModal}
           />
           <Button
             className="text-button"
             text="라인 블록 생성"
-            isDisabled={isTextButtonDisabled.next}
+            isDisabled={!hasMethodBlock(lineBlocks)}
             handleClick={handleCreateLineBlock}
           />
         </TopButtonContainer>
@@ -115,13 +114,13 @@ const BlockDashboard = () => {
           <Button
             className="text-button"
             text="초기화"
-            isDisabled={isTextButtonDisabled.reset}
+            isDisabled={!hasBlock(lineBlocks)}
             handleClick={openResetModal}
           />
           <Button
             className="text-button"
             text="테스트 코드 생성"
-            isDisabled={isTextButtonDisabled.create}
+            isDisabled={!hasMethodBlock(lineBlocks)}
             handleClick={openCreateModal}
           />
         </BottomButtonContainer>
