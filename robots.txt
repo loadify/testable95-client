@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /static/
+Disallow: /private/
+Sitemap: https://testable95.co.kr/sitemap.xml

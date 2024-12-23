@@ -7,13 +7,13 @@
 <br>
 
 <a href="https://testable95.co.kr/">
-  <img src="https://github.com/user-attachments/assets/08d424bc-c80b-4e9d-98f9-b0838e88902a">
+  <img alt="로고" src="https://github.com/user-attachments/assets/08d424bc-c80b-4e9d-98f9-b0838e88902a">
 </a>
 
 <br>
 <br>
 
-[<img src="https://github.com/user-attachments/assets/b229a8e9-44d6-439f-b9d4-e63c03cfa6a1">](https://testable95.co.kr/)
+[<img alt="배포 사이트 접속 버튼" src="https://github.com/user-attachments/assets/b229a8e9-44d6-439f-b9d4-e63c03cfa6a1">](https://testable95.co.kr/)
 
 <br>
 
@@ -68,7 +68,7 @@
 
 ## 1. 미리보기
 
-<img src="https://github.com/user-attachments/assets/209024c8-757d-44b7-accb-f788f3705ac9">
+<img alt="미리보기" src="https://github.com/user-attachments/assets/209024c8-757d-44b7-accb-f788f3705ac9">
 
 <br>
 <br>
@@ -107,7 +107,7 @@
 <br>
 
 <div align="center">
-  <img width="600" src="https://github.com/user-attachments/assets/5b5f9536-77e1-403d-9efb-b435a166201b">
+  <img width="600" alt="GitHub Star 수 비교" src="https://github.com/user-attachments/assets/5b5f9536-77e1-403d-9efb-b435a166201b">
 
 _GitHub Star 수 비교_
 
@@ -132,7 +132,7 @@ _GitHub Star 수 비교_
 **스크래치**는 전 세계 수백만 명의 사용자들이 그래픽 인터페이스를 통해 복잡한 코드를 작성할 필요 없이 **블록**을 조합하는 형태로 프로그램을 구성할 수 있는 서비스입니다.
 
 <div align="center">
-  <img width="260" height="242" src="https://github.com/user-attachments/assets/e6b38dd0-2083-4e54-bae4-c4bfe7f7e23b"><img width="540" src="https://github.com/user-attachments/assets/2c94efca-cc55-4497-a768-496d78b9f7f9">
+  <img width="260" height="242" alt="스크래치는 많은 사람들이 사용한다는 기사" src="https://github.com/user-attachments/assets/e6b38dd0-2083-4e54-bae4-c4bfe7f7e23b"><img width="540" alt ="스크래치 사용 예시" src="https://github.com/user-attachments/assets/2c94efca-cc55-4497-a768-496d78b9f7f9">
 
 _수백만의 사람들이 사용하는 스크래치 서비스_
 
@@ -154,7 +154,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
    **Playwright**는 정기적으로 업데이트되며, 새로운 버전에서는 기존에 사용하던 메서드가 제거되거나 새로운 메서드가 추가되거나 기존 방식이 **레거시**로 전환되면서, 점차 최신 방식으로 변경해야 하는 상황 발생합니다. 이런 변화에 따라 테스트 블록 데이터도 지속적으로 업데이트되어야 하며, 이를 효과적으로 관리할 필요가 있었습니다.
 
    <div align="center">
-      <img src="https://github.com/user-attachments/assets/b4a69277-b6b6-4e4d-b815-8073e2e3335e">
+      <img alt="Playwright의 42개의 버전들" src="https://github.com/user-attachments/assets/b4a69277-b6b6-4e4d-b815-8073e2e3335e">
 
    _Playwright의 42개의 버전들_
 
@@ -188,12 +188,12 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
 
 #### (1) 메서드를 담당하는 메서드 블록
 
-<img width="164" alt="메서드블록" src="https://github.com/user-attachments/assets/720c7859-6a23-481f-8acc-cf53744d9fcf"><br>
+<img width="164" alt="메서드 블록" src="https://github.com/user-attachments/assets/720c7859-6a23-481f-8acc-cf53744d9fcf"><br>
 특정 기능을 **수행**하는 코드 조각을 의미하며, 하나 또는 여러 인풋 블록과 결합하여 사용되는 블록입니다.
 
 #### (2) 매개변수를 담당하는 인풋 블록
 
-<img width="164" alt="인풋블록" src="https://github.com/user-attachments/assets/4300fac0-3ef9-411f-8c2d-67a75b60e524"><br>
+<img width="164" alt="인풋 블록" src="https://github.com/user-attachments/assets/4300fac0-3ef9-411f-8c2d-67a75b60e524"><br>
 서드 블록과 관련이 있는 **세부 정보**가 담긴 **매개변수**를 제공하는 역할로 사용자가 직접 값을 입력할 수 있는 블록입니다. 사용자의 입력 값에 따라 매개변수가 동적으로 변경되기 때문에 **지역 상태 관리**를 활용한 **제어 컴포넌트** 방식으로 구현하였습니다.
 
 ```jsx
@@ -221,7 +221,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
 
 #### (3) 테스트 코드의 한 줄을 의미하는 라인 블록
 
-<img src="https://github.com/user-attachments/assets/c17e9b7f-0a43-4571-9800-ff9734adc92b"><br>
+<img alt="라인 블록" src="https://github.com/user-attachments/assets/c17e9b7f-0a43-4571-9800-ff9734adc92b"><br>
 **코드 한 줄**을 나타내며, 하나 이상의 메서드 블록이나 인풋 블록을 포함하는 블록입니다.
 
 **라인 블록**이 생성되기 위해서는 아래 조건을 만족해야 코드 한 줄이 **완성**된 것으로 간주되어 다음 **라인 블록**을 **생성**할 수 있도록 구현했습니다. 다음 조건들로 사용자들이 불필요한 테스트 코드 생성을 방지하고 코드 문법이 어색한 비개발자들도 **효율적**으로 코드를 생성할 수 있도록 도와줍니다.
@@ -232,7 +232,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
   await page.waitFor();
   ```
 
-    <img width="347" alt="스크린샷 2024-10-26 오후 8 16 22" src="https://github.com/user-attachments/assets/e19712b2-6557-4e0f-908f-98438decf65b">
+    <img width="347" alt="하나의 메서드 블록만 존재하는 경우" src="https://github.com/user-attachments/assets/e19712b2-6557-4e0f-908f-98438decf65b">
 
   <br>
 
@@ -242,7 +242,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
   await page.goto("www.naver.com");
   ```
 
-    <img width="369" alt="라인블록" src="https://github.com/user-attachments/assets/f2cb4139-bb76-48ac-a70d-8117d728cf1f">
+    <img width="369" alt="한 쌍의 메서드 블록과 인풋 블록이 배치되는 경우" src="https://github.com/user-attachments/assets/f2cb4139-bb76-48ac-a70d-8117d728cf1f">
 
   </details>
 
@@ -254,7 +254,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
   await page.locator("#order-sent").waitForTimeout(5000);
   ```
 
-    <img width="533" alt="스크린샷 2024-10-26 오후 8 18 17" src="https://github.com/user-attachments/assets/6ac2ac65-ce4f-4de1-be3f-14bdb8ae04e5">
+    <img width="533" alt="하나의 메서드 블록과 다수의 인풋 블록이 배치되는 경우" src="https://github.com/user-attachments/assets/6ac2ac65-ce4f-4de1-be3f-14bdb8ae04e5">
 
 #### <p align="right"><a href="#top">목차👆🏼</a></p>
 
@@ -267,7 +267,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
 <br>
 
 <div align="center">
-  <img width="600" alt="스크린샷 2024-10-27 오후 8 27 36" src="https://github.com/user-attachments/assets/62d675bd-a46b-4a25-b532-34d685ea892d">
+  <img width="600" alt="블록의 id를 활용하여 드래그 앤 드롭 구하기 시각화" src="https://github.com/user-attachments/assets/62d675bd-a46b-4a25-b532-34d685ea892d">
 
 </div>
 
@@ -278,7 +278,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
 <br>
 
 <div align="center">
-  <img width="600" src="https://github.com/user-attachments/assets/9a0e600f-c92e-467b-b3bc-478a125418cb">
+  <img width="600" alt="블록과 마우스 이벤트 연결" src="https://github.com/user-attachments/assets/9a0e600f-c92e-467b-b3bc-478a125418cb">
   
   _블록과 마우스 이벤트 연결_
 </div>
@@ -296,7 +296,7 @@ _수백만의 사람들이 사용하는 스크래치 서비스_
 <br>
 
 <div align="center">
-  <img width="600" alt="스크린샷 2024-10-27 오후 7 23 25" src="https://github.com/user-attachments/assets/b4ce1c67-3ae3-4d79-b662-4330a6f1850e">
+  <img width="600" alt="블록의 위치를 결정하는 조건" src="https://github.com/user-attachments/assets/b4ce1c67-3ae3-4d79-b662-4330a6f1850e">
 
 _블록의 위치를 결정하는 조건_
 
@@ -328,7 +328,7 @@ _블록의 위치를 결정하는 조건_
 <br>
 
 <div align="center">
-  <img width="500" src="https://github.com/user-attachments/assets/6e471b6c-d5e7-4d08-b980-ce3a6baf1fab">
+  <img width="500" alt="역순으로 블록을 배치했을 때 발생하는 에러" src="https://github.com/user-attachments/assets/6e471b6c-d5e7-4d08-b980-ce3a6baf1fab">
 
 _역순으로 블록을 배치했을 때 발생하는 에러_
 
@@ -346,7 +346,7 @@ const entity = entities.value;
 이러한 키워드를 `Playwright` 문법에 맞게 배치하면 사용자는 원하는 코드를 생성할 수 있습니다.
 
 <div align="center">
-  <img width="500" src="https://github.com/user-attachments/assets/0549ace0-c0e0-4eac-a597-f2f2823d0dde">
+  <img width="500" alt="역순으로 블록을 배치해도 처리하는 Wit AI" src="https://github.com/user-attachments/assets/0549ace0-c0e0-4eac-a597-f2f2823d0dde">
 
 _역순으로 블록을 배치해도 처리하는 Wit AI_
 
@@ -365,7 +365,7 @@ _역순으로 블록을 배치해도 처리하는 Wit AI_
 아래의 과정을 진행하여 **Wit AI**의 원활한 분석을 위해 의도와 세부 정보의 연관성에 대한 **학습**을 진행할 수 있습니다.
 
 <div align="center">
-  <img width="400" alt="스크린샷 2024-10-27 오후 11 14 23" src="https://github.com/user-attachments/assets/5a8506eb-8db0-4904-9d1f-95201edb52ee">
+  <img width="400" alt="의도와 세부 정보 연관성 학습" src="https://github.com/user-attachments/assets/5a8506eb-8db0-4904-9d1f-95201edb52ee">
 
 _의도와 세부 정보 연관성 학습_
 
@@ -375,7 +375,7 @@ Wit AI는 이러한 학습을 통해 **의도**와 **세부 정보**의 **연관
 
 <div align="center">
 
-  <img width="400" src="https://github.com/user-attachments/assets/fe710360-f3f6-4148-a41f-b42ae1409b55">
+<img width="400" alt="이동합니다라는 의도와 url라는 세부정보의 연관성 강화 학습 기록" src="https://github.com/user-attachments/assets/fe710360-f3f6-4148-a41f-b42ae1409b55">
 
 _"이동합니다."와 `url` 연관성 강화 학습 기록_
 
@@ -386,7 +386,7 @@ _"이동합니다."와 `url` 연관성 강화 학습 기록_
 <br>
 
 <div align="center">
-  <img width="400" alt="스크린샷 2024-10-27 오후 2 01 21" src="https://github.com/user-attachments/assets/81fbc6f7-dd21-4a6b-a8ec-a9a9beb15906">
+  <img width="400" alt="Wit AI의 의도와 세부 정보" src="https://github.com/user-attachments/assets/81fbc6f7-dd21-4a6b-a8ec-a9a9beb15906">
 
 _Wit AI의 의도와 세부 정보_
 
@@ -407,7 +407,7 @@ _Wit AI의 의도와 세부 정보_
 
 <div align="center">
 
-  <img width="800" alt="플로우" src="https://github.com/user-attachments/assets/16d0c24b-cc38-4fc4-bd1b-e15939b3e4d7">
+  <img width="800" alt="블록을 테스트 코드로 변환하는 과정" src="https://github.com/user-attachments/assets/16d0c24b-cc38-4fc4-bd1b-e15939b3e4d7">
 
 _블록을 테스트 코드로 변환하는 과정_
 
@@ -468,7 +468,7 @@ _블록을 테스트 코드로 변환하는 과정_
 조건부 렌더링과 직관적인 상태(`isLoading`, `isError`)를 활용하여, 비동기 작업 중 발생할 수 있는 혼란을 방지하고 예측 가능한 사용자 경험을 제공하였습니다. 이를 통해 테스트 코드 생성 과정을 더욱 부드럽고 직관적으로 처리할 수 있었습니다.
 
 <div align="center">
-  <img width="600" src="https://github.com/user-attachments/assets/db0a759e-9483-42f7-a478-b951e3369cf8">
+  <img width="600" alt="대체 화면 구현한 영상" src="https://github.com/user-attachments/assets/db0a759e-9483-42f7-a478-b951e3369cf8">
 </div>
 
 #### <p align="right"><a href="#top">목차👆🏼</a></p>
@@ -496,7 +496,7 @@ _블록을 테스트 코드로 변환하는 과정_
 아래는 팀원들의 **일일 스크럼**과 **저녁 마무리 회의** 진행 자료 입니다.
 
 <div align="center">
-  <img width="400" src="https://github.com/user-attachments/assets/74b25ae8-f42a-427f-b492-cc02633f616d">
+  <img width="400" alt="개발 기간 20일 동안 55개의 회의록을 작성한 기록" src="https://github.com/user-attachments/assets/74b25ae8-f42a-427f-b492-cc02633f616d">
 
 _개발 기간 20일 동안 55개의 회의록을 작성하였습니다._
 
@@ -506,9 +506,9 @@ _개발 기간 20일 동안 55개의 회의록을 작성하였습니다._
 
 <br>
 
-| 8월 5일 (E2E 테스트 프레임 워크 비교)                                                                                                                    | 8월 7일 (자연어 처리 API 비교)                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| <img width="400" alt="스크린샷 2024-10-28 오전 10 47 50" src="https://github.com/user-attachments/assets/5a8d858b-e6c0-4df7-8c65-78cbe9c39a28"> | <img width="400" src="https://github.com/user-attachments/assets/4f659666-e772-4f8a-9bf7-8ce28dd625a5"> |
+| 8월 5일 (E2E 테스트 프레임워크 비교)                                                                                                     | 8월 7일 (자연어 처리 API 비교)                                                                                                     |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| <img width="400" alt="E2E 테스트 프레임워크 비교" src="https://github.com/user-attachments/assets/5a8d858b-e6c0-4df7-8c65-78cbe9c39a28"> | <img width="400" alt="자연어 처리 API 비교" src="https://github.com/user-attachments/assets/4f659666-e772-4f8a-9bf7-8ce28dd625a5"> |
 
 <br>
 
@@ -526,7 +526,7 @@ _개발 기간 20일 동안 55개의 회의록을 작성하였습니다._
 
 <br>
 <div align="center">
-  <img width="400" src="https://github.com/user-attachments/assets/3b2e93dc-2054-4d1d-b6a0-b7ceb3aa4dba">
+  <img width="400" alt="코드 리뷰에 대한 팀원들의 어려움" src="https://github.com/user-attachments/assets/3b2e93dc-2054-4d1d-b6a0-b7ceb3aa4dba">
 
 _코드 리뷰에 대한 팀원들의 어려움_
 
@@ -550,7 +550,7 @@ _코드 리뷰에 대한 팀원들의 어려움_
 
 | Before                                                                                                                                                 | After                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <img width="802" alt="스크린샷 2024-10-25 오후 7 34 42" src="https://github.com/user-attachments/assets/f816fb0f-09ba-4f87-bd52-54565489589b"> | <img width="802" alt="스크린샷 2024-10-26 오전 9 32 30" src="https://github.com/user-attachments/assets/d312293a-0019-4303-9fd7-d7adbd59c52a"> |
+| <img width="802" alt="리뷰 방식 적용 전" src="https://github.com/user-attachments/assets/f816fb0f-09ba-4f87-bd52-54565489589b"> | <img width="802" alt="리뷰 방식 적용 후" src="https://github.com/user-attachments/assets/d312293a-0019-4303-9fd7-d7adbd59c52a"> |
 
 <br>
 
