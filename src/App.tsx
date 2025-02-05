@@ -8,17 +8,17 @@ import GlobalStyle from "./style/GlobalStyle";
 import Theme from "./style/Theme";
 
 const App = () => {
-  return (
-    <ThemeProvider theme={Theme}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<SplashPage />} />
-          <Route path="/blocks" element={<MainPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={Theme}>
+			<GlobalStyle />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<SplashPage />} />
+					<Route path="/blocks" element={<MainPage />} />
+				</Routes>
+			</BrowserRouter>
+		</ThemeProvider>
+	);
 };
 
 export default App;

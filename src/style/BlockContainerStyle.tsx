@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface BlockContainerStyleProps {
+	active?: boolean;
+}
+
 const TabList = styled.nav`
   display: flex;
   flex-direction: column;
@@ -18,11 +22,11 @@ const TabList = styled.nav`
   }
 `;
 
-const Tab = styled.button`
+const Tab = styled.button<BlockContainerStyleProps>`
   border: none;
   background: transparent;
-  color: ${({ theme, "data-active": active }) =>
-    active ? theme.color.whiteColor : theme.color.blackColor};
+  color: ${({ theme, active }) =>
+		active ? theme.color.whiteColor : theme.color.blackColor};
   font-size: ${({ theme }) => theme.fontSize.xsmall};
   text-align: left;
   cursor: pointer;
